@@ -68,13 +68,13 @@
     .body { padding: 1.25rem 1.5rem; }
     .screen { display: none; }
     .screen.active { display: block; }
- 
+
     /* ── Progress ── */
     .progress { display: flex; gap: 4px; padding: 0.75rem 1.5rem 0; }
     .prog-dot { height: 3px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.2s; }
     .prog-dot.done { background: var(--blue); }
     .prog-dot.active { background: #85B7EB; }
- 
+
     /* ── Wizard ── */
     .question { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
     .option-grid { display: grid; gap: 8px; }
@@ -105,7 +105,7 @@
     }
     .btn-ghost:hover { background: var(--bg-secondary); }
     .btn-ghost.full { width: 100%; }
- 
+
     /* ── Chips ── */
     .chip { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
     .chip-blue { background: var(--blue-light); color: var(--blue-text); }
@@ -113,7 +113,7 @@
     .chip-amber { background: var(--amber-bg); color: var(--amber-text); }
     .chip-purple { background: var(--purple-bg); color: var(--purple-text); }
     .chip-teal { background: var(--teal-bg); color: var(--teal-text); }
- 
+
     /* ── Info / Summary ── */
     .info-box { background: var(--blue-light); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 1.25rem; }
     .info-box p { font-size: 13px; color: var(--blue-text); line-height: 1.5; }
@@ -124,7 +124,7 @@
     .sum-key { color: var(--text-secondary); }
     .sum-val { color: var(--text-primary); font-weight: 500; }
     .intro-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; }
- 
+
     /* ── View Toggle ── */
     .view-toggle {
       display: flex; background: var(--bg-secondary); border: 0.5px solid var(--border);
@@ -136,7 +136,7 @@
       font-family: var(--font); transition: all 0.15s;
     }
     .vtog-btn.active { background: var(--bg); color: var(--blue); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
- 
+
     /* ── Health Plan Cards ── */
     .plan-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -160,7 +160,7 @@
     .stat { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 8px 10px; }
     .stat-label { font-size: 11px; color: var(--text-secondary); }
     .stat-val { font-size: 13px; font-weight: 500; margin-top: 1px; }
- 
+
     /* ── Cost Section ── */
     .cost-section { border-top: 0.5px solid var(--border); padding-top: 12px; margin: 4px 0 10px; }
     .cost-section-title { font-size: 11px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -177,7 +177,7 @@
     .pro-item { font-size: 12px; color: var(--text-secondary); display: flex; gap: 6px; margin-bottom: 3px; line-height: 1.4; }
     .pro-dot { color: var(--blue); font-weight: 700; flex-shrink: 0; }
     .pro-dot.warn { color: var(--amber-text); }
- 
+
     /* ── Select/Cart Buttons ── */
     @keyframes cartBounce { 0%,100%{transform:scale(1)} 40%{transform:scale(1.05)} 60%{transform:scale(0.97)} }
     .select-btn {
@@ -190,7 +190,7 @@
     .select-btn:hover { background: var(--blue-light); }
     .select-btn.in-cart { background: var(--green-text); color: #fff; border-color: var(--green-text); }
     .select-btn.bounce { animation: cartBounce 0.35s ease; }
- 
+
     /* ── Health Cart ── */
     @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
     .health-cart {
@@ -212,7 +212,7 @@
     .receipt-note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.6; }
     .hsa-callout { background: var(--green-bg); border-radius: var(--radius-md); padding: 10px 12px; margin-top: 10px; }
     .hsa-callout p { font-size: 12px; color: var(--green-text); line-height: 1.6; }
- 
+
     /* ── Section Divider ── */
     .section-divider {
       display: flex; align-items: center; gap: 10px;
@@ -220,7 +220,7 @@
     }
     .section-divider span { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
     .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
- 
+
     /* ── Benefit Cards (dental, vision, etc.) ── */
     .benefit-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -241,7 +241,7 @@
     .benefit-row:last-child { border-bottom: none; }
     .benefit-row .bk { color: var(--text-secondary); }
     .benefit-row .bv { font-weight: 500; }
- 
+
     /* ── Elect Button (for non-health benefits) ── */
     .elect-btn {
       width: 100%; padding: 9px 14px; border: 1px solid var(--border-med);
@@ -252,7 +252,7 @@
     }
     .elect-btn:hover { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
     .elect-btn.done { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
- 
+
     /* ── Pre-Tax / Contribution Inputs ── */
     .contrib-section { margin-top: 10px; }
     .contrib-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
@@ -269,13 +269,13 @@
     .contrib-max { font-size: 11px; color: var(--text-secondary); }
     .salary-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .salary-prefix { font-size: 14px; color: var(--text-secondary); }
- 
+
     /* ── Auto-enrolled Card ── */
     .auto-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; padding: 5px 0; border-bottom: 0.5px solid var(--border); }
     .auto-item:last-child { border-bottom: none; }
     .auto-check { color: var(--green-text); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
     .auto-detail { color: var(--text-secondary); }
- 
+
     /* ── Enrollment Checklist ── */
     .checklist-card {
       background: var(--bg); border: 1px solid var(--border-med); border-radius: var(--radius-lg);
@@ -308,7 +308,7 @@
     .cl-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
     .cl-where { font-size: 10px; color: var(--text-tertiary); font-style: italic; }
     .print-btn { font-size: 12px; color: var(--blue); background: none; border: none; cursor: pointer; font-family: var(--font); }
- 
+
     /* ── Chat ── */
     .chat-container { display: flex; flex-direction: column; height: 400px; }
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
@@ -321,9 +321,9 @@
     .chat-input-row { display: flex; gap: 8px; }
     .chat-input-row input { flex: 1; padding: 10px 14px; border: 0.5px solid var(--border-med); border-radius: var(--radius-md); font-size: 13px; font-family: var(--font); background: var(--bg); color: var(--text-primary); outline: none; }
     .chat-input-row input:focus { border-color: var(--blue); }
- 
+
     .disclaimer { font-size: 11px; color: var(--text-tertiary); margin-top: 1rem; line-height: 1.5; }
- 
+
     @media print {
       body { background: white; padding: 0; }
       .card { border: none; border-radius: 0; max-width: 100%; }
@@ -337,7 +337,7 @@
 </head>
 <body>
 <div class="card">
- 
+
   <!-- ── HEADER ── -->
   <div class="header">
     <div class="logo">
@@ -348,7 +348,7 @@
       <p id="main-sub">Amplitude · US employees only</p>
     </div>
   </div>
- 
+
   <!-- ── WELCOME ── -->
   <div id="screen-welcome" class="screen active">
     <div class="body">
@@ -359,7 +359,7 @@
       <button class="btn-primary" onclick="goTo('screen-q1')">Get started →</button>
     </div>
   </div>
- 
+
   <!-- ── Q1 ── -->
   <div id="screen-q1" class="screen">
     <div class="progress" id="prog1"></div>
@@ -377,7 +377,7 @@
       </div>
     </div>
   </div>
- 
+
   <!-- ── Q2 ── -->
   <div id="screen-q2" class="screen">
     <div class="progress" id="prog2"></div>
@@ -403,7 +403,7 @@
       </div>
     </div>
   </div>
- 
+
   <!-- ── Q3 ── -->
   <div id="screen-q3" class="screen">
     <div class="progress" id="prog3"></div>
@@ -429,7 +429,7 @@
       </div>
     </div>
   </div>
- 
+
   <!-- ── Q4 ── -->
   <div id="screen-q4" class="screen">
     <div class="progress" id="prog4"></div>
@@ -451,12 +451,12 @@
       </div>
     </div>
   </div>
- 
+
   <!-- ── RESULTS ── -->
   <div id="screen-results" class="screen">
     <div class="body">
       <div id="results-summary" class="summary-box"></div>
- 
+
       <!-- 1. HEALTH PLAN -->
       <div class="section-divider"><span>🏥 Medical plan</span></div>
       <div class="view-toggle">
@@ -465,41 +465,41 @@
       </div>
       <div id="plan-cards"></div>
       <div id="plan-cart" style="display:none"></div>
- 
+
       <!-- 2. DENTAL -->
       <div class="section-divider"><span>🦷 Dental</span></div>
       <div id="dental-card"></div>
- 
+
       <!-- 3. VISION -->
       <div class="section-divider"><span>👁 Vision</span></div>
       <div id="vision-card"></div>
- 
+
       <!-- 4. PRE-TAX SPENDING -->
       <div class="section-divider"><span>💰 Pre-tax spending accounts</span></div>
       <div id="pretax-cards"></div>
- 
+
       <!-- 5. 401K -->
       <div class="section-divider"><span>📈 Retirement</span></div>
       <div id="k401-card"></div>
- 
+
       <!-- 6. COMMUTER -->
       <div class="section-divider"><span>🚇 Commuter benefits</span></div>
       <div id="commuter-card"></div>
- 
+
       <!-- 7. AUTO-ENROLLED -->
       <div class="section-divider"><span>✅ Auto-enrolled for you</span></div>
       <div id="auto-card"></div>
- 
+
       <!-- 8. ENROLLMENT CHECKLIST -->
       <div class="section-divider"><span>📋 Your enrollment checklist</span></div>
       <div id="checklist-card"></div>
- 
+
       <button class="btn-primary full" style="margin-top:1rem" onclick="goTo('screen-chat')">Ask a follow-up question →</button>
       <button class="btn-ghost full" onclick="resetAll()">Start over</button>
       <p class="disclaimer">This tool is a guide, not official benefits advice. All medical, dental, vision, and FSA elections are made in Workday. 401k is through Fidelity. Questions? Email <a href="mailto:hr@amplitude.com" style="color:var(--blue);">hr@amplitude.com</a></p>
     </div>
   </div>
- 
+
   <!-- ── CHAT ── -->
   <div id="screen-chat" class="screen">
     <div class="body" style="padding-bottom:0">
@@ -522,7 +522,7 @@
       <button class="btn-ghost full" style="margin-top:10px" onclick="goTo('screen-results')">← Back to results</button>
     </div>
   </div>
- 
+
 </div><!-- .card -->
 <script>
 /* ═══════════════════════════════════════
@@ -531,7 +531,7 @@
 const answers = {};
 let selectedPlanId = null;
 let viewMode = 'monthly';
- 
+
 // Tracks which non-health benefits the user has acknowledged
 const elected = {
   dental: false,
@@ -542,7 +542,7 @@ const elected = {
   k401Pct: 0,
   commuter: false
 };
- 
+
 /* ═══════════════════════════════════════
    HEALTH PLAN DATA
 ═══════════════════════════════════════ */
@@ -561,7 +561,7 @@ const PLANS = {
 const OOP_EST = { hdhp:{low:0,medium:600,high:1900}, ppo:{low:25,medium:180,high:780}, epo:{low:30,medium:130,high:540}, kaiser:{low:20,medium:95,high:360} };
 const COV_MULT = { solo:1.0, spouse:1.65, kids:1.5, family:2.0 };
 const HSA_EMPLOYER = { solo:1000, spouse:2000, kids:2000, family:2000 };
- 
+
 function calcCosts(pid, cov, usage) {
   const monthly = PREMIUMS[cov][pid];
   const annual  = monthly * 12;
@@ -572,7 +572,7 @@ function calcCosts(pid, cov, usage) {
   const surplus     = Math.max(0, hsaCredit - grossAnnual);
   return { monthly, annual, oopEst, hsaCredit, grossAnnual, netAnnual, surplus };
 }
- 
+
 function getRanked() {
   const { coverage, usage, doctors, state } = answers;
   let all = ['ppo','hdhp','epo'];
@@ -586,7 +586,7 @@ function coverageLabel(c) {
   return {solo:'Employee only',spouse:'Employee + Spouse/DP',kids:'Employee + Child(ren)',family:'Family'}[c];
 }
 function hasKids() { return answers.coverage === 'kids' || answers.coverage === 'family'; }
- 
+
 /* ═══════════════════════════════════════
    VIEW MODE TOGGLE
 ═══════════════════════════════════════ */
@@ -610,24 +610,24 @@ function setViewMode(mode) {
   });
   if (selectedPlanId) renderHealthCart(selectedPlanId);
 }
- 
+
 /* ═══════════════════════════════════════
    SHOW RESULTS — orchestrates all sections
 ═══════════════════════════════════════ */
 function showResults() {
   const cov = answers.coverage, usage = answers.usage, isFam = cov !== 'solo';
   const ranked = getRanked();
- 
+
   // Profile summary
   document.getElementById('results-summary').innerHTML =
     '<h3>Your profile</h3>' +
     `<div class="sum-row"><span class="sum-key">Coverage</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Usage</span><span class="sum-val">${{low:'Rarely uses care',medium:'Occasional visits',high:'Frequent / ongoing care'}[usage]}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Doctors</span><span class="sum-val">${{flexible:'Flexible on network',prefer_in:'Prefers in-network',out_of_network:'Needs out-of-network access'}[answers.doctors]}</span></div>`;
- 
+
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
- 
+
   // Other benefit cards
   renderDentalCard();
   renderVisionCard();
@@ -636,22 +636,22 @@ function showResults() {
   renderCommuterCard();
   renderAutoCard();
   renderChecklist();
- 
+
   goTo('screen-results');
 }
- 
+
 /* ═══════════════════════════════════════
    HEALTH PLAN CARDS
 ═══════════════════════════════════════ */
 function renderHealthCards(ranked, cov, usage, isFam) {
   const allCosts = ranked.map(pid => calcCosts(pid, cov, usage));
   const maxNet   = Math.max(...allCosts.map(c => c.netAnnual), 1);
- 
+
   const container = document.getElementById('plan-cards');
   container.innerHTML = '';
   selectedPlanId = null;
   document.getElementById('plan-cart').style.display = 'none';
- 
+
   ranked.forEach((pid, i) => {
     const p = PLANS[pid], costs = allCosts[i], isTop = i === 0;
     const ded = isFam ? p.deductible.other : p.deductible.solo;
@@ -660,7 +660,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     const savings = mostExpensive - costs.netAnnual;
     const meterPct   = maxNet > 0 ? Math.round(costs.netAnnual / maxNet * 100) : 0;
     const meterColor = meterPct <= 35 ? '#3B6D11' : meterPct <= 65 ? '#854F0B' : '#9B1B1B';
- 
+
     const pros = [], cons = [];
     if (pid === 'hdhp') {
       if (cov === 'solo') pros.push('$0/month premium for employee-only coverage');
@@ -681,15 +681,15 @@ function renderHealthCards(ranked, cov, usage, isFam) {
       pros.push('Doctor, lab, pharmacy all in one integrated system');
       cons.push('Must stay within Kaiser network');
     }
- 
+
     let netLabel = costs.surplus > 0 ? `<span style="color:var(--green-text)">$0 (employer-funded ✓)</span>` : `~$${costs.netAnnual.toLocaleString()}`;
     const surplusNote = costs.surplus > 0
       ? `<div style="background:var(--green-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--green-text);margin-top:6px">🎉 Amplitude's HSA covers all estimated costs — ~$${costs.surplus.toLocaleString()} remaining for future savings.</div>`
       : '';
- 
+
     const prosHTML = pros.map(x=>`<div class="pro-item"><span class="pro-dot">+</span><span>${x}</span></div>`).join('') +
                      cons.map(x=>`<div class="pro-item"><span class="pro-dot warn">!</span><span>${x}</span></div>`).join('');
- 
+
     const card = document.createElement('div');
     card.className = 'plan-card' + (isTop ? ' top-pick' : '');
     card.dataset.pid = pid;
@@ -723,7 +723,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     container.appendChild(card);
   });
 }
- 
+
 function selectHealthPlan(pid, btn) {
   selectedPlanId = pid;
   document.querySelectorAll('.select-btn').forEach(b => { b.classList.remove('in-cart'); b.textContent = '🛒 Add to plan cart'; });
@@ -737,7 +737,7 @@ function selectHealthPlan(pid, btn) {
   renderPretaxCards();
   renderChecklist();
 }
- 
+
 function renderHealthCart(pid) {
   const cov = answers.coverage, usage = answers.usage;
   const p = PLANS[pid], costs = calcCosts(pid, cov, usage);
@@ -751,7 +751,7 @@ function renderHealthCart(pid) {
   cartEl.innerHTML = `<div class="health-cart"><div class="cart-header"><div><div>🛒 Health plan estimate</div><div class="cart-sub">${p.name} · ${coverageLabel(cov)}</div></div><span style="font-size:11px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:12px">${usageLabel}</span></div><div class="cart-body"><div class="receipt-row"><span class="rk">Employee premium</span><span class="rv">${premLine}</span></div><div class="receipt-row"><span class="rk">Est. out-of-pocket</span><span class="rv">~$${costs.oopEst.toLocaleString()}/yr</span></div>${pid==='hdhp'?`<div class="receipt-row hsa"><span class="rk">Amplitude HSA credit</span><span class="rv">−$${costs.hsaCredit.toLocaleString()}/yr</span></div>`:''}<div class="receipt-total"><span>Estimated annual total</span><span>${netDisplay}</span></div><p class="receipt-note">⚠ OOP is illustrative based on stated usage. Actual costs depend on care received. Elect in Workday.</p>${hsaBlock}</div></div>`;
   cartEl.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
- 
+
 /* ═══════════════════════════════════════
    DENTAL CARD
 ═══════════════════════════════════════ */
@@ -783,7 +783,7 @@ function renderDentalCard() {
       <button class="elect-btn" id="dental-btn" onclick="electBenefit('dental','dental-btn','dental-benefit')">✓ Got it — I'll elect dental in Workday</button>
     </div>`;
 }
- 
+
 /* ═══════════════════════════════════════
    VISION CARD
 ═══════════════════════════════════════ */
@@ -809,7 +809,7 @@ function renderVisionCard() {
       <button class="elect-btn" id="vision-btn" onclick="electBenefit('vision','vision-btn','vision-benefit')">✓ Got it — I'll elect vision in Workday</button>
     </div>`;
 }
- 
+
 /* ═══════════════════════════════════════
    PRE-TAX SPENDING CARDS
 ═══════════════════════════════════════ */
@@ -820,15 +820,15 @@ function renderPretaxCards() {
   const irsHSA = cov === 'solo' ? 4400 : 8750;
   const irsHSALabel = cov === 'solo' ? '$4,400' : '$8,750';
   const yourRoom = irsHSA - empContrib;
- 
+
   // Usage-based suggestions
   const hsaSuggest  = {low: Math.min(1500, yourRoom), medium: Math.min(2500, yourRoom), high: yourRoom}[usage];
   const fsaSuggest  = {low:300, medium:1200, high:2800}[usage];
   const dcfsaSuggest = 5000;
   const TAX_RATE = 0.28;
- 
+
   let html = '';
- 
+
   // HSA (only if HDHP selected or not yet selected)
   if (!selectedPlanId || isHDHP) {
     const notSelectedNote = !selectedPlanId ? `<div style="background:var(--amber-bg);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">💡 Select a health plan above — HSA is only available with the HDHP.</div>` : '';
@@ -864,7 +864,7 @@ function renderPretaxCards() {
       </div>`;
     if (isHDHP) setTimeout(() => updateHSA(hsaSuggest), 0);
   }
- 
+
   // Healthcare FSA (only if NOT HDHP)
   if (!selectedPlanId || !isHDHP) {
     html += `
@@ -894,7 +894,7 @@ function renderPretaxCards() {
       </div>`;
     if (!isHDHP) setTimeout(() => updateFSA(fsaSuggest), 0);
   }
- 
+
   // Dependent Care FSA — only for employees with kids
   if (hasKids()) {
     html += `
@@ -924,7 +924,7 @@ function renderPretaxCards() {
       </div>`;
     setTimeout(() => updateDCFSA(dcfsaSuggest), 0);
   }
- 
+
   // Limited Purpose FSA — only if HDHP
   if (isHDHP) {
     html += `
@@ -944,14 +944,14 @@ function renderPretaxCards() {
         <button class="elect-btn" id="lpfsa-btn" onclick="electBenefit('lpfsa','lpfsa-btn',null)">✓ Got it — I'll consider LPFSA in Workday</button>
       </div>`;
   }
- 
+
   document.getElementById('pretax-cards').innerHTML = html;
   // Initialize savings displays
   if (isHDHP) updateHSA(document.getElementById('hsa-input')?.value || 0);
   else updateFSA(document.getElementById('fsa-input')?.value || 0);
   if (hasKids()) updateDCFSA(document.getElementById('dcfsa-input')?.value || 0);
 }
- 
+
 function taxSavingsLabel(amount, label) {
   const savings = Math.round(amount * 0.28);
   return savings > 0 ? `💚 $${amount.toLocaleString()} saves ~$${savings.toLocaleString()} in taxes (~28% rate) = effective cost: $${(amount - savings).toLocaleString()} · ${label}` : '';
@@ -974,7 +974,7 @@ function updateDCFSA(val) {
   if (el) el.textContent = taxSavingsLabel(elected.dcfsaContrib, 'per year');
   renderChecklist();
 }
- 
+
 /* ═══════════════════════════════════════
    401K CARD
 ═══════════════════════════════════════ */
@@ -1023,7 +1023,7 @@ function updateK401() {
   elected.k401Pct = parseFloat(recommended);
   renderChecklist();
 }
- 
+
 /* ═══════════════════════════════════════
    COMMUTER CARD
 ═══════════════════════════════════════ */
@@ -1048,7 +1048,7 @@ function renderCommuterCard() {
       <button class="elect-btn" id="commuter-btn" onclick="electBenefit('commuter','commuter-btn','commuter-benefit')">✓ Got it — I'll enroll in Navia</button>
     </div>`;
 }
- 
+
 /* ═══════════════════════════════════════
    AUTO-ENROLLED CARD
 ═══════════════════════════════════════ */
@@ -1066,7 +1066,7 @@ function renderAutoCard() {
       ${items.map(([title, detail]) => `<div class="auto-item"><span class="auto-check">✓</span><div><strong style="font-size:13px">${title}</strong><div class="auto-detail">${detail}</div></div></div>`).join('')}
     </div>`;
 }
- 
+
 /* ═══════════════════════════════════════
    ELECT BENEFIT HELPER
 ═══════════════════════════════════════ */
@@ -1079,14 +1079,14 @@ function electBenefit(key, btnId, cardId) {
   if (cardId) document.getElementById(cardId)?.classList.add('elected');
   renderChecklist();
 }
- 
+
 /* ═══════════════════════════════════════
    ENROLLMENT CHECKLIST
 ═══════════════════════════════════════ */
 function renderChecklist() {
   const healthPlanName = selectedPlanId ? PLANS[selectedPlanId].name : null;
   const isHDHP = selectedPlanId === 'hdhp';
- 
+
   // Workday items
   const workdayItems = [
     { key:'health', label:'Medical plan', sub: healthPlanName || 'Not yet selected', done: !!selectedPlanId },
@@ -1096,25 +1096,25 @@ function renderChecklist() {
     ...(!isHDHP ? [{ key:'fsa', label:'Health Care FSA', sub: elected.fsaContrib > 0 ? `$${elected.fsaContrib.toLocaleString()}/yr (saves ~$${Math.round(elected.fsaContrib*0.28).toLocaleString()} in taxes)` : 'Not yet configured', done: elected.fsaContrib > 0 }] : []),
     ...(hasKids() ? [{ key:'dcfsa', label:'Dependent Care FSA', sub: elected.dcfsaContrib > 0 ? `$${elected.dcfsaContrib.toLocaleString()}/yr` : 'Not yet configured', done: elected.dcfsaContrib > 0 }] : []),
   ];
- 
+
   const fidelityItems = [
     { key:'k401', label:'401(k) contribution rate', sub: elected.k401Pct > 0 ? `~${elected.k401Pct}% recommended` : 'Not yet configured — update in Fidelity NetBenefits', done: elected.k401Pct > 0 }
   ];
- 
+
   const naviaItems = [
     { key:'commuter', label:'Commuter transit (if SF/NYC)', sub: 'Elect in Navia by 20th of prior month', done: elected.commuter }
   ];
- 
+
   const autoItems = [
     { key:'std', label:'Short & long-term disability', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'life', label:'Basic life insurance (1× salary)', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'lsa', label:'LSA $200/month via Forma', sub: 'Auto-enrolled — no action needed', auto: true },
     { key:'eap', label:'EAP / Modern Health', sub: 'Auto-enrolled — no action needed', auto: true },
   ];
- 
+
   const doneCount = [...workdayItems, ...fidelityItems, ...naviaItems].filter(i => i.done).length;
   const total = workdayItems.length + fidelityItems.length + naviaItems.length;
- 
+
   function renderItems(items) {
     return items.map(item => `
       <div class="cl-item">
@@ -1125,7 +1125,7 @@ function renderChecklist() {
         </div>
       </div>`).join('');
   }
- 
+
   document.getElementById('checklist-card').innerHTML = `
     <div class="checklist-card">
       <div class="checklist-header">
@@ -1155,7 +1155,7 @@ function renderChecklist() {
       </div>
     </div>`;
 }
- 
+
 /* ═══════════════════════════════════════
    NAVIGATION
 ═══════════════════════════════════════ */
@@ -1195,7 +1195,7 @@ function resetAll() {
   ['btn-q1','btn-q2','btn-q3','btn-q4'].forEach(id => { const el = document.getElementById(id); if(el) el.disabled = true; });
   goTo('screen-welcome');
 }
- 
+
 /* ═══════════════════════════════════════
    CHAT
 ═══════════════════════════════════════ */
