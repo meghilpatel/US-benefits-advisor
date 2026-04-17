@@ -553,10 +553,10 @@ const PREMIUMS = {
   family: { ppo: 629, hdhp: 470, epo: 771, kaiser: 624 }
 };
 const PLANS = {
-  ppo:    { name:'Aetna PPO',         tag:'Most flexible',   desc:'In AND out-of-network coverage. Best if any doctors may be outside Aetna.', deductible:{solo:'$500',other:'$1,000'},   oop_max:{solo:'$4,500',other:'$9,000'},  copay:'$20 primary / $40 specialist', rx:'$15 retail generic', hsa:false },
-  hdhp:   { name:'Aetna HDHP + HSA',  tag:'Best for savers', desc:'Lowest or $0 premium + HSA. Amplitude contributes $1,000 (individual) or $2,000 (family) to your account.', deductible:{solo:'$1,700',other:'$3,400'}, oop_max:{solo:'$4,500',other:'$9,000'}, copay:'After deductible (20%)', rx:'$10 retail generic', hsa:true },
-  epo:    { name:'Aetna EPO',          tag:'No deductible',   desc:'No deductible — pay copays from day one. No out-of-network (emergencies excepted).', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$4,500',other:'$9,000'}, copay:'$30 primary / $60 specialist', rx:'$10 retail generic', hsa:false },
-  kaiser: { name:'Kaiser HMO',         tag:'CA only',         desc:'Integrated care — doctor, specialist, lab, and pharmacy all in one system. Lowest OOP max available.', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$1,500',other:'$3,000'}, copay:'$30 primary / $30 specialist', rx:'$15 retail generic', hsa:false }
+  ppo:    { name:'Aetna PPO',         tag:'Most flexible',   planNum:'#268595', desc:'In AND out-of-network coverage. Best if any doctors may be outside Aetna.', deductible:{solo:'$500',other:'$1,000'},   oop_max:{solo:'$4,500',other:'$9,000'},  copay:'$20 primary / $40 specialist', rx:'$15 retail generic', hsa:false },
+  hdhp:   { name:'Aetna HDHP + HSA',  tag:'Best for savers', planNum:'#268595', desc:'Lowest or $0 premium + HSA. Amplitude contributes $1,000 (individual) or $2,000 (family) to your account.', deductible:{solo:'$1,700',other:'$3,400'}, oop_max:{solo:'$4,500',other:'$9,000'}, copay:'After deductible (20%)', rx:'$10 retail generic', hsa:true },
+  epo:    { name:'Aetna EPO',          tag:'No deductible',   planNum:'#268595', desc:'No deductible — pay copays from day one. No out-of-network (emergencies excepted).', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$4,500',other:'$9,000'}, copay:'$30 primary / $60 specialist', rx:'$10 retail generic', hsa:false },
+  kaiser: { name:'Kaiser HMO',         tag:'CA only',         planNum:'#605785', desc:'Integrated care — doctor, specialist, lab, and pharmacy all in one system. Lowest OOP max available.', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$1,500',other:'$3,000'}, copay:'$30 primary / $30 specialist', rx:'$15 retail generic', hsa:false }
 };
 const OOP_EST = { hdhp:{low:0,medium:600,high:1900}, ppo:{low:25,medium:180,high:780}, epo:{low:30,medium:130,high:540}, kaiser:{low:20,medium:95,high:360} };
 const COV_MULT = { solo:1.0, spouse:1.65, kids:1.5, family:2.0 };
@@ -696,6 +696,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     card.innerHTML = `
       ${isTop ? '<div class="pick-badge">⭐ Recommended for you</div>' : ''}
       <div class="plan-header"><span class="plan-name">${p.name}</span><span class="chip chip-blue">${p.tag}</span></div>
+      <div style="font-size:11px;color:var(--text-tertiary);margin-bottom:2px">Group ${p.planNum} · Elect in Workday</div>
       <div class="plan-price price-main">$${costs.monthly.toLocaleString()}<span class="unit">/mo</span></div>
       <div class="price-alt">$${costs.annual.toLocaleString()} per year</div>
       <p class="plan-desc">${p.desc}</p>
@@ -764,7 +765,7 @@ function renderDentalCard() {
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">🦷</span>
-          <div><div class="benefit-name">Delta Dental PPO</div><div class="benefit-provider">Dental · Elect in Workday</div></div>
+          <div><div class="benefit-name">Delta Dental PPO</div><div class="benefit-provider">Group #22638 · Elect in Workday</div></div>
         </div>
         <span class="chip chip-green">Recommended</span>
       </div>
@@ -795,7 +796,7 @@ function renderVisionCard() {
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">👁</span>
-          <div><div class="benefit-name">VSP Vision</div><div class="benefit-provider">Vision · Elect in Workday</div></div>
+          <div><div class="benefit-name">VSP Vision</div><div class="benefit-provider">Group #40157016 · Elect in Workday</div></div>
         </div>
         <span class="chip chip-green">Recommended</span>
       </div>
@@ -837,7 +838,7 @@ function renderPretaxCards() {
         <div class="benefit-header">
           <div class="benefit-title-wrap">
             <span class="benefit-icon">💰</span>
-            <div><div class="benefit-name">Health Savings Account (HSA)</div><div class="benefit-provider">Pairs with HDHP only · Managed via Fidelity/HealthEquity</div></div>
+            <div><div class="benefit-name">Health Savings Account (HSA)</div><div class="benefit-provider">Pairs with HDHP only · Managed via Fidelity</div></div>
           </div>
           <span class="chip chip-teal">Triple tax benefit</span>
         </div>
@@ -872,7 +873,7 @@ function renderPretaxCards() {
         <div class="benefit-header">
           <div class="benefit-title-wrap">
             <span class="benefit-icon">💊</span>
-            <div><div class="benefit-name">Health Care FSA</div><div class="benefit-provider">Available with PPO or EPO · Elect in Workday</div></div>
+            <div><div class="benefit-name">Health Care FSA</div><div class="benefit-provider">Available with PPO or EPO · Administered by Navia (code: APU)</div></div>
           </div>
           <span class="chip chip-blue">Pre-tax savings</span>
         </div>
@@ -902,7 +903,7 @@ function renderPretaxCards() {
         <div class="benefit-header">
           <div class="benefit-title-wrap">
             <span class="benefit-icon">👶</span>
-            <div><div class="benefit-name">Dependent Care FSA</div><div class="benefit-provider">For childcare & eldercare · Elect in Workday</div></div>
+            <div><div class="benefit-name">Dependent Care FSA</div><div class="benefit-provider">For childcare & eldercare · Administered by Navia (code: APU)</div></div>
           </div>
           <span class="chip chip-purple">Tax savings</span>
         </div>
@@ -932,7 +933,7 @@ function renderPretaxCards() {
         <div class="benefit-header">
           <div class="benefit-title-wrap">
             <span class="benefit-icon">🔬</span>
-            <div><div class="benefit-name">Limited Purpose FSA (LPFSA)</div><div class="benefit-provider">Dental & vision only · Pairs with HSA</div></div>
+            <div><div class="benefit-name">Limited Purpose FSA (LPFSA)</div><div class="benefit-provider">Dental & vision only · Pairs with HSA · Navia (code: APU)</div></div>
           </div>
           <span class="chip chip-blue">Optional add-on</span>
         </div>
@@ -984,16 +985,18 @@ function renderK401Card() {
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">📈</span>
-          <div><div class="benefit-name">401(k) — Fidelity</div><div class="benefit-provider">Elect contribution rate in Fidelity NetBenefits</div></div>
+          <div><div class="benefit-name">401(k) — Fidelity</div><div class="benefit-provider">Plan #55883 · netbenefits.com/amplitude</div></div>
         </div>
         <span class="chip chip-teal">Tax-deferred growth</span>
       </div>
-      <p class="benefit-desc">Amplitude matches up to <strong>$2,000/year</strong> (1% of eligible pay per pay period). Vests 50% after 1 year, 100% after 2 years. Contribute pre-tax or Roth.</p>
+      <p class="benefit-desc">Amplitude matches 1% of eligible pay per pay period, up to <strong>$2,000/year</strong>. You must contribute <em>every</em> pay period — there's no year-end true-up. Vests 50% after 1 year, 100% after 2 years. Pre-tax or Roth. Plan #55883 at Fidelity NetBenefits.</p>
       <div class="benefit-stats">
         <div class="b-stat"><div class="b-stat-label">Amplitude match</div><div class="b-stat-val">Up to $2,000/yr</div></div>
-        <div class="b-stat"><div class="b-stat-label">2026 IRS limit</div><div class="b-stat-val">$23,500/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">2026 IRS limit (under 50)</div><div class="b-stat-val">$24,500/yr</div></div>
         <div class="b-stat"><div class="b-stat-label">Vesting</div><div class="b-stat-val">50% @ 1yr, 100% @ 2yr</div></div>
         <div class="b-stat"><div class="b-stat-label">Options</div><div class="b-stat-val">Pre-tax or Roth</div></div>
+        <div class="b-stat"><div class="b-stat-label">Catch-up (age 50–59, 64+)</div><div class="b-stat-val">+$8,000/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">Catch-up (age 60–63)</div><div class="b-stat-val">+$11,250/yr</div></div>
       </div>
       <div class="contrib-section">
         <div class="contrib-label">Your annual base salary (to calculate recommended %)</div>
@@ -1033,7 +1036,7 @@ function renderCommuterCard() {
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">🚇</span>
-          <div><div class="benefit-name">Commuter Benefits — Navia</div><div class="benefit-provider">SF & NYC offices only · Elect monthly in Navia portal</div></div>
+          <div><div class="benefit-name">Commuter Benefits — Navia</div><div class="benefit-provider">SF & NYC only · Registration code: APU · naviabenefit.com</div></div>
         </div>
         <span class="chip chip-purple">Pre-tax transit</span>
       </div>
@@ -1044,8 +1047,8 @@ function renderCommuterCard() {
         <div class="b-stat"><div class="b-stat-label">Your add-on</div><div class="b-stat-val">Up to $210/mo</div></div>
         <div class="b-stat"><div class="b-stat-label">Deadline</div><div class="b-stat-val">20th of prior month</div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">🏠 Remote employees are not eligible. The $340/month limit applies separately to transit and parking.</p>
-      <button class="elect-btn" id="commuter-btn" onclick="electBenefit('commuter','commuter-btn','commuter-benefit')">✓ Got it — I'll enroll in Navia</button>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">🏠 Remote employees are not eligible. The $340/month limit applies separately to transit and parking. Register at naviabenefit.com with company code <strong>APU</strong>.</p>
+      <button class="elect-btn" id="commuter-btn" onclick="electBenefit('commuter','commuter-btn','commuter-benefit')">✓ Got it — I'll enroll in Navia (code: APU)</button>
     </div>`;
 }
 
@@ -1205,7 +1208,7 @@ const KB = {
   dental:"Dental is through Delta Dental PPO. Employee-only is $0/month. Annual deductible: $50 individual / $150 family. Annual max: $2,000. Preventive (cleanings, X-rays, fluoride): 100% covered in-network. Basic (fillings): 90%. Major (crowns, bridges): 60%. Orthodontia lifetime max: $2,000.",
   vision:"Vision is through VSP. Employee-only is $0/month (+spouse $2, +kids $2, family $4). Eye exam copay: $15. Frame allowance: $130 every 24 months ($150 for featured brands). Contact lens allowance: $130/year. Laser vision correction discounts also available.",
   enrollment:"Open Enrollment was November 3–14, 2025. The 2026 plan year runs January 1–December 31, 2026. Elections are made in Workday (via Okta). Your 2025 elections do NOT automatically roll over — you must actively elect each year. New employees have 30 days from start date to enroll. Mid-year changes are only allowed after a qualifying life event (marriage, birth of child, loss of other coverage, etc.).",
-  "401k":"Amplitude matches 1% of eligible pay (base + bonus/commission) each pay period, up to $2,000/year maximum. Match vests 50% after 1 year, 100% after 2 years. 2026 IRS employee limit: $23,500. Plan is through Fidelity NetBenefits and supports both pre-tax and Roth contributions. Log in at netbenefits.com/amplitude.",
+  "401k":"Amplitude matches 1% of eligible pay (base + bonus/commission) each pay period, up to $2,000/year maximum. You must contribute every single pay period — there is NO year-end true-up, so if you stop contributing mid-year you lose that match permanently. Match vests 50% after 1 year, 100% after 2 years. 2026 IRS employee limit: $24,500 if under 50; $32,500 if age 50–59 or 64+ (includes $8,000 catch-up); $35,750 if age 60–63 (enhanced SECURE 2.0 catch-up). Plan #55883 is through Fidelity NetBenefits and supports both pre-tax and Roth contributions. Log in at netbenefits.com/amplitude.",
   mental:"Mental health benefits at no cost: Modern Health EAP — 6 counseling + 6 coaching sessions/year, 24/7 availability. Unum EAP via Health Advocate — up to 3 in-person visits. On Aetna plans: Meru Health (dedicated therapist via video + app) and Talkspace (text/video therapy). On Kaiser: Calm app and Kaiser wellness programs.",
   commuter:"If you commute to the SF or NYC office: Amplitude contributes $130/month pre-tax to your Navia commuter account. You can add up to $210/month yourself. IRS 2026 pre-tax limit: $340/month for transit and $340/month for parking (separate limits). Elections must be submitted in the Navia portal by the 20th of the prior month. Remote employees are not eligible.",
   lsa:"The Lifestyle Spending Account (LSA) provides $200/month, reimbursed through Forma. It covers health & wellness expenses and phone/internet costs. Check Forma for eligible expenses and expiration rules. No enrollment needed — automatically available.",
