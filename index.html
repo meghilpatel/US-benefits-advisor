@@ -68,11 +68,13 @@
     .body { padding: 1.25rem 1.5rem; }
     .screen { display: none; }
     .screen.active { display: block; }
+
     /* ── Progress ── */
     .progress { display: flex; gap: 4px; padding: 0.75rem 1.5rem 0; }
     .prog-dot { height: 3px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.2s; }
     .prog-dot.done { background: var(--blue); }
     .prog-dot.active { background: #85B7EB; }
+
     /* ── Wizard ── */
     .question { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
     .option-grid { display: grid; gap: 8px; }
@@ -103,6 +105,7 @@
     }
     .btn-ghost:hover { background: var(--bg-secondary); }
     .btn-ghost.full { width: 100%; }
+
     /* ── Chips ── */
     .chip { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
     .chip-blue { background: var(--blue-light); color: var(--blue-text); }
@@ -110,6 +113,7 @@
     .chip-amber { background: var(--amber-bg); color: var(--amber-text); }
     .chip-purple { background: var(--purple-bg); color: var(--purple-text); }
     .chip-teal { background: var(--teal-bg); color: var(--teal-text); }
+
     /* ── Info / Summary ── */
     .info-box { background: var(--blue-light); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 1.25rem; }
     .info-box p { font-size: 13px; color: var(--blue-text); line-height: 1.5; }
@@ -120,6 +124,7 @@
     .sum-key { color: var(--text-secondary); }
     .sum-val { color: var(--text-primary); font-weight: 500; }
     .intro-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; }
+
     /* ── View Toggle ── */
     .view-toggle {
       display: flex; background: var(--bg-secondary); border: 0.5px solid var(--border);
@@ -131,6 +136,7 @@
       font-family: var(--font); transition: all 0.15s;
     }
     .vtog-btn.active { background: var(--bg); color: var(--blue); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+
     /* ── Health Plan Cards ── */
     .plan-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -154,6 +160,7 @@
     .stat { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 8px 10px; }
     .stat-label { font-size: 11px; color: var(--text-secondary); }
     .stat-val { font-size: 13px; font-weight: 500; margin-top: 1px; }
+
     /* ── Cost Section ── */
     .cost-section { border-top: 0.5px solid var(--border); padding-top: 12px; margin: 4px 0 10px; }
     .cost-section-title { font-size: 11px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -170,6 +177,7 @@
     .pro-item { font-size: 12px; color: var(--text-secondary); display: flex; gap: 6px; margin-bottom: 3px; line-height: 1.4; }
     .pro-dot { color: var(--blue); font-weight: 700; flex-shrink: 0; }
     .pro-dot.warn { color: var(--amber-text); }
+
     /* ── Select/Cart Buttons ── */
     @keyframes cartBounce { 0%,100%{transform:scale(1)} 40%{transform:scale(1.05)} 60%{transform:scale(0.97)} }
     .select-btn {
@@ -182,6 +190,7 @@
     .select-btn:hover { background: var(--blue-light); }
     .select-btn.in-cart { background: var(--green-text); color: #fff; border-color: var(--green-text); }
     .select-btn.bounce { animation: cartBounce 0.35s ease; }
+
     /* ── Health Cart ── */
     @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
     .health-cart {
@@ -203,6 +212,7 @@
     .receipt-note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.6; }
     .hsa-callout { background: var(--green-bg); border-radius: var(--radius-md); padding: 10px 12px; margin-top: 10px; }
     .hsa-callout p { font-size: 12px; color: var(--green-text); line-height: 1.6; }
+
     /* ── Section Divider ── */
     .section-divider {
       display: flex; align-items: center; gap: 10px;
@@ -210,6 +220,7 @@
     }
     .section-divider span { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
     .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
     /* ── Benefit Cards (dental, vision, etc.) ── */
     .benefit-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -230,6 +241,7 @@
     .benefit-row:last-child { border-bottom: none; }
     .benefit-row .bk { color: var(--text-secondary); }
     .benefit-row .bv { font-weight: 500; }
+
     /* ── Elect Button (for non-health benefits) ── */
     .elect-btn {
       width: 100%; padding: 9px 14px; border: 1px solid var(--border-med);
@@ -240,6 +252,7 @@
     }
     .elect-btn:hover { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
     .elect-btn.done { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
+
     /* ── Pre-Tax / Contribution Inputs ── */
     .contrib-section { margin-top: 10px; }
     .contrib-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
@@ -256,11 +269,13 @@
     .contrib-max { font-size: 11px; color: var(--text-secondary); }
     .salary-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .salary-prefix { font-size: 14px; color: var(--text-secondary); }
+
     /* ── Auto-enrolled Card ── */
     .auto-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; padding: 5px 0; border-bottom: 0.5px solid var(--border); }
     .auto-item:last-child { border-bottom: none; }
     .auto-check { color: var(--green-text); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
     .auto-detail { color: var(--text-secondary); }
+
     /* ── Enrollment Checklist ── */
     .checklist-card {
       background: var(--bg); border: 1px solid var(--border-med); border-radius: var(--radius-lg);
@@ -293,6 +308,7 @@
     .cl-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
     .cl-where { font-size: 10px; color: var(--text-tertiary); font-style: italic; }
     .print-btn { font-size: 12px; color: var(--blue); background: none; border: none; cursor: pointer; font-family: var(--font); }
+
     /* ── Chat ── */
     .chat-container { display: flex; flex-direction: column; height: 400px; }
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
@@ -305,7 +321,48 @@
     .chat-input-row { display: flex; gap: 8px; }
     .chat-input-row input { flex: 1; padding: 10px 14px; border: 0.5px solid var(--border-med); border-radius: var(--radius-md); font-size: 13px; font-family: var(--font); background: var(--bg); color: var(--text-primary); outline: none; }
     .chat-input-row input:focus { border-color: var(--blue); }
+
     .disclaimer { font-size: 11px; color: var(--text-tertiary); margin-top: 1rem; line-height: 1.5; }
+
+    /* ── New hire banner ── */
+    .newhire-banner {
+      background: var(--amber-bg); border-radius: var(--radius-md); padding: 12px 14px;
+      margin-bottom: 1rem; border-left: 3px solid var(--amber-text);
+    }
+    .newhire-banner h4 { font-size: 13px; font-weight: 600; color: var(--amber-text); margin-bottom: 4px; }
+    .newhire-banner p { font-size: 12px; color: var(--amber-text); line-height: 1.5; }
+    .prior-contrib-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .prior-contrib-row label { font-size: 12px; color: var(--amber-text); white-space: nowrap; }
+    .prior-contrib-input {
+      flex: 1; padding: 6px 10px; border: 1px solid var(--amber-text); border-radius: var(--radius-md);
+      font-size: 13px; font-weight: 600; font-family: var(--font);
+      background: var(--amber-bg); color: var(--amber-text); outline: none; max-width: 120px;
+    }
+
+    /* ── Cart Bar (sticky summary strip) ── */
+    .cart-bar {
+      background: var(--bg); border-top: 1px solid var(--border-med);
+      padding: 12px 1.5rem; margin: 1.5rem -1.5rem -1.25rem;
+      position: sticky; bottom: 0; z-index: 20;
+    }
+    .cart-bar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .cart-bar-slots { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+    .cart-slot {
+      display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500;
+      padding: 4px 8px; border-radius: 20px; transition: all 0.2s;
+      background: var(--bg-secondary); color: var(--text-tertiary); border: 1px solid var(--border);
+    }
+    .cart-slot.filled { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
+    .cart-slot.partial { background: var(--blue-light); color: var(--blue-text); border-color: var(--blue); }
+    .workday-btn {
+      background: #005A9C; color: #fff; border: none; border-radius: var(--radius-md);
+      padding: 9px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: var(--font); white-space: nowrap; flex-shrink: 0;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .workday-btn:hover { background: #004a84; }
+    .workday-btn.preview { opacity: 0.7; cursor: default; position: relative; }
+
     @media print {
       body { background: white; padding: 0; }
       .card { border: none; border-radius: 0; max-width: 100%; }
@@ -319,6 +376,7 @@
 </head>
 <body>
 <div class="card">
+
   <!-- ── HEADER ── -->
   <div class="header">
     <div class="logo">
@@ -329,16 +387,39 @@
       <p id="main-sub">Amplitude · US employees only</p>
     </div>
   </div>
+
   <!-- ── WELCOME ── -->
   <div id="screen-welcome" class="screen active">
     <div class="body">
       <div class="info-box">
         <p>This tool covers 2026 US benefits only. International employees have a single plan per country — contact HR for details.</p>
       </div>
-      <p class="intro-desc">Answer 4 quick questions and get a personalized benefits checklist — health plan, dental, vision, pre-tax savings accounts, 401k, commuter, and more. Everything you need to complete open enrollment in one place.</p>
-      <button class="btn-primary" onclick="goTo('screen-q1')">Get started →</button>
+      <p class="intro-desc">Answer a few quick questions and build your personalized benefits cart — health plan, dental, vision, pre-tax savings accounts, 401k, commuter, and more. Everything you need to complete enrollment in one place.</p>
+      <button class="btn-primary" onclick="goTo('screen-q0')">Get started →</button>
     </div>
   </div>
+
+  <!-- ── Q0: Mode (new hire vs open enrollment) ── -->
+  <div id="screen-q0" class="screen">
+    <div class="body">
+      <p class="question">How are you using this today?</p>
+      <div class="option-grid">
+        <button class="option-btn" onclick="select(this,'mode','new_hire')">
+          <span class="opt-label">🆕 I'm a new hire</span>
+          <span class="opt-sub">Just joined or starting soon — 30-day enrollment window from start date</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'mode','open_enrollment')">
+          <span class="opt-label">🔄 Annual open enrollment</span>
+          <span class="opt-sub">Existing employee reviewing or changing my 2026 elections</span>
+        </button>
+      </div>
+      <div class="nav">
+        <button class="btn-ghost" onclick="goTo('screen-welcome')">Back</button>
+        <button class="btn-primary" id="btn-q0" disabled onclick="goTo('screen-q1')">Next →</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Q1 ── -->
   <div id="screen-q1" class="screen">
     <div class="progress" id="prog1"></div>
@@ -351,11 +432,12 @@
         <button class="option-btn" onclick="select(this,'coverage','family')"><span class="opt-label">Family (me + spouse + kids)</span></button>
       </div>
       <div class="nav">
-        <button class="btn-ghost" onclick="goTo('screen-welcome')">Back</button>
+        <button class="btn-ghost" onclick="goTo('screen-q0')">Back</button>
         <button class="btn-primary" id="btn-q1" disabled onclick="goTo('screen-q2')">Next →</button>
       </div>
     </div>
   </div>
+
   <!-- ── Q2 ── -->
   <div id="screen-q2" class="screen">
     <div class="progress" id="prog2"></div>
@@ -381,6 +463,7 @@
       </div>
     </div>
   </div>
+
   <!-- ── Q3 ── -->
   <div id="screen-q3" class="screen">
     <div class="progress" id="prog3"></div>
@@ -406,6 +489,7 @@
       </div>
     </div>
   </div>
+
   <!-- ── Q4 ── -->
   <div id="screen-q4" class="screen">
     <div class="progress" id="prog4"></div>
@@ -423,14 +507,50 @@
       </div>
       <div class="nav">
         <button class="btn-ghost" onclick="goTo('screen-q3')">Back</button>
-        <button class="btn-primary" id="btn-q4" disabled onclick="showResults()">See my full benefits plan →</button>
+        <button class="btn-primary" id="btn-q4" disabled onclick="nextAfterQ4()">See my benefits plan →</button>
       </div>
     </div>
   </div>
+
+  <!-- ── Q5: Prior contributions (new hires only) ── -->
+  <div id="screen-q5" class="screen">
+    <div class="progress" id="prog5"></div>
+    <div class="body">
+      <div class="info-box">
+        <p>IRS contribution limits (HSA, 401k) are <strong>per calendar year</strong>, not per employer. Knowing what you contributed before joining Amplitude helps us show exactly how much room you have left in 2026.</p>
+      </div>
+      <p class="question">Did you contribute to any of these at a previous employer this calendar year?</p>
+      <div class="option-grid">
+        <button class="option-btn" onclick="select(this,'priorContrib','none')">
+          <span class="opt-label">No — this is my first enrollment in 2026</span>
+          <span class="opt-sub">I haven't used an HSA or 401(k) this year yet</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'priorContrib','hsa')">
+          <span class="opt-label">💰 Yes — I had an HSA at my last job</span>
+          <span class="opt-sub">I contributed to a Health Savings Account this year</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'priorContrib','401k')">
+          <span class="opt-label">📈 Yes — I contributed to a 401(k)</span>
+          <span class="opt-sub">I made pre-tax or Roth retirement contributions before joining</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'priorContrib','both')">
+          <span class="opt-label">Both — HSA and 401(k)</span>
+          <span class="opt-sub">I had both at my previous employer this year</span>
+        </button>
+      </div>
+      <div class="nav">
+        <button class="btn-ghost" onclick="goTo('screen-q4')">Back</button>
+        <button class="btn-primary" id="btn-q5" disabled onclick="showResults()">Build my benefits cart →</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ── RESULTS ── -->
   <div id="screen-results" class="screen">
     <div class="body">
+      <div id="newhire-banner"></div>
       <div id="results-summary" class="summary-box"></div>
+
       <!-- 1. HEALTH PLAN -->
       <div class="section-divider"><span>🏥 Medical plan</span></div>
       <div class="view-toggle">
@@ -439,32 +559,53 @@
       </div>
       <div id="plan-cards"></div>
       <div id="plan-cart" style="display:none"></div>
+
       <!-- 2. DENTAL -->
       <div class="section-divider"><span>🦷 Dental</span></div>
       <div id="dental-card"></div>
+
       <!-- 3. VISION -->
       <div class="section-divider"><span>👁 Vision</span></div>
       <div id="vision-card"></div>
+
       <!-- 4. PRE-TAX SPENDING -->
       <div class="section-divider"><span>💰 Pre-tax spending accounts</span></div>
       <div id="pretax-cards"></div>
+
       <!-- 5. 401K -->
       <div class="section-divider"><span>📈 Retirement</span></div>
       <div id="k401-card"></div>
+
       <!-- 6. COMMUTER -->
       <div class="section-divider"><span>🚇 Commuter benefits</span></div>
       <div id="commuter-card"></div>
+
       <!-- 7. AUTO-ENROLLED -->
       <div class="section-divider"><span>✅ Auto-enrolled for you</span></div>
       <div id="auto-card"></div>
+
       <!-- 8. ENROLLMENT CHECKLIST -->
       <div class="section-divider"><span>📋 Your enrollment checklist</span></div>
       <div id="checklist-card"></div>
+
       <button class="btn-primary full" style="margin-top:1rem" onclick="goTo('screen-chat')">Ask a follow-up question →</button>
       <button class="btn-ghost full" onclick="resetAll()">Start over</button>
-      <p class="disclaimer">This tool is a guide, not official benefits advice. All medical, dental, vision, and FSA elections are made in Workday. 401(k) elections are made through Fidelity. Navia Commuter elections are made through Navia. Questions? Email <a href="mailto:hr@amplitude.com" style="color:var(--blue);">hr@amplitude.com</a></p>
+      <p class="disclaimer">This tool is a guide, not official benefits advice. All medical, dental, vision, and FSA elections are made in Workday. 401(k) elections are made through Fidelity. Navia commuter elections are made through Navia. Questions? Email <a href="mailto:hr@amplitude.com" style="color:var(--blue);">hr@amplitude.com</a></p>
+
+      <!-- ── CART BAR ── -->
+      <div class="cart-bar">
+        <div class="cart-bar-row">
+          <div class="cart-bar-slots" id="cart-slots"></div>
+          <button class="workday-btn" id="workday-btn" onclick="launchWorkday()">
+            <svg viewBox="0 0 20 20" width="14" height="14" fill="white" style="flex-shrink:0"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-2h2v2zm0-4H9V7h2v2z"/></svg>
+            <span id="workday-btn-label">Launch in Workday</span>
+          </button>
+        </div>
+        <div style="font-size:10px;color:var(--text-tertiary);margin-top:5px;text-align:right" id="workday-hint">Auto-launch into enrollment coming soon — currently opens Workday benefits home</div>
+      </div>
     </div>
   </div>
+
   <!-- ── CHAT ── -->
   <div id="screen-chat" class="screen">
     <div class="body" style="padding-bottom:0">
@@ -487,6 +628,7 @@
       <button class="btn-ghost full" style="margin-top:10px" onclick="goTo('screen-results')">← Back to results</button>
     </div>
   </div>
+
 </div><!-- .card -->
 <script>
 /* ═══════════════════════════════════════
@@ -495,6 +637,11 @@
 const answers = {};
 let selectedPlanId = null;
 let viewMode = 'monthly';
+
+// New hire prior contribution tracking (mid-year IRS room calculations)
+let priorHsaAmount = 0;
+let prior401kAmount = 0;
+
 // Tracks which non-health benefits the user has acknowledged
 const elected = {
   dental: false,
@@ -505,6 +652,7 @@ const elected = {
   k401Pct: 0,
   commuter: false
 };
+
 /* ═══════════════════════════════════════
    HEALTH PLAN DATA
 ═══════════════════════════════════════ */
@@ -523,6 +671,7 @@ const PLANS = {
 const OOP_EST = { hdhp:{low:0,medium:600,high:1900}, ppo:{low:25,medium:180,high:780}, epo:{low:30,medium:130,high:540}, kaiser:{low:20,medium:95,high:360} };
 const COV_MULT = { solo:1.0, spouse:1.65, kids:1.5, family:2.0 };
 const HSA_EMPLOYER = { solo:1000, spouse:2000, kids:2000, family:2000 };
+
 function calcCosts(pid, cov, usage) {
   const monthly = PREMIUMS[cov][pid];
   const annual  = monthly * 12;
@@ -533,6 +682,7 @@ function calcCosts(pid, cov, usage) {
   const surplus     = Math.max(0, hsaCredit - grossAnnual);
   return { monthly, annual, oopEst, hsaCredit, grossAnnual, netAnnual, surplus };
 }
+
 function getRanked() {
   const { coverage, usage, doctors, state } = answers;
   let all = ['ppo','hdhp','epo'];
@@ -546,6 +696,7 @@ function coverageLabel(c) {
   return {solo:'Employee only',spouse:'Employee + Spouse/DP',kids:'Employee + Child(ren)',family:'Family'}[c];
 }
 function hasKids() { return answers.coverage === 'kids' || answers.coverage === 'family'; }
+
 /* ═══════════════════════════════════════
    VIEW MODE TOGGLE
 ═══════════════════════════════════════ */
@@ -569,20 +720,30 @@ function setViewMode(mode) {
   });
   if (selectedPlanId) renderHealthCart(selectedPlanId);
 }
+
 /* ═══════════════════════════════════════
    SHOW RESULTS — orchestrates all sections
 ═══════════════════════════════════════ */
 function showResults() {
   const cov = answers.coverage, usage = answers.usage, isFam = cov !== 'solo';
   const ranked = getRanked();
+  const isNewHire = answers.mode === 'new_hire';
+
+  // New hire banner
+  renderNewHireBanner();
+
   // Profile summary
+  const modeLabel = isNewHire ? '🆕 New hire enrollment' : '🔄 Open enrollment';
   document.getElementById('results-summary').innerHTML =
-    '<h3>Your profile</h3>' +
+    `<h3>Your profile</h3>` +
+    `<div class="sum-row"><span class="sum-key">Enrollment type</span><span class="sum-val">${modeLabel}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Coverage</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Usage</span><span class="sum-val">${{low:'Rarely uses care',medium:'Occasional visits',high:'Frequent / ongoing care'}[usage]}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Doctors</span><span class="sum-val">${{flexible:'Flexible on network',prefer_in:'Prefers in-network',out_of_network:'Needs out-of-network access'}[answers.doctors]}</span></div>`;
+
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
+
   // Other benefit cards
   renderDentalCard();
   renderVisionCard();
@@ -591,18 +752,112 @@ function showResults() {
   renderCommuterCard();
   renderAutoCard();
   renderChecklist();
+  renderCartBar();
+  updateWorkdayBtn();
+
   goTo('screen-results');
 }
+
+/* ═══════════════════════════════════════
+   NEW HIRE BANNER
+═══════════════════════════════════════ */
+function renderNewHireBanner() {
+  const el = document.getElementById('newhire-banner');
+  if (answers.mode !== 'new_hire') { el.innerHTML = ''; return; }
+  const showPriorHSA = answers.priorContrib === 'hsa' || answers.priorContrib === 'both';
+  const showPrior401k = answers.priorContrib === '401k' || answers.priorContrib === 'both';
+  el.innerHTML = `
+    <div class="newhire-banner">
+      <h4>🆕 New hire — 30-day enrollment window</h4>
+      <p>You must elect benefits within <strong>30 days of your start date</strong> in Workday. Miss the window and you'll wait until the next open enrollment (or a qualifying life event).</p>
+      ${showPriorHSA ? `
+      <div class="prior-contrib-row">
+        <label>💰 Prior employer HSA contribution in 2026:</label>
+        <span style="color:var(--amber-text)">$</span>
+        <input class="prior-contrib-input" type="number" id="prior-hsa-input" placeholder="0" min="0" oninput="updatePriorHSA(this.value)" />
+        <span style="font-size:11px;color:var(--amber-text)" id="hsa-room-label"></span>
+      </div>` : ''}
+      ${showPrior401k ? `
+      <div class="prior-contrib-row">
+        <label>📈 Prior employer 401(k) contribution in 2026:</label>
+        <span style="color:var(--amber-text)">$</span>
+        <input class="prior-contrib-input" type="number" id="prior-401k-input" placeholder="0" min="0" oninput="updatePrior401k(this.value)" />
+        <span style="font-size:11px;color:var(--amber-text)" id="k401-room-label"></span>
+      </div>` : ''}
+    </div>`;
+}
+
+function updatePriorHSA(val) {
+  priorHsaAmount = parseInt(val) || 0;
+  const irsHSA = answers.coverage === 'solo' ? 4400 : 8750;
+  const emp = HSA_EMPLOYER[answers.coverage];
+  const room = Math.max(0, irsHSA - emp - priorHsaAmount);
+  const label = document.getElementById('hsa-room-label');
+  if (label) label.textContent = `→ $${room.toLocaleString()} left to contribute`;
+  // Re-render HSA card to reflect updated room
+  renderPretaxCards();
+}
+
+function updatePrior401k(val) {
+  prior401kAmount = parseInt(val) || 0;
+  const room = Math.max(0, 24500 - prior401kAmount);
+  const label = document.getElementById('k401-room-label');
+  if (label) label.textContent = `→ $${room.toLocaleString()} left in 2026`;
+  renderK401Card();
+}
+
+/* ═══════════════════════════════════════
+   CART BAR
+═══════════════════════════════════════ */
+function renderCartBar() {
+  const isHDHP = selectedPlanId === 'hdhp';
+  const slots = [
+    { id:'cart-health',  icon:'🏥', label:'Medical',  filled: !!selectedPlanId, detail: selectedPlanId ? PLANS[selectedPlanId].name : null },
+    { id:'cart-dental',  icon:'🦷', label:'Dental',   filled: elected.dental },
+    { id:'cart-vision',  icon:'👁',  label:'Vision',   filled: elected.vision },
+    { id:'cart-pretax',  icon:'💰', label:'Pre-tax',  filled: (isHDHP ? elected.hsaContrib : elected.fsaContrib) > 0, partial: selectedPlanId && (isHDHP ? elected.hsaContrib : elected.fsaContrib) === 0 },
+    { id:'cart-401k',    icon:'📈', label:'401(k)',   filled: elected.k401Pct > 0 },
+    { id:'cart-commuter',icon:'🚇', label:'Commuter', filled: elected.commuter },
+  ];
+  const filledCount = slots.filter(s => s.filled).length;
+  const container = document.getElementById('cart-slots');
+  if (!container) return;
+  container.innerHTML = slots.map(s => {
+    const cls = s.filled ? 'cart-slot filled' : s.partial ? 'cart-slot partial' : 'cart-slot';
+    const detail = s.filled && s.detail ? ` · ${s.detail.split(' ')[1] || s.detail}` : '';
+    return `<div class="${cls}">${s.icon} ${s.label}${s.filled ? ' ✓' : ''}${detail}</div>`;
+  }).join('');
+  // Update Workday button label
+  const btnLabel = document.getElementById('workday-btn-label');
+  if (btnLabel) {
+    const modeWord = answers.mode === 'new_hire' ? 'New Hire Enrollment' : 'Open Enrollment';
+    btnLabel.textContent = filledCount > 0
+      ? `Open Workday → ${modeWord} (${filledCount} selected)`
+      : `Open Workday → ${modeWord}`;
+  }
+}
+
+function updateWorkdayBtn() {
+  const hint = document.getElementById('workday-hint');
+  if (!hint) return;
+  const modeWord = answers.mode === 'new_hire'
+    ? 'Navigate to Benefits → New Hire Benefits in Workday'
+    : 'Navigate to Benefits → Open Enrollment in Workday';
+  hint.textContent = `Auto-launch into specific enrollment task coming soon · ${modeWord}`;
+}
+
 /* ═══════════════════════════════════════
    HEALTH PLAN CARDS
 ═══════════════════════════════════════ */
 function renderHealthCards(ranked, cov, usage, isFam) {
   const allCosts = ranked.map(pid => calcCosts(pid, cov, usage));
   const maxNet   = Math.max(...allCosts.map(c => c.netAnnual), 1);
+
   const container = document.getElementById('plan-cards');
   container.innerHTML = '';
   selectedPlanId = null;
   document.getElementById('plan-cart').style.display = 'none';
+
   ranked.forEach((pid, i) => {
     const p = PLANS[pid], costs = allCosts[i], isTop = i === 0;
     const ded = isFam ? p.deductible.other : p.deductible.solo;
@@ -611,6 +866,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     const savings = mostExpensive - costs.netAnnual;
     const meterPct   = maxNet > 0 ? Math.round(costs.netAnnual / maxNet * 100) : 0;
     const meterColor = meterPct <= 35 ? '#3B6D11' : meterPct <= 65 ? '#854F0B' : '#9B1B1B';
+
     const pros = [], cons = [];
     if (pid === 'hdhp') {
       if (cov === 'solo') pros.push('$0/month premium for employee-only coverage');
@@ -631,12 +887,15 @@ function renderHealthCards(ranked, cov, usage, isFam) {
       pros.push('Doctor, lab, pharmacy all in one integrated system');
       cons.push('Must stay within Kaiser network');
     }
+
     let netLabel = costs.surplus > 0 ? `<span style="color:var(--green-text)">$0 (employer-funded ✓)</span>` : `~$${costs.netAnnual.toLocaleString()}`;
     const surplusNote = costs.surplus > 0
       ? `<div style="background:var(--green-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--green-text);margin-top:6px">🎉 Amplitude's HSA covers all estimated costs — ~$${costs.surplus.toLocaleString()} remaining for future savings.</div>`
       : '';
+
     const prosHTML = pros.map(x=>`<div class="pro-item"><span class="pro-dot">+</span><span>${x}</span></div>`).join('') +
                      cons.map(x=>`<div class="pro-item"><span class="pro-dot warn">!</span><span>${x}</span></div>`).join('');
+
     const card = document.createElement('div');
     card.className = 'plan-card' + (isTop ? ' top-pick' : '');
     card.dataset.pid = pid;
@@ -671,6 +930,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     container.appendChild(card);
   });
 }
+
 function selectHealthPlan(pid, btn) {
   selectedPlanId = pid;
   document.querySelectorAll('.select-btn').forEach(b => { b.classList.remove('in-cart'); b.textContent = '🛒 Add to plan cart'; });
@@ -683,7 +943,9 @@ function selectHealthPlan(pid, btn) {
   // Update pre-tax card since HSA eligibility depends on health plan
   renderPretaxCards();
   renderChecklist();
+  renderCartBar();
 }
+
 function renderHealthCart(pid) {
   const cov = answers.coverage, usage = answers.usage;
   const p = PLANS[pid], costs = calcCosts(pid, cov, usage);
@@ -697,6 +959,7 @@ function renderHealthCart(pid) {
   cartEl.innerHTML = `<div class="health-cart"><div class="cart-header"><div><div>🛒 Health plan estimate</div><div class="cart-sub">${p.name} · ${coverageLabel(cov)}</div></div><span style="font-size:11px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:12px">${usageLabel}</span></div><div class="cart-body"><div class="receipt-row"><span class="rk">Employee premium</span><span class="rv">${premLine}</span></div><div class="receipt-row"><span class="rk">Est. out-of-pocket</span><span class="rv">~$${costs.oopEst.toLocaleString()}/yr</span></div>${pid==='hdhp'?`<div class="receipt-row hsa"><span class="rk">Amplitude HSA credit</span><span class="rv">−$${costs.hsaCredit.toLocaleString()}/yr</span></div>`:''}<div class="receipt-total"><span>Estimated annual total</span><span>${netDisplay}</span></div><p class="receipt-note">⚠ OOP is illustrative based on stated usage. Actual costs depend on care received. Elect in Workday.</p>${hsaBlock}</div></div>`;
   cartEl.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+
 /* ═══════════════════════════════════════
    DENTAL CARD
 ═══════════════════════════════════════ */
@@ -725,9 +988,10 @@ function renderDentalCard() {
         <div class="benefit-row"><span class="bk">Ortho lifetime max</span><span class="bv">$2,000</span></div>
         <div class="benefit-row"><span class="bk">Annual deductible</span><span class="bv">$50 individual / $150 family</span></div>
       </div>
-      <button class="elect-btn" id="dental-btn" onclick="electBenefit('dental','dental-btn','dental-benefit')">✓ Got it — I'll elect dental in Workday</button>
+      <button class="select-btn" id="dental-btn" onclick="cartAddBenefit('dental','dental-btn','dental-benefit')">🛒 Add dental to my plan</button>
     </div>`;
 }
+
 /* ═══════════════════════════════════════
    VISION CARD
 ═══════════════════════════════════════ */
@@ -750,9 +1014,10 @@ function renderVisionCard() {
         <div class="b-stat"><div class="b-stat-label">Frames allowance</div><div class="b-stat-val">$130 (every 24 mo)</div></div>
         <div class="b-stat"><div class="b-stat-label">Contacts allowance</div><div class="b-stat-val">$130/year</div></div>
       </div>
-      <button class="elect-btn" id="vision-btn" onclick="electBenefit('vision','vision-btn','vision-benefit')">✓ Got it — I'll elect vision in Workday</button>
+      <button class="select-btn" id="vision-btn" onclick="cartAddBenefit('vision','vision-btn','vision-benefit')">🛒 Add vision to my plan</button>
     </div>`;
 }
+
 /* ═══════════════════════════════════════
    PRE-TAX SPENDING CARDS
 ═══════════════════════════════════════ */
@@ -762,13 +1027,17 @@ function renderPretaxCards() {
   const empContrib = HSA_EMPLOYER[cov];
   const irsHSA = cov === 'solo' ? 4400 : 8750;
   const irsHSALabel = cov === 'solo' ? '$4,400' : '$8,750';
-  const yourRoom = irsHSA - empContrib;
+  const yourRoom = Math.max(0, irsHSA - empContrib - priorHsaAmount);
+  const priorNote = priorHsaAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--amber-text);margin-bottom:8px">📋 Prior employer contributed $${priorHsaAmount.toLocaleString()} to your HSA this year — your remaining room is $${yourRoom.toLocaleString()}</div>` : '';
+
   // Usage-based suggestions
   const hsaSuggest  = {low: Math.min(1500, yourRoom), medium: Math.min(2500, yourRoom), high: yourRoom}[usage];
   const fsaSuggest  = {low:300, medium:1200, high:2800}[usage];
   const dcfsaSuggest = 5000;
   const TAX_RATE = 0.28;
+
   let html = '';
+
   // HSA (only if HDHP selected or not yet selected)
   if (!selectedPlanId || isHDHP) {
     const notSelectedNote = !selectedPlanId ? `<div style="background:var(--amber-bg);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">💡 Select a health plan above — HSA is only available with the HDHP.</div>` : '';
@@ -782,6 +1051,7 @@ function renderPretaxCards() {
           <span class="chip chip-teal">Triple tax benefit</span>
         </div>
         ${notSelectedNote}
+        ${isHDHP ? priorNote : ''}
         <p class="benefit-desc">Pre-tax in, tax-free growth, tax-free out for medical expenses. Funds never expire — roll over every year and can be invested. Amplitude deposits <strong>$${empContrib.toLocaleString()}</strong> to start.</p>
         <div class="benefit-stats">
           <div class="b-stat"><div class="b-stat-label">Amplitude contribution</div><div class="b-stat-val">$${empContrib.toLocaleString()}/yr</div></div>
@@ -804,6 +1074,7 @@ function renderPretaxCards() {
       </div>`;
     if (isHDHP) setTimeout(() => updateHSA(hsaSuggest), 0);
   }
+
   // Healthcare FSA (only if NOT HDHP)
   if (!selectedPlanId || !isHDHP) {
     html += `
@@ -833,6 +1104,7 @@ function renderPretaxCards() {
       </div>`;
     if (!isHDHP) setTimeout(() => updateFSA(fsaSuggest), 0);
   }
+
   // Dependent Care FSA — only for employees with kids
   if (hasKids()) {
     html += `
@@ -862,6 +1134,7 @@ function renderPretaxCards() {
       </div>`;
     setTimeout(() => updateDCFSA(dcfsaSuggest), 0);
   }
+
   // Limited Purpose FSA — only if HDHP
   if (isHDHP) {
     html += `
@@ -878,15 +1151,17 @@ function renderPretaxCards() {
           <div class="b-stat"><div class="b-stat-label">2026 IRS limit</div><div class="b-stat-val">$3,400/yr</div></div>
           <div class="b-stat"><div class="b-stat-label">Rollover</div><div class="b-stat-val">Up to $680</div></div>
         </div>
-        <button class="elect-btn" id="lpfsa-btn" onclick="electBenefit('lpfsa','lpfsa-btn',null)">✓ Got it — I'll consider LPFSA in Workday</button>
+        <button class="select-btn" id="lpfsa-btn" onclick="cartAddBenefit('lpfsa','lpfsa-btn',null)">🛒 Add LPFSA to my plan</button>
       </div>`;
   }
+
   document.getElementById('pretax-cards').innerHTML = html;
   // Initialize savings displays
   if (isHDHP) updateHSA(document.getElementById('hsa-input')?.value || 0);
   else updateFSA(document.getElementById('fsa-input')?.value || 0);
   if (hasKids()) updateDCFSA(document.getElementById('dcfsa-input')?.value || 0);
 }
+
 function taxSavingsLabel(amount, label) {
   const savings = Math.round(amount * 0.28);
   return savings > 0 ? `💚 $${amount.toLocaleString()} saves ~$${savings.toLocaleString()} in taxes (~28% rate) = effective cost: $${(amount - savings).toLocaleString()} · ${label}` : '';
@@ -895,20 +1170,21 @@ function updateHSA(val) {
   elected.hsaContrib = parseInt(val) || 0;
   const el = document.getElementById('hsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.hsaContrib, 'per year');
-  renderChecklist();
+  renderChecklist(); renderCartBar();
 }
 function updateFSA(val) {
   elected.fsaContrib = parseInt(val) || 0;
   const el = document.getElementById('fsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.fsaContrib, 'per year');
-  renderChecklist();
+  renderChecklist(); renderCartBar();
 }
 function updateDCFSA(val) {
   elected.dcfsaContrib = parseInt(val) || 0;
   const el = document.getElementById('dcfsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.dcfsaContrib, 'per year');
-  renderChecklist();
+  renderChecklist(); renderCartBar();
 }
+
 /* ═══════════════════════════════════════
    401K CARD
 ═══════════════════════════════════════ */
@@ -923,9 +1199,10 @@ function renderK401Card() {
         <span class="chip chip-teal">Tax-deferred growth</span>
       </div>
       <p class="benefit-desc">Amplitude matches 1% of eligible pay per pay period, up to <strong>$2,000/year</strong>. You must contribute <em>every</em> pay period — there's no year-end true-up. Vests 50% after 1 year, 100% after 2 years. Pre-tax or Roth. Plan #55883 at Fidelity NetBenefits.</p>
+      ${prior401kAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">📋 You contributed $${prior401kAmount.toLocaleString()} before joining — your remaining 2026 IRS room is <strong>$${Math.max(0,24500-prior401kAmount).toLocaleString()}</strong></div>` : ''}
       <div class="benefit-stats">
         <div class="b-stat"><div class="b-stat-label">Amplitude match</div><div class="b-stat-val">Up to $2,000/yr</div></div>
-        <div class="b-stat"><div class="b-stat-label">2026 IRS limit (under 50)</div><div class="b-stat-val">$24,500/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">${prior401kAmount > 0 ? 'Your 2026 room left' : '2026 IRS limit (under 50)'}</div><div class="b-stat-val">${prior401kAmount > 0 ? '$'+Math.max(0,24500-prior401kAmount).toLocaleString()+'/yr' : '$24,500/yr'}</div></div>
         <div class="b-stat"><div class="b-stat-label">Vesting</div><div class="b-stat-val">50% @ 1yr, 100% @ 2yr</div></div>
         <div class="b-stat"><div class="b-stat-label">Options</div><div class="b-stat-val">Pre-tax or Roth</div></div>
         <div class="b-stat"><div class="b-stat-label">Catch-up (age 50–59, 64+)</div><div class="b-stat-val">+$8,000/yr</div></div>
@@ -940,7 +1217,7 @@ function renderK401Card() {
         </div>
         <div id="k401-rec" style="font-size:12px;color:var(--text-secondary);margin-top:4px">Enter your salary to see the minimum % to capture Amplitude's full $2,000 match.</div>
       </div>
-      <button class="elect-btn" id="k401-btn" onclick="electBenefit('k401','k401-btn','k401-benefit')">✓ Got it — I'll update my contribution in Fidelity</button>
+      <button class="select-btn" id="k401-btn" onclick="cartAddBenefit('k401','k401-btn','k401-benefit')">🛒 Add 401(k) to my plan</button>
     </div>`;
 }
 function updateK401() {
@@ -957,8 +1234,9 @@ function updateK401() {
       💡 We recommend <strong>${recommended}%</strong> ($${Math.round(salary * parseFloat(recommended)/100).toLocaleString()}/yr) for healthy retirement savings. Every dollar reduces your taxable income.
     </div>`;
   elected.k401Pct = parseFloat(recommended);
-  renderChecklist();
+  renderChecklist(); renderCartBar();
 }
+
 /* ═══════════════════════════════════════
    COMMUTER CARD
 ═══════════════════════════════════════ */
@@ -980,9 +1258,10 @@ function renderCommuterCard() {
         <div class="b-stat"><div class="b-stat-label">Deadline</div><div class="b-stat-val">20th of prior month</div></div>
       </div>
       <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">🏠 Remote employees are not eligible. The $340/month limit applies separately to transit and parking. Register at naviabenefit.com with company code <strong>APU</strong>.</p>
-      <button class="elect-btn" id="commuter-btn" onclick="electBenefit('commuter','commuter-btn','commuter-benefit')">✓ Got it — I'll enroll in Navia (code: APU)</button>
+      <button class="select-btn" id="commuter-btn" onclick="cartAddBenefit('commuter','commuter-btn','commuter-benefit')">🛒 Add commuter to my plan</button>
     </div>`;
 }
+
 /* ═══════════════════════════════════════
    AUTO-ENROLLED CARD
 ═══════════════════════════════════════ */
@@ -1000,24 +1279,36 @@ function renderAutoCard() {
       ${items.map(([title, detail]) => `<div class="auto-item"><span class="auto-check">✓</span><div><strong style="font-size:13px">${title}</strong><div class="auto-detail">${detail}</div></div></div>`).join('')}
     </div>`;
 }
+
 /* ═══════════════════════════════════════
    ELECT BENEFIT HELPER
 ═══════════════════════════════════════ */
-function electBenefit(key, btnId, cardId) {
+function cartAddBenefit(key, btnId, cardId) {
   if (key === 'dental') elected.dental = true;
   if (key === 'vision') elected.vision = true;
   if (key === 'commuter') elected.commuter = true;
+  if (key === 'k401') elected.k401Pct = elected.k401Pct || 6; // default if not set
   const btn = document.getElementById(btnId);
-  if (btn) { btn.classList.add('done'); btn.disabled = true; }
+  if (btn) {
+    btn.classList.add('in-cart', 'bounce');
+    btn.textContent = '✓ Added to plan';
+    btn.disabled = true;
+    btn.addEventListener('animationend', () => btn.classList.remove('bounce'), {once:true});
+  }
   if (cardId) document.getElementById(cardId)?.classList.add('elected');
   renderChecklist();
+  renderCartBar();
 }
+// Legacy alias kept for compatibility
+function electBenefit(key, btnId, cardId) { cartAddBenefit(key, btnId, cardId); }
+
 /* ═══════════════════════════════════════
    ENROLLMENT CHECKLIST
 ═══════════════════════════════════════ */
 function renderChecklist() {
   const healthPlanName = selectedPlanId ? PLANS[selectedPlanId].name : null;
   const isHDHP = selectedPlanId === 'hdhp';
+
   // Workday items
   const workdayItems = [
     { key:'health', label:'Medical plan', sub: healthPlanName || 'Not yet selected', done: !!selectedPlanId },
@@ -1027,20 +1318,25 @@ function renderChecklist() {
     ...(!isHDHP ? [{ key:'fsa', label:'Health Care FSA', sub: elected.fsaContrib > 0 ? `$${elected.fsaContrib.toLocaleString()}/yr (saves ~$${Math.round(elected.fsaContrib*0.28).toLocaleString()} in taxes)` : 'Not yet configured', done: elected.fsaContrib > 0 }] : []),
     ...(hasKids() ? [{ key:'dcfsa', label:'Dependent Care FSA', sub: elected.dcfsaContrib > 0 ? `$${elected.dcfsaContrib.toLocaleString()}/yr` : 'Not yet configured', done: elected.dcfsaContrib > 0 }] : []),
   ];
+
   const fidelityItems = [
     { key:'k401', label:'401(k) contribution rate', sub: elected.k401Pct > 0 ? `~${elected.k401Pct}% recommended` : 'Not yet configured — update in Fidelity NetBenefits', done: elected.k401Pct > 0 }
   ];
+
   const naviaItems = [
     { key:'commuter', label:'Commuter transit (if SF/NYC)', sub: 'Elect in Navia by 20th of prior month', done: elected.commuter }
   ];
+
   const autoItems = [
     { key:'std', label:'Short & long-term disability', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'life', label:'Basic life insurance (1× salary)', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'lsa', label:'LSA $200/month via Forma', sub: 'Auto-enrolled — no action needed', auto: true },
     { key:'eap', label:'EAP / Modern Health', sub: 'Auto-enrolled — no action needed', auto: true },
   ];
+
   const doneCount = [...workdayItems, ...fidelityItems, ...naviaItems].filter(i => i.done).length;
   const total = workdayItems.length + fidelityItems.length + naviaItems.length;
+
   function renderItems(items) {
     return items.map(item => `
       <div class="cl-item">
@@ -1051,12 +1347,20 @@ function renderChecklist() {
         </div>
       </div>`).join('');
   }
+
+  const checklistTitle = answers.mode === 'new_hire'
+    ? '📋 New Hire Benefits Checklist'
+    : '📋 2026 Open Enrollment Checklist';
+  const workdayContext = answers.mode === 'new_hire'
+    ? 'Complete in Workday within 30 days of start date'
+    : 'Complete in Workday by the enrollment deadline';
+
   document.getElementById('checklist-card').innerHTML = `
     <div class="checklist-card">
       <div class="checklist-header">
         <div>
-          <h3>📋 2026 Open Enrollment Checklist</h3>
-          <p>${doneCount} of ${total} action items reviewed · Print to use during Workday enrollment</p>
+          <h3>${checklistTitle}</h3>
+          <p>${doneCount} of ${total} reviewed · ${workdayContext}</p>
         </div>
         <button class="print-btn" onclick="window.print()">🖨 Print</button>
       </div>
@@ -1080,6 +1384,7 @@ function renderChecklist() {
       </div>
     </div>`;
 }
+
 /* ═══════════════════════════════════════
    NAVIGATION
 ═══════════════════════════════════════ */
@@ -1087,21 +1392,36 @@ function select(btn, key, val) {
   btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   answers[key] = val;
-  const map = {'screen-q1':'btn-q1','screen-q2':'btn-q2','screen-q3':'btn-q3','screen-q4':'btn-q4'};
+  const map = {
+    'screen-q0':'btn-q0','screen-q1':'btn-q1','screen-q2':'btn-q2',
+    'screen-q3':'btn-q3','screen-q4':'btn-q4','screen-q5':'btn-q5'
+  };
   const sid = btn.closest('.screen').id;
   if (map[sid]) document.getElementById(map[sid]).disabled = false;
+}
+function nextAfterQ4() {
+  if (answers.mode === 'new_hire') {
+    goTo('screen-q5');
+  } else {
+    showResults();
+  }
 }
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const steps = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q4':4};
-  if (steps[id]) {
-    const el = document.getElementById('prog'+steps[id]);
-    if (el) el.innerHTML = [1,2,3,4].map(i => `<div class="prog-dot ${i<steps[id]?'done':i===steps[id]?'active':''}"></div>`).join('');
+  // Progress dots: Q1–Q4 are steps 1–4, Q5 (new hire only) is step 5
+  const totalSteps = answers.mode === 'new_hire' ? 5 : 4;
+  const stepMap = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q4':4,'screen-q5':5};
+  const step = stepMap[id];
+  if (step) {
+    const el = document.getElementById('prog'+(step === 5 ? 5 : step));
+    if (el) el.innerHTML = Array.from({length:totalSteps},(_,i)=>i+1).map(i =>
+      `<div class="prog-dot ${i<step?'done':i===step?'active':''}"></div>`).join('');
   }
   if (id==='screen-results') {
-    document.getElementById('main-title').textContent = 'Your benefits plan';
-    document.getElementById('main-sub').textContent = coverageLabel(answers.coverage)+' · '+(answers.state==='ca'?'California':'Non-CA');
+    const modeLabel = answers.mode === 'new_hire' ? '🆕 New hire enrollment' : '🔄 Open enrollment';
+    document.getElementById('main-title').textContent = 'Your benefits cart';
+    document.getElementById('main-sub').textContent = modeLabel + ' · ' + coverageLabel(answers.coverage);
   } else if (id==='screen-chat') {
     document.getElementById('main-title').textContent = 'Benefits Q&A';
     document.getElementById('main-sub').textContent = 'Ask anything about 2026 US benefits';
@@ -1114,11 +1434,19 @@ function goTo(id) {
 function resetAll() {
   Object.keys(answers).forEach(k => delete answers[k]);
   selectedPlanId = null; viewMode = 'monthly';
+  priorHsaAmount = 0; prior401kAmount = 0;
   Object.keys(elected).forEach(k => elected[k] = k.includes('Contrib')||k==='k401Pct' ? 0 : false);
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-  ['btn-q1','btn-q2','btn-q3','btn-q4'].forEach(id => { const el = document.getElementById(id); if(el) el.disabled = true; });
+  ['btn-q0','btn-q1','btn-q2','btn-q3','btn-q4','btn-q5'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.disabled = true;
+  });
   goTo('screen-welcome');
 }
+function launchWorkday() {
+  const url = 'https://wd5.myworkday.com/amplitude/d/home.htmld';
+  window.open(url, '_blank');
+}
+
 /* ═══════════════════════════════════════
    CHAT
 ═══════════════════════════════════════ */
