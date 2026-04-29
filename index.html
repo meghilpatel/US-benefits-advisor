@@ -412,6 +412,90 @@
     .workday-btn:hover { background: #004a84; }
     .workday-btn.preview { opacity: 0.7; cursor: default; position: relative; }
 
+    /* ── Comp Input Screen ── */
+    .comp-intro {
+      background: linear-gradient(135deg, #efecfd, #edf1fd);
+      border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 1.25rem;
+      border-left: 3px solid var(--blue);
+    }
+    .comp-intro h3 { font-size: 14px; font-weight: 700; color: var(--blue-text); margin-bottom: 4px; }
+    .comp-intro p { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+    .comp-field { margin-bottom: 1.1rem; }
+    .comp-field-label {
+      display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px;
+    }
+    .comp-input-wrap { display: flex; align-items: center; background: var(--bg); border: 1px solid var(--border-med); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.15s; }
+    .comp-input-wrap:focus-within { border-color: var(--blue); }
+    .comp-prefix { padding: 0 10px; font-size: 15px; color: var(--text-secondary); background: var(--bg-secondary); border-right: 1px solid var(--border); height: 100%; display: flex; align-items: center; align-self: stretch; }
+    .comp-suffix { padding: 0 10px; font-size: 13px; color: var(--text-secondary); background: var(--bg-secondary); border-left: 1px solid var(--border); display: flex; align-items: center; align-self: stretch; }
+    .comp-input {
+      flex: 1; padding: 10px 12px; border: none; font-size: 17px; font-weight: 600;
+      font-family: var(--font); background: transparent; color: var(--text-primary);
+      outline: none; min-width: 0;
+    }
+    .comp-helper { font-size: 11px; color: var(--text-tertiary); margin-top: 5px; }
+    .comp-helper.live { color: var(--green-text); font-weight: 600; }
+    .comp-skip-note { font-size: 12px; color: var(--text-tertiary); text-align: center; margin-top: 8px; }
+    .comp-plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.1rem; }
+    .paymix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+    .paymix-btn {
+      background: var(--bg); border: 1px solid var(--border-med); border-radius: var(--radius-md);
+      padding: 10px 10px 8px; text-align: center; cursor: pointer; font-family: var(--font);
+      transition: all 0.15s;
+    }
+    .paymix-btn:hover { background: var(--bg-secondary); }
+    .paymix-btn.selected { border-color: var(--blue); background: var(--blue-light); }
+    .pmix-ratio { display: block; font-size: 20px; font-weight: 800; color: var(--text-primary); line-height: 1.1; }
+    .pmix-label { display: block; font-size: 10px; color: var(--text-secondary); margin-top: 3px; }
+    .paymix-btn.selected .pmix-ratio { color: var(--blue-text); }
+    .paymix-btn.selected .pmix-label { color: var(--blue); }
+    .ote-breakdown {
+      background: var(--blue-light); border-radius: var(--radius-md); padding: 10px 12px;
+      margin-top: 6px; display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .ote-part { text-align: center; flex: 1; }
+    .ote-part-label { font-size: 10px; color: var(--blue-text); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+    .ote-part-val { font-size: 16px; font-weight: 700; color: var(--blue-text); margin-top: 2px; }
+
+    /* ── Total Rewards Statement ── */
+    .tr-card {
+      background: var(--bg); border: 1.5px solid var(--blue);
+      border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 10px;
+    }
+    .tr-header {
+      background: linear-gradient(135deg, #0d1f91 0%, #1e61f0 60%, #0f4f73 100%);
+      padding: 1.25rem 1.5rem 1.1rem;
+    }
+    .tr-header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+    .tr-total-amount { font-size: 42px; font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1; margin: 2px 0 4px; }
+    .tr-total-sub { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .tr-body { padding: 1.1rem 1.5rem 1.25rem; }
+
+    .tr-bars { margin-bottom: 1.1rem; }
+    .tr-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .tr-bar-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+    .tr-bar-label { font-size: 12px; color: var(--text-secondary); width: 72px; flex-shrink: 0; }
+    .tr-bar-track { flex: 1; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; border: 0.5px solid var(--border); }
+    .tr-bar-fill { height: 100%; border-radius: 4px; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); }
+    .tr-bar-val { font-size: 12px; font-weight: 600; color: var(--text-primary); width: 72px; text-align: right; flex-shrink: 0; }
+
+    .tr-section { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1rem 1.1rem; margin-bottom: 8px; }
+    .tr-section-title { font-size: 10px; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .tr-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; padding: 4px 0; border-bottom: 0.5px solid var(--border); }
+    .tr-row:last-child { border-bottom: none; }
+    .tr-row .tk { color: var(--text-secondary); }
+    .tr-row .tv { font-weight: 500; }
+    .tr-row.green .tk, .tr-row.green .tv { color: var(--green-text); }
+    .tr-row.blue .tk, .tr-row.blue .tv { color: var(--blue-text); }
+    .tr-grand { display: flex; justify-content: space-between; align-items: baseline; font-size: 15px; font-weight: 700; padding: 10px 0 0; margin-top: 8px; border-top: 2px solid var(--border-med); }
+    .tr-note { font-size: 11px; color: var(--text-tertiary); line-height: 1.6; margin-top: 10px; }
+    .tr-actions { display: flex; gap: 8px; margin-top: 10px; }
+    .tr-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; background: none; border: 1px solid var(--border-med); border-radius: var(--radius-md); padding: 9px 12px; font-size: 12px; font-weight: 500; color: var(--text-secondary); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+    .tr-btn:hover { background: var(--bg-secondary); border-color: var(--blue); color: var(--blue); }
+    .tr-btn.primary { background: var(--blue); color: white; border-color: var(--blue); }
+    .tr-btn.primary:hover { background: var(--blue-dark); }
+
     @media print {
       body { background: white; padding: 0; }
       .card { border: none; border-radius: 0; max-width: 100%; }
@@ -421,10 +505,29 @@
       .plan-card:not(.cart-selected) { display: none !important; }
       .checklist-card { break-inside: avoid; }
     }
+    /* TR statement print-only mode — triggered by JS adding .printing-tr to body */
+    @media print {
+      body.printing-tr * { visibility: hidden !important; }
+      body.printing-tr #print-container,
+      body.printing-tr #print-container * { visibility: visible !important; }
+      body.printing-tr #print-container {
+        position: fixed; top: 0; left: 0; width: 100%;
+        padding: 24px 32px; box-sizing: border-box;
+        background: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+      @page { margin: 12mm; }
+    }
+    #print-container { display: none; }
+    .print-brand-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid #e0e4f0; }
+    .print-brand-name { font-size: 16px; font-weight: 700; color: #0d1f91; }
+    .print-date-label { font-size: 11px; color: #9ba0b8; margin-left: auto; }
   </style>
 </head>
 <body>
 <div class="card">
+
+  <!-- Print container — populated by printStatement() and styled via @media print -->
+  <div id="print-container"></div>
 
   <!-- ── HEADER ── -->
   <div class="header" style="display:none">
@@ -653,8 +756,105 @@
       </div>
       <div class="nav">
         <button class="btn-ghost" onclick="goTo('screen-q4')">Back</button>
-        <button class="btn-primary" id="btn-q5" disabled onclick="showResults()">Build my benefits cart →</button>
+        <button class="btn-primary" id="btn-q5" disabled onclick="goTo('screen-comp')">Next →</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ── COMP INPUT ── -->
+  <div id="screen-comp" class="screen">
+    <div class="progress" id="prog-comp"></div>
+    <div class="body">
+      <div class="comp-intro">
+        <h3>💼 Total Rewards Statement</h3>
+        <p>Optional — enter your comp to generate a personalized statement showing the full dollar value Amplitude pays on your behalf.</p>
+      </div>
+
+      <!-- Step 1: Plan type -->
+      <div class="comp-field">
+        <label class="comp-field-label">What's your compensation plan?</label>
+        <div class="comp-plan-grid">
+          <button class="option-btn" id="btn-plan-bonus" onclick="selectPlanType('bonus')">
+            <span class="opt-label">🏢 Corporate Bonus</span>
+            <span class="opt-sub">Base salary + annual bonus target %</span>
+          </button>
+          <button class="option-btn" id="btn-plan-commission" onclick="selectPlanType('commission')">
+            <span class="opt-label">🎯 Sales Commission</span>
+            <span class="opt-sub">OTE with base/variable pay mix</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- CORPORATE BONUS fields -->
+      <div id="comp-bonus-fields" style="display:none">
+        <div class="comp-field">
+          <label class="comp-field-label">Annual Base Salary</label>
+          <div class="comp-input-wrap">
+            <span class="comp-prefix">$</span>
+            <input type="number" class="comp-input" id="comp-salary" placeholder="150,000" min="0" step="1000" oninput="onCompInput()">
+          </div>
+          <p class="comp-helper">Your gross annual base pay before taxes</p>
+        </div>
+        <div class="comp-field">
+          <label class="comp-field-label">Bonus Target</label>
+          <div class="comp-input-wrap">
+            <input type="number" class="comp-input" id="comp-bonus-pct" placeholder="15" min="0" max="200" style="max-width:90px" oninput="onCompInput()">
+            <span class="comp-suffix">% of salary</span>
+          </div>
+          <p class="comp-helper live" id="comp-bonus-live" style="display:none"></p>
+          <p class="comp-helper" id="comp-bonus-hint">e.g. 10%, 15%, 20% — check your offer letter</p>
+        </div>
+      </div>
+
+      <!-- SALES COMMISSION fields -->
+      <div id="comp-commission-fields" style="display:none">
+        <div class="comp-field">
+          <label class="comp-field-label">On-Target Earnings (OTE)</label>
+          <div class="comp-input-wrap">
+            <span class="comp-prefix">$</span>
+            <input type="number" class="comp-input" id="comp-ote" placeholder="200,000" min="0" step="1000" oninput="onCompInput()">
+          </div>
+          <p class="comp-helper">Total target pay at 100% quota attainment (base + commission)</p>
+        </div>
+        <div class="comp-field">
+          <label class="comp-field-label">Pay Mix <span style="font-weight:400;text-transform:none;letter-spacing:0;">(base / variable)</span></label>
+          <div class="paymix-grid">
+            <button class="paymix-btn" onclick="selectPayMix(this,'70/30')">
+              <span class="pmix-ratio">70/30</span><span class="pmix-label">Base-heavy</span>
+            </button>
+            <button class="paymix-btn" onclick="selectPayMix(this,'60/40')">
+              <span class="pmix-ratio">60/40</span><span class="pmix-label">Balanced</span>
+            </button>
+            <button class="paymix-btn" onclick="selectPayMix(this,'50/50')">
+              <span class="pmix-ratio">50/50</span><span class="pmix-label">Even split</span>
+            </button>
+            <button class="paymix-btn" onclick="selectPayMix(this,'80/20')">
+              <span class="pmix-ratio">80/20</span><span class="pmix-label">Light variable</span>
+            </button>
+          </div>
+          <div id="comp-ote-breakdown" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- EQUITY (both plans) -->
+      <div class="comp-field" id="comp-equity-field" style="display:none">
+        <label class="comp-field-label">Annual Equity Value <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(RSUs vesting this year)</span></label>
+        <div class="comp-input-wrap">
+          <span class="comp-prefix">$</span>
+          <input type="number" class="comp-input" id="comp-equity" placeholder="50,000" min="0" step="1000">
+        </div>
+        <p class="comp-helper">Unvested shares × stock price ÷ vest years. Leave blank if none.</p>
+      </div>
+
+      <div id="comp-error-msg" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px 12px;font-size:13px;color:#991b1b;margin-bottom:8px;"></div>
+      <div class="nav" style="margin-top:1rem">
+        <button class="btn-ghost" onclick="goBackFromComp()">Back</button>
+        <div style="display:flex;gap:8px">
+          <button class="btn-ghost" onclick="skipComp()">Skip</button>
+          <button class="btn-primary" id="btn-build-statement" onclick="buildStatement()">Build my statement →</button>
+        </div>
+      </div>
+      <p class="comp-skip-note">Your data stays in this browser tab only — nothing is saved or shared.</p>
     </div>
   </div>
 
@@ -700,6 +900,9 @@
       <!-- 8. ENROLLMENT CHECKLIST -->
       <div class="section-divider"><span>📋 Your enrollment checklist</span></div>
       <div id="checklist-card"></div>
+
+      <!-- 9. TOTAL REWARDS STATEMENT -->
+      <div id="total-rewards-section"></div>
 
       <button class="btn-primary full" style="margin-top:1rem" onclick="goTo('screen-chat')">Ask a follow-up question →</button>
       <button class="btn-ghost full" onclick="resetAll()">Start over</button>
@@ -761,6 +964,27 @@ let viewMode = 'monthly';
 // New hire prior contribution tracking (mid-year IRS room calculations)
 let priorHsaAmount = 0;
 let prior401kAmount = 0;
+
+// Compensation & Total Rewards data
+const compData = {
+  planType: null,        // 'bonus' | 'commission'
+  salary: 0,             // base salary (derived for commission plan)
+  bonusPct: 0,           // corporate bonus plan only
+  ote: 0,                // commission plan: on-target earnings
+  commissionTarget: 0,   // commission plan: variable portion
+  payMix: null,          // e.g. '70/30'
+  equityAnnual: 0,
+  entered: false
+};
+
+// Employer-side health premium contributions (monthly, estimated)
+// These represent what Amplitude pays toward each plan — employees see only their share
+const EMPLOYER_HEALTH_MONTHLY = {
+  ppo:    { solo: 790, spouse: 1680, kids: 1410, family: 2150 },
+  hdhp:   { solo: 680, spouse: 1440, kids: 1200, family: 1820 },
+  epo:    { solo: 730, spouse: 1540, kids: 1290, family: 1960 },
+  kaiser: { solo: 580, spouse: 1220, kids: 1020, family: 1560 }
+};
 
 // Tracks which non-health benefits the user has acknowledged
 const elected = {
@@ -872,6 +1096,7 @@ function showResults() {
   renderCommuterCard();
   renderAutoCard();
   renderChecklist();
+  renderTotalRewards();
   renderCartBar();
   updateWorkdayBtn();
 
@@ -1523,18 +1748,19 @@ function nextAfterQ4() {
   if (answers.mode === 'new_hire') {
     goTo('screen-q5');
   } else {
-    showResults();
+    goTo('screen-comp');
   }
 }
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  // Progress dots: Q1–Q4 are steps 1–4, Q5 (new hire only) is step 5
-  const totalSteps = answers.mode === 'new_hire' ? 5 : 4;
-  const stepMap = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q4':4,'screen-q5':5};
+  // Progress dots: Q1–Q4 steps 1–4; Q5 (new hire) step 5; comp screen is final step
+  const totalSteps = answers.mode === 'new_hire' ? 6 : 5;
+  const stepMap = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q4':4,'screen-q5':5,'screen-comp': answers.mode === 'new_hire' ? 6 : 5};
   const step = stepMap[id];
   if (step) {
-    const el = document.getElementById('prog'+(step === 5 ? 5 : step));
+    const progId = id === 'screen-comp' ? 'prog-comp' : 'prog' + step;
+    const el = document.getElementById(progId);
     if (el) el.innerHTML = Array.from({length:totalSteps},(_,i)=>i+1).map(i =>
       `<div class="prog-dot ${i<step?'done':i===step?'active':''}"></div>`).join('');
   }
@@ -1561,8 +1787,11 @@ function resetAll() {
   Object.keys(answers).forEach(k => delete answers[k]);
   selectedPlanId = null; viewMode = 'monthly';
   priorHsaAmount = 0; prior401kAmount = 0;
+  compData.salary = 0; compData.bonusPct = 0; compData.equityAnnual = 0; compData.entered = false;
+  compData.planType = null; compData.payMix = null; compData.ote = 0; compData.commissionTarget = 0;
   Object.keys(elected).forEach(k => elected[k] = k.includes('Contrib')||k==='k401Pct' ? 0 : false);
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  resetCompScreenUI();
   ['btn-q0','btn-q1','btn-q2','btn-q3','btn-q4','btn-q5'].forEach(id => {
     const el = document.getElementById(id); if(el) el.disabled = true;
   });
@@ -1638,6 +1867,362 @@ function addMsg(text,type) {
   const div = document.createElement('div');
   div.className = 'msg ' + type; div.textContent = text;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+}
+
+/* ═══════════════════════════════════════
+   COMP SCREEN
+═══════════════════════════════════════ */
+function selectPlanType(type) {
+  compData.planType = type;
+  document.getElementById('btn-plan-bonus').classList.toggle('selected', type === 'bonus');
+  document.getElementById('btn-plan-commission').classList.toggle('selected', type === 'commission');
+  document.getElementById('comp-bonus-fields').style.display      = type === 'bonus'      ? 'block' : 'none';
+  document.getElementById('comp-commission-fields').style.display = type === 'commission' ? 'block' : 'none';
+  document.getElementById('comp-equity-field').style.display = 'block';
+  // Clear any previous error when plan type changes
+  const errEl = document.getElementById('comp-error-msg');
+  if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+}
+
+function selectPayMix(btn, mix) {
+  compData.payMix = mix;
+  document.querySelectorAll('.paymix-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  onCompInput();
+}
+
+function onCompInput() {
+  if (compData.planType === 'bonus') {
+    const sal = parseFloat(document.getElementById('comp-salary').value) || 0;
+    const pct = parseFloat(document.getElementById('comp-bonus-pct').value) || 0;
+    const liveEl = document.getElementById('comp-bonus-live');
+    const hintEl = document.getElementById('comp-bonus-hint');
+    if (sal > 0 && pct > 0) {
+      liveEl.textContent = '= ' + fmt(sal * pct / 100) + ' target bonus';
+      liveEl.style.display = 'block'; hintEl.style.display = 'none';
+    } else {
+      liveEl.style.display = 'none'; hintEl.style.display = 'block';
+    }
+  } else if (compData.planType === 'commission') {
+    const ote = parseFloat(document.getElementById('comp-ote').value) || 0;
+    const brkEl = document.getElementById('comp-ote-breakdown');
+    if (ote > 0 && compData.payMix) {
+      const [baseP, varP] = compData.payMix.split('/').map(Number);
+      const base = ote * baseP / 100;
+      const comm = ote * varP / 100;
+      brkEl.innerHTML = `
+        <div class="ote-breakdown">
+          <div class="ote-part"><div class="ote-part-label">Base salary</div><div class="ote-part-val">${fmt(base)}</div></div>
+          <div class="ote-part"><div class="ote-part-label">Commission target</div><div class="ote-part-val">${fmt(comm)}</div></div>
+          <div class="ote-part"><div class="ote-part-label">OTE (100% quota)</div><div class="ote-part-val">${fmt(ote)}</div></div>
+        </div>`;
+      brkEl.style.display = 'block';
+    } else if (ote > 0) {
+      brkEl.innerHTML = `<p class="comp-helper" style="margin-top:6px">Select a pay mix to see your base/commission split</p>`;
+      brkEl.style.display = 'block';
+    } else {
+      brkEl.style.display = 'none';
+    }
+  }
+}
+
+function buildStatement() {
+  const errEl = document.getElementById('comp-error-msg');
+  function showErr(msg) { if(errEl){ errEl.textContent = msg; errEl.style.display = 'block'; } }
+  function clearErr()   { if(errEl){ errEl.style.display = 'none'; errEl.textContent = ''; } }
+  clearErr();
+
+  // Validate plan type
+  if (!compData.planType) {
+    showErr('Please select your compensation plan type first (Corporate Bonus or Sales Commission).');
+    return;
+  }
+
+  if (compData.planType === 'bonus') {
+    const sal = parseFloat(document.getElementById('comp-salary').value) || 0;
+    if (sal <= 0) { showErr('Please enter your annual base salary.'); return; }
+    compData.salary           = sal;
+    compData.bonusPct         = parseFloat(document.getElementById('comp-bonus-pct').value) || 0;
+    compData.ote              = 0;
+    compData.commissionTarget = 0;
+  } else if (compData.planType === 'commission') {
+    const ote = parseFloat(document.getElementById('comp-ote').value) || 0;
+    if (ote <= 0) { showErr('Please enter your On-Target Earnings (OTE).'); return; }
+    if (!compData.payMix) { showErr('Please select your pay mix (base/variable split).'); return; }
+    const [baseP, varP] = compData.payMix.split('/').map(Number);
+    compData.ote              = ote;
+    compData.salary           = ote * baseP / 100;
+    compData.commissionTarget = ote * varP / 100;
+    compData.bonusPct         = 0;
+  }
+
+  compData.equityAnnual = parseFloat(document.getElementById('comp-equity').value) || 0;
+  compData.entered = true;
+  showResults();
+}
+
+function skipComp() {
+  // Reset all comp data
+  compData.planType = null; compData.salary = 0; compData.bonusPct = 0;
+  compData.ote = 0; compData.commissionTarget = 0; compData.equityAnnual = 0;
+  compData.entered = false; compData.payMix = null;
+  // Reset comp screen UI so it's clean if user comes back
+  resetCompScreenUI();
+  showResults();
+}
+
+function resetCompScreenUI() {
+  // Deselect plan type buttons
+  const bpb = document.getElementById('btn-plan-bonus');
+  const bpc = document.getElementById('btn-plan-commission');
+  if (bpb) bpb.classList.remove('selected');
+  if (bpc) bpc.classList.remove('selected');
+  // Hide plan-specific fields
+  const bf = document.getElementById('comp-bonus-fields');
+  const cf = document.getElementById('comp-commission-fields');
+  const ef = document.getElementById('comp-equity-field');
+  if (bf) bf.style.display = 'none';
+  if (cf) cf.style.display = 'none';
+  if (ef) ef.style.display = 'none';
+  // Clear inputs
+  ['comp-salary','comp-bonus-pct','comp-ote','comp-equity'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  // Clear OTE breakdown and pay mix
+  const brkEl = document.getElementById('comp-ote-breakdown');
+  if (brkEl) { brkEl.style.display = 'none'; brkEl.innerHTML = ''; }
+  document.querySelectorAll('.paymix-btn').forEach(b => b.classList.remove('selected'));
+  // Clear live bonus hint
+  const liveEl = document.getElementById('comp-bonus-live');
+  const hintEl = document.getElementById('comp-bonus-hint');
+  if (liveEl) liveEl.style.display = 'none';
+  if (hintEl) hintEl.style.display = 'block';
+  // Clear error
+  const errEl = document.getElementById('comp-error-msg');
+  if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+}
+
+function goBackFromComp() {
+  if (answers.mode === 'new_hire') goTo('screen-q5');
+  else goTo('screen-q4');
+}
+
+function printStatement() {
+  const trCard = document.querySelector('.tr-card');
+  if (!trCard) { alert('Please build your statement first.'); return; }
+
+  const dateStr = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const container = document.getElementById('print-container');
+
+  // Clone the TR card and strip action buttons from the clone
+  const clone = trCard.cloneNode(true);
+  clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
+
+  // Build print layout with brand header above the statement
+  container.innerHTML = `
+    <div class="print-brand-header">
+      <svg viewBox="0 0 800 800" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#0052f2" d="M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z"/>
+      </svg>
+      <span class="print-brand-name">Amplitude</span>
+      <span class="print-date-label">2026 Total Rewards Statement &nbsp;·&nbsp; ${dateStr}</span>
+    </div>
+  `;
+  container.appendChild(clone);
+
+  // Add body class so @media print CSS kicks in
+  document.body.classList.add('printing-tr');
+  window.print();
+  // Clean up after print dialog closes
+  document.body.classList.remove('printing-tr');
+  container.innerHTML = '';
+}
+
+/* ═══════════════════════════════════════
+   TOTAL REWARDS STATEMENT
+═══════════════════════════════════════ */
+function fmt(n) {
+  if (!n) return '$0';
+  return '$' + Math.round(n).toLocaleString('en-US');
+}
+
+function renderTotalRewards() {
+  const el = document.getElementById('total-rewards-section');
+  if (!el) return;
+
+  // Always show employer benefits section; only show TR statement if comp entered
+  const coverKey = ({ solo:'solo', spouse:'spouse', kids:'kids', family:'family' })[answers.coverage] || 'solo';
+  const planKey  = selectedPlanId || 'hdhp';
+  const isHDHP   = planKey === 'hdhp';
+
+  // ── Employer-side benefits calculations ──
+  const empHealthMonthly = (EMPLOYER_HEALTH_MONTHLY[planKey] || EMPLOYER_HEALTH_MONTHLY.hdhp)[coverKey];
+  const empHealthAnnual  = empHealthMonthly * 12;
+
+  const hsaSeed     = isHDHP ? (coverKey === 'solo' ? 500 : 1000) : 0;
+  // 401k: Amplitude matches 1% per period, max $2,000/year
+  const k401MatchAnnual = compData.salary > 0
+    ? Math.min(compData.salary * (elected.k401Pct / 100), 2000)
+    : null; // null = don't show dollar amount if no salary
+  const dentalEmp   = elected.dental ? 55 * 12 : 0;  // ~$55/mo employer contribution
+  const visionEmp   = elected.vision ? 12 * 12 : 0;  // ~$12/mo employer contribution
+  const lifeInsAmt  = compData.salary > 0 ? Math.min(compData.salary, 350000) : null;
+
+  // ── Cash & equity (only if user entered comp) ──
+  const hasSalary      = compData.entered && compData.salary > 0;
+  const isCommission   = compData.planType === 'commission';
+  const salary         = compData.salary;
+  const bonusAmt       = isCommission ? 0 : salary * compData.bonusPct / 100;
+  const commissionAmt  = isCommission ? compData.commissionTarget : 0;
+  const variableAmt    = isCommission ? commissionAmt : bonusAmt;
+  const ote            = isCommission ? compData.ote : 0;
+  const equity         = compData.equityAnnual;
+
+  // Benefits total
+  const empBenefitsTotal = empHealthAnnual + hsaSeed
+    + (k401MatchAnnual || 0) + dentalEmp + visionEmp;
+
+  // Grand total (only meaningful with salary)
+  const grandTotal = hasSalary
+    ? salary + variableAmt + equity + empBenefitsTotal
+    : empBenefitsTotal;
+
+  // ── Bar chart proportions ──
+  const bars = hasSalary ? [
+    { icon:'💵', label:'Base',       val: salary,          color:'#1e61f0' },
+    { icon:'🎯', label: isCommission ? 'Commission' : 'Bonus', val: variableAmt, color:'#48d2e5' },
+    { icon:'📈', label:'Equity',     val: equity,          color:'#c9c2f5' },
+    { icon:'🏥', label:'Benefits',   val: empBenefitsTotal, color:'#f06090' },
+  ].filter(b => b.val > 0) : [];
+  const maxVal = bars.length ? Math.max(...bars.map(b => b.val)) : empBenefitsTotal;
+
+  let html = '';
+
+  // ── Employer value section (always shown) ──
+  html += `
+  <div class="section-divider"><span>🏆 Total Rewards</span></div>
+  <div class="tr-card">
+  `;
+
+  if (hasSalary) {
+    html += `
+    <div class="tr-header">
+      <div class="tr-header-eyebrow">Amplitude · 2026 Total Rewards Estimate</div>
+      <div class="tr-total-amount">${fmt(grandTotal)}</div>
+      <div class="tr-total-sub">Estimated total annual value of your compensation + benefits</div>
+    </div>
+    `;
+  } else {
+    html += `
+    <div class="tr-header">
+      <div class="tr-header-eyebrow">Amplitude · 2026 Benefits Value</div>
+      <div class="tr-total-amount">${fmt(empBenefitsTotal)}</div>
+      <div class="tr-total-sub">Estimated value of employer-paid benefits this year</div>
+    </div>
+    `;
+  }
+
+  html += `<div class="tr-body">`;
+
+  // Bar chart (only with salary)
+  if (bars.length > 1) {
+    html += `<div class="tr-bars">`;
+    bars.forEach(b => {
+      const pct = maxVal > 0 ? Math.round(b.val / maxVal * 100) : 0;
+      html += `
+      <div class="tr-bar-row">
+        <span class="tr-bar-icon">${b.icon}</span>
+        <span class="tr-bar-label">${b.label}</span>
+        <div class="tr-bar-track"><div class="tr-bar-fill" style="width:${pct}%;background:${b.color}"></div></div>
+        <span class="tr-bar-val">${fmt(b.val)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Cash section
+  if (hasSalary) {
+    html += `
+    <div class="tr-section">
+      <div class="tr-section-title">💵 Cash Compensation</div>
+      <div class="tr-row"><span class="tk">Base salary</span><span class="tv">${fmt(salary)}</span></div>
+      ${isCommission && commissionAmt > 0 ? `
+        <div class="tr-row"><span class="tk">Target commission (at 100% quota)</span><span class="tv">${fmt(commissionAmt)}</span></div>
+        <div class="tr-row" style="font-weight:600"><span class="tk">On-Target Earnings (OTE)</span><span class="tv">${fmt(ote)}</span></div>
+      ` : bonusAmt > 0 ? `
+        <div class="tr-row"><span class="tk">Target bonus (${compData.bonusPct}%)</span><span class="tv">${fmt(bonusAmt)}</span></div>
+      ` : ''}
+      ${equity > 0 ? `<div class="tr-row"><span class="tk">Annual equity vesting</span><span class="tv">${fmt(equity)}</span></div>` : ''}
+      <div class="tr-grand"><span>Cash + equity subtotal</span><span>${fmt(salary + variableAmt + equity)}</span></div>
+    </div>`;
+  }
+
+  // Employer-paid benefits section
+  html += `
+  <div class="tr-section">
+    <div class="tr-section-title">🏥 What Amplitude Pays For You</div>
+    <div class="tr-row green">
+      <span class="tk">Health insurance (employer premium)</span>
+      <span class="tv">${fmt(empHealthAnnual)}/yr</span>
+    </div>
+    ${hsaSeed > 0 ? `<div class="tr-row green"><span class="tk">HSA employer seed contribution</span><span class="tv">${fmt(hsaSeed)}/yr</span></div>` : ''}
+    <div class="tr-row ${k401MatchAnnual !== null ? 'green' : ''}">
+      <span class="tk">401(k) employer match (up to $2,000/yr)</span>
+      <span class="tv">${k401MatchAnnual !== null ? fmt(k401MatchAnnual)+'/yr' : 'Up to $2,000'}</span>
+    </div>
+    ${dentalEmp > 0 ? `<div class="tr-row green"><span class="tk">Dental coverage (employer portion)</span><span class="tv">${fmt(dentalEmp)}/yr</span></div>` : ''}
+    ${visionEmp > 0 ? `<div class="tr-row green"><span class="tk">Vision coverage (employer portion)</span><span class="tv">${fmt(visionEmp)}/yr</span></div>` : ''}
+    <div class="tr-row blue">
+      <span class="tk">Life insurance coverage (1× salary, company-paid)</span>
+      <span class="tv">${lifeInsAmt !== null ? fmt(lifeInsAmt)+' coverage' : '1× base salary'}</span>
+    </div>
+    <div class="tr-row blue"><span class="tk">Short + long-term disability</span><span class="tv">Company-paid</span></div>
+    <div class="tr-row blue"><span class="tk">LSA wellness account</span><span class="tv">$2,400/yr</span></div>
+    <div class="tr-row blue"><span class="tk">Learning & development stipend</span><span class="tv">$1,000/yr</span></div>
+    <div class="tr-grand"><span>Employer benefits subtotal</span><span>${fmt(empBenefitsTotal)}</span></div>
+  </div>`;
+
+  if (hasSalary) {
+    html += `
+    <div class="tr-section" style="border:1.5px solid var(--blue);">
+      <div class="tr-section-title" style="color:var(--blue-text)">📊 Total Rewards Summary</div>
+      ${salary > 0 ? `<div class="tr-row"><span class="tk">Base salary</span><span class="tv">${fmt(salary)}</span></div>` : ''}
+      ${isCommission && commissionAmt > 0 ? `<div class="tr-row"><span class="tk">Target commission</span><span class="tv">${fmt(commissionAmt)}</span></div>` : bonusAmt > 0 ? `<div class="tr-row"><span class="tk">Target bonus</span><span class="tv">${fmt(bonusAmt)}</span></div>` : ''}
+      ${equity > 0 ? `<div class="tr-row"><span class="tk">Annual equity</span><span class="tv">${fmt(equity)}</span></div>` : ''}
+      <div class="tr-row green"><span class="tk">Employer-paid benefits</span><span class="tv">${fmt(empBenefitsTotal)}</span></div>
+      <div class="tr-grand"><span>Total Rewards (estimated)</span><span>${fmt(grandTotal)}</span></div>
+    </div>`;
+  }
+
+  // Add comp CTA if user skipped
+  if (!hasSalary) {
+    html += `
+    <div style="background:var(--blue-light);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:8px;">
+      <p style="font-size:12px;color:var(--blue-text);line-height:1.5;">
+        <strong>Want to see your full picture?</strong> Add your salary, bonus, and equity to generate a complete Total Rewards statement.
+      </p>
+      <button class="btn-primary" style="margin-top:8px;font-size:13px;padding:8px 14px" onclick="goTo('screen-comp')">Add compensation →</button>
+    </div>`;
+  }
+
+  html += `
+  <p class="tr-note">⚠️ Health insurance employer premiums are estimates based on 2026 plan rates. Exact figures vary by carrier and plan tier. 401k match reflects Amplitude's current policy (1% per pay period, $2,000/yr cap). Verify all figures with HR and your offer letter.</p>
+  <div class="tr-actions">
+    <button class="tr-btn" onclick="printStatement()">🖨️ Print statement</button>
+    ${hasSalary ? `<button class="tr-btn primary" onclick="goTo('screen-comp')">✏️ Edit comp</button>` : ''}
+  </div>
+  </div>
+  </div>`;
+
+  el.innerHTML = html;
+
+  // Animate bars with slight delay
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.tr-bar-fill').forEach(b => {
+      const w = b.style.width; b.style.width = '0';
+      setTimeout(() => { b.style.width = w; }, 80);
+    });
+  });
 }
 </script>
 </body>
