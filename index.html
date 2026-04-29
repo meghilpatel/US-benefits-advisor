@@ -7,73 +7,113 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      /* Amplitude brand palette */
       --bg: #ffffff;
-      --bg-secondary: #f5f5f3;
-      --bg-info: #e6f1fb;
-      --text-primary: #1a1a18;
-      --text-secondary: #6b6b66;
-      --text-tertiary: #9b9b95;
-      --border: rgba(0,0,0,0.12);
-      --border-med: rgba(0,0,0,0.22);
-      --blue: #185FA5;
-      --blue-light: #e6f1fb;
-      --blue-dark: #0C447C;
-      --blue-text: #0C447C;
+      --bg-secondary: #f4f5f9;
+      --bg-info: #edf1fd;
+      --text-primary: #0d1f91;
+      --text-primary-soft: #1a1a2e;
+      --text-secondary: #5a6080;
+      --text-tertiary: #9ba0b8;
+      --border: rgba(30,97,240,0.12);
+      --border-med: rgba(30,97,240,0.22);
+      /* Amplitude Blue */
+      --blue: #1e61f0;
+      --blue-light: #edf1fd;
+      --blue-dark: #0d1f91;
+      --blue-text: #0d1f91;
+      /* Accent colors */
       --amber-bg: #FAEEDA;
       --amber-text: #854F0B;
       --green-bg: #EAF3DE;
       --green-text: #3B6D11;
-      --purple-bg: #F3EFFE;
-      --purple-text: #5B21B6;
-      --teal-bg: #E0F7F4;
-      --teal-text: #0F766E;
-      --radius-md: 8px;
-      --radius-lg: 12px;
+      --purple-bg: #efecfd;
+      --purple-text: #4C2BBF;
+      --teal-bg: #e0f8f9;
+      --teal-text: #0e6b72;
+      /* Amplitude specific */
+      --amp-teal: #48d2e5;
+      --amp-purple: #c9c2f5;
+      --amp-pink: #f5d9e1;
+      --radius-md: 10px;
+      --radius-lg: 14px;
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #1c1c1a; --bg-secondary: #2a2a28; --bg-info: #0c2a44;
-        --text-primary: #f0f0ec; --text-secondary: #a8a8a2; --text-tertiary: #6b6b66;
-        --border: rgba(255,255,255,0.12); --border-med: rgba(255,255,255,0.22);
-        --blue-light: #0c2a44; --blue-text: #85B7EB;
+        --bg: #0e1120; --bg-secondary: #171b30; --bg-info: #0c1a3a;
+        --text-primary: #c9d0f0; --text-primary-soft: #e8eaf8;
+        --text-secondary: #8890b8; --text-tertiary: #4a5070;
+        --border: rgba(100,130,240,0.15); --border-med: rgba(100,130,240,0.28);
+        --blue-light: #0c1a3a; --blue-text: #7ba8f8;
         --amber-bg: #412402; --amber-text: #FAC775;
         --green-bg: #173404; --green-text: #C0DD97;
-        --purple-bg: #2d1b4e; --purple-text: #C4B5FD;
-        --teal-bg: #0d3330; --teal-text: #5EEAD4;
+        --purple-bg: #1e1540; --purple-text: #b8aaff;
+        --teal-bg: #072428; --teal-text: #5EEAD4;
       }
     }
     body {
-      font-family: var(--font); background: var(--bg-secondary);
-      color: var(--text-primary); min-height: 100vh;
+      font-family: var(--font); background: linear-gradient(160deg, #c9c2f5 0%, #c1e0fe 40%, #e0f8f9 100%);
+      color: var(--text-primary-soft); min-height: 100vh;
       display: flex; align-items: flex-start; justify-content: center;
       padding: 2rem 1rem;
     }
     .card {
-      background: var(--bg); border-radius: var(--radius-lg);
-      border: 0.5px solid var(--border); width: 100%; max-width: 580px; overflow: hidden;
+      background: var(--bg); border-radius: 20px;
+      border: 1px solid rgba(30,97,240,0.14);
+      box-shadow: 0 12px 56px rgba(13,31,145,0.14), 0 2px 8px rgba(13,31,145,0.06);
+      width: 100%; max-width: 580px; overflow: hidden;
     }
     .header {
-      padding: 1.25rem 1.5rem 1rem; border-bottom: 0.5px solid var(--border);
+      padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 10px; position: sticky; top: 0;
       background: var(--bg); z-index: 10;
+      backdrop-filter: blur(8px);
     }
     .logo {
-      width: 28px; height: 28px; background: var(--blue); border-radius: 50%;
+      width: 30px; height: 30px; background: var(--blue); border-radius: 8px;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-weight: 800; color: white; font-size: 16px; letter-spacing: -0.5px;
     }
-    .logo svg { width: 14px; height: 14px; fill: white; }
-    .header-text h1 { font-size: 16px; font-weight: 500; }
-    .header-text p { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+    .header-text h1 { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+    .header-text p { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+
+    /* ── Welcome Hero ── */
+    .welcome-hero {
+      /* Dark navy on left (text side) → light blue on right (monster side) */
+      background: linear-gradient(110deg, #0d1f91 0%, #1e61f0 45%, #7dbffc 72%, #c1e0fe 100%);
+      padding: 2rem 1.5rem 0;
+      display: flex; align-items: flex-end; gap: 1rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .welcome-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0; height: 18px;
+      background: var(--bg);
+      border-radius: 18px 18px 0 0;
+    }
+    .welcome-hero-text { padding-bottom: 2rem; flex: 1; min-width: 0; }
+    .welcome-eyebrow {
+      display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px;
+    }
+    .welcome-title {
+      font-size: 30px; font-weight: 800; color: #fff; line-height: 1.05; margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .welcome-sub { font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .welcome-monster { flex-shrink: 0; display: flex; align-items: flex-end; position: relative; z-index: 1; }
     .body { padding: 1.25rem 1.5rem; }
     .screen { display: none; }
     .screen.active { display: block; }
 
     /* ── Progress ── */
     .progress { display: flex; gap: 4px; padding: 0.75rem 1.5rem 0; }
-    .prog-dot { height: 3px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.2s; }
-    .prog-dot.done { background: var(--blue); }
-    .prog-dot.active { background: #85B7EB; }
+    .prog-dot { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: all 0.3s; }
+    .prog-dot.done { background: linear-gradient(90deg, #1e61f0, #48d2e5); }
+    .prog-dot.active { background: #c9c2f5; }
 
     /* ── Wizard ── */
     .question { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
@@ -91,12 +131,14 @@
     .option-btn.selected .opt-sub { color: var(--blue); }
     .nav { display: flex; gap: 8px; margin-top: 1.25rem; }
     .btn-primary {
-      background: var(--blue); color: #fff; border: none; border-radius: var(--radius-md);
-      padding: 10px 20px; font-size: 14px; font-weight: 500; cursor: pointer;
-      font-family: var(--font); transition: background 0.15s;
+      background: linear-gradient(135deg, #1e61f0 0%, #0d1f91 100%);
+      color: #fff; border: none; border-radius: var(--radius-md);
+      padding: 11px 20px; font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: var(--font); transition: all 0.15s;
+      box-shadow: 0 2px 12px rgba(30,97,240,0.25);
     }
-    .btn-primary:hover { background: var(--blue-dark); }
-    .btn-primary:disabled { opacity: 0.4; cursor: default; }
+    .btn-primary:hover { background: linear-gradient(135deg, #2a6ef2 0%, #1428a8 100%); box-shadow: 0 4px 16px rgba(30,97,240,0.35); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.4; cursor: default; box-shadow: none; transform: none; }
     .btn-primary.full { width: 100%; margin-bottom: 8px; }
     .btn-ghost {
       background: none; border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
@@ -147,8 +189,11 @@
     .plan-card.cart-selected { border: 2px solid var(--green-text); }
     .pick-badge {
       position: absolute; top: -11px; left: 14px;
-      background: var(--blue); color: #fff; font-size: 11px; font-weight: 500;
-      padding: 2px 10px; border-radius: 20px;
+      background: linear-gradient(90deg, #1e61f0, #48d2e5);
+      color: #fff; font-size: 11px; font-weight: 700;
+      padding: 3px 12px; border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(30,97,240,0.35);
+      letter-spacing: 0.02em;
     }
     .plan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
     .plan-name { font-size: 15px; font-weight: 500; }
@@ -218,7 +263,11 @@
       display: flex; align-items: center; gap: 10px;
       margin: 1.5rem 0 1rem;
     }
-    .section-divider span { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+    .section-divider span {
+      font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase;
+      letter-spacing: 0.07em; white-space: nowrap;
+      background: var(--blue-light); padding: 3px 10px; border-radius: 20px;
+    }
     .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
     /* ── Benefit Cards (dental, vision, etc.) ── */
@@ -378,24 +427,79 @@
 <div class="card">
 
   <!-- ── HEADER ── -->
-  <div class="header">
-    <div class="logo">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-    </div>
+  <div class="header" style="display:none">
+    <div class="logo">A</div>
     <div class="header-text">
-      <h1 id="main-title">2026 Benefits advisor</h1>
+      <h1 id="main-title">2026 Benefits Advisor</h1>
       <p id="main-sub">Amplitude · US employees only</p>
     </div>
   </div>
 
   <!-- ── WELCOME ── -->
   <div id="screen-welcome" class="screen active">
+
+    <!-- Hero banner -->
+    <div class="welcome-hero">
+      <div class="welcome-hero-text">
+        <span class="welcome-eyebrow">Amplitude · 2026</span>
+        <div class="welcome-title">Benefits<br>Advisor</div>
+        <p class="welcome-sub">Build your benefits cart in minutes.<br>US employees only.</p>
+      </div>
+      <div class="welcome-monster">
+        <!-- Data Monster — Heart pose (faithful to library: jet black, big white eyes, pink heart) -->
+        <svg width="108" height="144" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+          <!-- Ground shadow -->
+          <ellipse cx="46" cy="117" rx="26" ry="4" fill="rgba(0,0,40,0.13)"/>
+
+          <!-- ── Ears (drawn first so head covers their bases) ── -->
+          <polygon points="26,42 18,10 42,34" fill="#111"/>
+          <polygon points="64,42 72,10 48,34" fill="#111"/>
+
+          <!-- ── Tail (behind body) ── -->
+          <path d="M68,96 Q84,106 82,90 Q80,78 66,86" fill="#111"/>
+
+          <!-- ── Legs ── -->
+          <ellipse cx="34" cy="110" rx="11" ry="10" fill="#111"/>
+          <ellipse cx="58" cy="110" rx="11" ry="10" fill="#111"/>
+
+          <!-- ── Body ── -->
+          <ellipse cx="46" cy="88" rx="28" ry="25" fill="#111"/>
+
+          <!-- ── Left arm (wrapping around heart) ── -->
+          <path d="M18,82 Q10,88 12,100 Q14,108 26,106 Q22,96 24,88 Z" fill="#111"/>
+          <!-- ── Right arm ── -->
+          <path d="M74,82 Q82,88 80,100 Q78,108 66,106 Q70,96 68,88 Z" fill="#111"/>
+
+          <!-- ── Head ── -->
+          <circle cx="46" cy="48" r="30" fill="#111"/>
+
+          <!-- ── Eye whites ── -->
+          <circle cx="34" cy="46" r="11" fill="white"/>
+          <circle cx="58" cy="46" r="11" fill="white"/>
+
+          <!-- ── Pupils ── -->
+          <circle cx="36" cy="48" r="6" fill="#111"/>
+          <circle cx="60" cy="48" r="6" fill="#111"/>
+
+          <!-- ── Eye shines ── -->
+          <circle cx="39" cy="44" r="2.5" fill="white"/>
+          <circle cx="63" cy="44" r="2.5" fill="white"/>
+
+          <!-- ── Pink heart (held in front of body) ── -->
+          <path d="M46,106 C46,106 24,91 24,79 C24,72 29,67 35,67 C40,67 43,71 46,75 C49,71 52,67 57,67 C63,67 68,72 68,79 C68,91 46,106 46,106 Z" fill="#f06090"/>
+          <!-- Heart shine -->
+          <ellipse cx="33" cy="73" rx="4" ry="2.5" fill="rgba(255,255,255,0.3)" transform="rotate(-30 33 73)"/>
+        </svg>
+      </div>
+    </div>
+
     <div class="body">
       <div class="info-box">
         <p>This tool covers 2026 US benefits only. International employees have a single plan per country — contact HR for details.</p>
       </div>
-      <p class="intro-desc">Answer a few quick questions and build your personalized benefits cart — health plan, dental, vision, pre-tax savings accounts, 401k, commuter, and more. Everything you need to complete enrollment in one place.</p>
-      <button class="btn-primary" onclick="goTo('screen-q0')">Get started →</button>
+      <p class="intro-desc">Answer a few quick questions and build your personalized benefits cart — health plan, dental, vision, pre-tax savings, 401k, commuter, and more.</p>
+      <button class="btn-primary" style="width:100%" onclick="goTo('screen-q0')">Get started →</button>
     </div>
   </div>
 
@@ -1418,16 +1522,22 @@ function goTo(id) {
     if (el) el.innerHTML = Array.from({length:totalSteps},(_,i)=>i+1).map(i =>
       `<div class="prog-dot ${i<step?'done':i===step?'active':''}"></div>`).join('');
   }
-  if (id==='screen-results') {
-    const modeLabel = answers.mode === 'new_hire' ? '🆕 New hire enrollment' : '🔄 Open enrollment';
-    document.getElementById('main-title').textContent = 'Your benefits cart';
-    document.getElementById('main-sub').textContent = modeLabel + ' · ' + coverageLabel(answers.coverage);
-  } else if (id==='screen-chat') {
-    document.getElementById('main-title').textContent = 'Benefits Q&A';
-    document.getElementById('main-sub').textContent = 'Ask anything about 2026 US benefits';
+  const header = document.querySelector('.header');
+  if (id === 'screen-welcome') {
+    if (header) header.style.display = 'none';
   } else {
-    document.getElementById('main-title').textContent = '2026 Benefits advisor';
-    document.getElementById('main-sub').textContent = 'Amplitude · US employees only';
+    if (header) header.style.display = '';
+    if (id==='screen-results') {
+      const modeLabel = answers.mode === 'new_hire' ? '🆕 New hire enrollment' : '🔄 Open enrollment';
+      document.getElementById('main-title').textContent = 'Your benefits cart';
+      document.getElementById('main-sub').textContent = modeLabel + ' · ' + coverageLabel(answers.coverage);
+    } else if (id==='screen-chat') {
+      document.getElementById('main-title').textContent = 'Benefits Q&A';
+      document.getElementById('main-sub').textContent = 'Ask anything about 2026 US benefits';
+    } else {
+      document.getElementById('main-title').textContent = '2026 Benefits Advisor';
+      document.getElementById('main-sub').textContent = 'Amplitude · US employees only';
+    }
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
