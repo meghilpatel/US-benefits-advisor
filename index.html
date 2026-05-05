@@ -357,6 +357,21 @@
     .cl-sub { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
     .cl-where { font-size: 10px; color: var(--text-tertiary); font-style: italic; }
     .print-btn { font-size: 12px; color: var(--blue); background: none; border: none; cursor: pointer; font-family: var(--font); }
+    .cl-remove {
+      margin-left: auto; flex-shrink: 0; background: none;
+      border: 1px solid var(--border-med); border-radius: 6px;
+      padding: 2px 7px; cursor: pointer; font-size: 13px;
+      color: var(--text-tertiary); transition: all 0.15s; line-height: 1.6;
+    }
+    .cl-remove:hover { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+    /* 401k / commuter contrib preview box */
+    .match-preview {
+      background: var(--teal-bg); border-radius: 8px; padding: 10px 12px; margin-top: 8px;
+    }
+    .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12px; margin-bottom: 8px; }
+    .match-total { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); padding-top: 8px; }
+    .match-total-label { font-weight: 600; font-size: 13px; }
+    .match-total-val { font-weight: 700; font-size: 15px; color: var(--blue); }
 
     /* ── Chat ── */
     .chat-container { display: flex; flex-direction: column; height: 400px; }
@@ -518,6 +533,9 @@
       @page { margin: 12mm; }
     }
     #print-container { display: none; }
+    @media print {
+      body.printing-tr #print-container { display: block !important; }
+    }
     .print-brand-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid #e0e4f0; }
     .print-brand-name { font-size: 16px; font-weight: 700; color: #0d1f91; }
     .print-date-label { font-size: 11px; color: #9ba0b8; margin-left: auto; }
@@ -791,7 +809,7 @@
           <label class="comp-field-label">Annual Base Salary</label>
           <div class="comp-input-wrap">
             <span class="comp-prefix">$</span>
-            <input type="number" class="comp-input" id="comp-salary" placeholder="150,000" min="0" step="1000" oninput="onCompInput()">
+            <input type="text" inputmode="numeric" class="comp-input" id="comp-salary" placeholder="150,000" oninput="onCompInput()" onblur="formatCurrencyInput(this)">
           </div>
           <p class="comp-helper">Your gross annual base pay before taxes</p>
         </div>
@@ -812,7 +830,7 @@
           <label class="comp-field-label">On-Target Earnings (OTE)</label>
           <div class="comp-input-wrap">
             <span class="comp-prefix">$</span>
-            <input type="number" class="comp-input" id="comp-ote" placeholder="200,000" min="0" step="1000" oninput="onCompInput()">
+            <input type="text" inputmode="numeric" class="comp-input" id="comp-ote" placeholder="200,000" oninput="onCompInput()" onblur="formatCurrencyInput(this)">
           </div>
           <p class="comp-helper">Total target pay at 100% quota attainment (base + commission)</p>
         </div>
@@ -836,14 +854,29 @@
         </div>
       </div>
 
-      <!-- EQUITY (both plans) -->
+      <!-- EQUITY — current employees -->
       <div class="comp-field" id="comp-equity-field" style="display:none">
         <label class="comp-field-label">Annual Equity Value <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(RSUs vesting this year)</span></label>
         <div class="comp-input-wrap">
           <span class="comp-prefix">$</span>
-          <input type="number" class="comp-input" id="comp-equity" placeholder="50,000" min="0" step="1000">
+          <input type="text" inputmode="numeric" class="comp-input" id="comp-equity" placeholder="50,000" onblur="formatCurrencyInput(this)">
         </div>
         <p class="comp-helper">Unvested shares × stock price ÷ vest years. Leave blank if none.</p>
+      </div>
+
+      <!-- NEW HIRE EQUITY GRANT (shown only for new hires) -->
+      <div class="comp-field" id="comp-newhire-equity" style="display:none">
+        <label class="comp-field-label">New Hire Equity Grant <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(total grant value)</span></label>
+        <div class="comp-input-wrap">
+          <span class="comp-prefix">$</span>
+          <input type="text" inputmode="numeric" class="comp-input" id="comp-nh-grant" placeholder="200,000" oninput="onNHEquityInput()" onblur="formatCurrencyInput(this);onNHEquityInput()">
+        </div>
+        <p class="comp-helper">Total value of your RSU grant from your offer letter (3-year vest, no cliff).</p>
+        <div class="comp-field" style="margin-top:12px">
+          <label class="comp-field-label" style="font-size:12px">Your Hire Date in 2026</label>
+          <input type="date" class="comp-input" id="comp-nh-hiredate" min="2026-01-01" max="2026-12-31" oninput="onNHEquityInput()" style="max-width:180px;padding:8px 12px">
+        </div>
+        <div id="comp-nh-equity-preview" style="display:none;margin-top:10px;background:#eef3ff;border-radius:8px;padding:10px 14px;font-size:13px;color:#1e3a8a"></div>
       </div>
 
       <div id="comp-error-msg" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px 12px;font-size:13px;color:#991b1b;margin-bottom:8px;"></div>
@@ -957,6 +990,20 @@
 /* ═══════════════════════════════════════
    STATE
 ═══════════════════════════════════════ */
+/* ── Currency formatting helpers ── */
+function parseCurrency(val) {
+  if (typeof val === 'number') return val;
+  return parseFloat(String(val).replace(/[^0-9.]/g, '')) || 0;
+}
+function formatCurrencyInput(el) {
+  const raw = parseCurrency(el.value);
+  if (!raw) { el.value = ''; return; }
+  el.value = raw.toLocaleString('en-US');
+}
+function onCurrencyKeydown(el) {
+  // Allow user to type freely; format on blur
+}
+
 const answers = {};
 let selectedPlanId = null;
 let viewMode = 'monthly';
@@ -974,6 +1021,11 @@ const compData = {
   commissionTarget: 0,   // commission plan: variable portion
   payMix: null,          // e.g. '70/30'
   equityAnnual: 0,
+  // New hire equity proration
+  hireDate: null,        // 'YYYY-MM-DD'
+  equityGrant: 0,        // total new hire grant
+  equityProrated: 0,     // year-1 prorated vest (grant/3 × days_left/365)
+  proratedFactor: 1,
   entered: false
 };
 
@@ -994,7 +1046,11 @@ const elected = {
   fsaContrib: 0,
   dcfsaContrib: 0,
   k401Pct: 0,
-  commuter: false
+  k401Salary: 0,
+  k401EmployerMatch: 0,
+  commuter: false,
+  commuterMonthly: 0,
+  commuterOffice: null
 };
 
 /* ═══════════════════════════════════════
@@ -1119,21 +1175,21 @@ function renderNewHireBanner() {
       <div class="prior-contrib-row">
         <label>💰 Prior employer HSA contribution in 2026:</label>
         <span style="color:var(--amber-text)">$</span>
-        <input class="prior-contrib-input" type="number" id="prior-hsa-input" placeholder="0" min="0" oninput="updatePriorHSA(this.value)" />
+        <input class="prior-contrib-input" type="text" inputmode="numeric" id="prior-hsa-input" placeholder="0" oninput="updatePriorHSA(this.value)" onblur="formatCurrencyInput(this)" />
         <span style="font-size:11px;color:var(--amber-text)" id="hsa-room-label"></span>
       </div>` : ''}
       ${showPrior401k ? `
       <div class="prior-contrib-row">
         <label>📈 Prior employer 401(k) contribution in 2026:</label>
         <span style="color:var(--amber-text)">$</span>
-        <input class="prior-contrib-input" type="number" id="prior-401k-input" placeholder="0" min="0" oninput="updatePrior401k(this.value)" />
+        <input class="prior-contrib-input" type="text" inputmode="numeric" id="prior-401k-input" placeholder="0" oninput="updatePrior401k(this.value)" onblur="formatCurrencyInput(this)" />
         <span style="font-size:11px;color:var(--amber-text)" id="k401-room-label"></span>
       </div>` : ''}
     </div>`;
 }
 
 function updatePriorHSA(val) {
-  priorHsaAmount = parseInt(val) || 0;
+  priorHsaAmount = parseCurrency(val);
   const irsHSA = answers.coverage === 'solo' ? 4400 : 8750;
   const emp = HSA_EMPLOYER[answers.coverage];
   const room = Math.max(0, irsHSA - emp - priorHsaAmount);
@@ -1144,7 +1200,7 @@ function updatePriorHSA(val) {
 }
 
 function updatePrior401k(val) {
-  prior401kAmount = parseInt(val) || 0;
+  prior401kAmount = parseCurrency(val);
   const room = Math.max(0, 24500 - prior401kAmount);
   const label = document.getElementById('k401-room-label');
   if (label) label.textContent = `→ $${room.toLocaleString()} left in 2026`;
@@ -1409,7 +1465,7 @@ function renderPretaxCards() {
           <div class="contrib-label">How much will you contribute?</div>
           <div class="contrib-row">
             <span style="font-size:18px;color:var(--text-secondary)">$</span>
-            <input class="contrib-input" type="number" id="hsa-input" value="${hsaSuggest}" min="0" max="${yourRoom}" oninput="updateHSA(this.value)" />
+            <input class="contrib-input" type="text" inputmode="numeric" id="hsa-input" value="${hsaSuggest.toLocaleString('en-US')}" oninput="updateHSA(this.value)" onblur="formatCurrencyInput(this);updateHSA(this.value)" />
             <span class="contrib-input-unit">/ year</span>
           </div>
           <div id="hsa-savings" class="tax-savings"></div>
@@ -1440,7 +1496,7 @@ function renderPretaxCards() {
           <div class="contrib-label">How much will you contribute?</div>
           <div class="contrib-row">
             <span style="font-size:18px;color:var(--text-secondary)">$</span>
-            <input class="contrib-input" type="number" id="fsa-input" value="${fsaSuggest}" min="0" max="3400" oninput="updateFSA(this.value)" />
+            <input class="contrib-input" type="text" inputmode="numeric" id="fsa-input" value="${fsaSuggest.toLocaleString('en-US')}" oninput="updateFSA(this.value)" onblur="formatCurrencyInput(this);updateFSA(this.value)" />
             <span class="contrib-input-unit">/ year</span>
           </div>
           <div id="fsa-savings" class="tax-savings"></div>
@@ -1470,7 +1526,7 @@ function renderPretaxCards() {
           <div class="contrib-label">How much will you contribute?</div>
           <div class="contrib-row">
             <span style="font-size:18px;color:var(--text-secondary)">$</span>
-            <input class="contrib-input" type="number" id="dcfsa-input" value="${dcfsaSuggest}" min="0" max="5000" oninput="updateDCFSA(this.value)" />
+            <input class="contrib-input" type="text" inputmode="numeric" id="dcfsa-input" value="${dcfsaSuggest.toLocaleString('en-US')}" oninput="updateDCFSA(this.value)" onblur="formatCurrencyInput(this);updateDCFSA(this.value)" />
             <span class="contrib-input-unit">/ year</span>
           </div>
           <div id="dcfsa-savings" class="tax-savings"></div>
@@ -1512,19 +1568,19 @@ function taxSavingsLabel(amount, label) {
   return savings > 0 ? `💚 $${amount.toLocaleString()} saves ~$${savings.toLocaleString()} in taxes (~28% rate) = effective cost: $${(amount - savings).toLocaleString()} · ${label}` : '';
 }
 function updateHSA(val) {
-  elected.hsaContrib = parseInt(val) || 0;
+  elected.hsaContrib = parseCurrency(val);
   const el = document.getElementById('hsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.hsaContrib, 'per year');
   renderChecklist(); renderCartBar();
 }
 function updateFSA(val) {
-  elected.fsaContrib = parseInt(val) || 0;
+  elected.fsaContrib = parseCurrency(val);
   const el = document.getElementById('fsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.fsaContrib, 'per year');
   renderChecklist(); renderCartBar();
 }
 function updateDCFSA(val) {
-  elected.dcfsaContrib = parseInt(val) || 0;
+  elected.dcfsaContrib = parseCurrency(val);
   const el = document.getElementById('dcfsa-savings');
   if (el) el.textContent = taxSavingsLabel(elected.dcfsaContrib, 'per year');
   renderChecklist(); renderCartBar();
@@ -1533,52 +1589,171 @@ function updateDCFSA(val) {
 /* ═══════════════════════════════════════
    401K CARD
 ═══════════════════════════════════════ */
+// k401InputMode: 'annual' | 'paycheck'  (24 semi-monthly pay periods)
+let k401InputMode = 'annual';
+const K401_PAY_PERIODS = 24;
+
 function renderK401Card() {
+  const irsRoom = Math.max(0, 23500 - prior401kAmount);
   document.getElementById('k401-card').innerHTML = `
     <div class="benefit-card" id="k401-benefit">
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">📈</span>
-          <div><div class="benefit-name">401(k) — Fidelity</div><div class="benefit-provider">Plan #55883 · netbenefits.com/amplitude</div></div>
+          <div><div class="benefit-name">401(k) — Fidelity</div><div class="benefit-provider">Plan #55883 · netbenefits.fidelity.com/amplitude</div></div>
         </div>
         <span class="chip chip-teal">Tax-deferred growth</span>
       </div>
-      <p class="benefit-desc">Amplitude matches 1% of eligible pay per pay period, up to <strong>$2,000/year</strong>. You must contribute <em>every</em> pay period — there's no year-end true-up. Vests 50% after 1 year, 100% after 2 years. Pre-tax or Roth. Plan #55883 at Fidelity NetBenefits.</p>
-      ${prior401kAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">📋 You contributed $${prior401kAmount.toLocaleString()} before joining — your remaining 2026 IRS room is <strong>$${Math.max(0,24500-prior401kAmount).toLocaleString()}</strong></div>` : ''}
+      <p class="benefit-desc">Pre-tax (or Roth) contributions that grow tax-deferred. Amplitude matches up to <strong>$2,000/year</strong> — contribute at least 1% of salary every pay period to unlock it. Changes are made directly in Fidelity NetBenefits, not Workday.</p>
+      ${prior401kAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">📋 You already contributed $${prior401kAmount.toLocaleString()} this year — your 2026 IRS room remaining is <strong>$${irsRoom.toLocaleString()}</strong></div>` : ''}
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Amplitude match</div><div class="b-stat-val">Up to $2,000/yr</div></div>
-        <div class="b-stat"><div class="b-stat-label">${prior401kAmount > 0 ? 'Your 2026 room left' : '2026 IRS limit (under 50)'}</div><div class="b-stat-val">${prior401kAmount > 0 ? '$'+Math.max(0,24500-prior401kAmount).toLocaleString()+'/yr' : '$24,500/yr'}</div></div>
-        <div class="b-stat"><div class="b-stat-label">Vesting</div><div class="b-stat-val">50% @ 1yr, 100% @ 2yr</div></div>
-        <div class="b-stat"><div class="b-stat-label">Options</div><div class="b-stat-val">Pre-tax or Roth</div></div>
-        <div class="b-stat"><div class="b-stat-label">Catch-up (age 50–59, 64+)</div><div class="b-stat-val">+$8,000/yr</div></div>
-        <div class="b-stat"><div class="b-stat-label">Catch-up (age 60–63)</div><div class="b-stat-val">+$11,250/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">IRS limit (under 50)</div><div class="b-stat-val">$${irsRoom.toLocaleString()}/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">Amplitude match (max)</div><div class="b-stat-val">$2,000/yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">Match vesting</div><div class="b-stat-val">50% @ 1yr · 100% @ 2yr</div></div>
+        <div class="b-stat"><div class="b-stat-label">Catch-up (age 50–59, 64+)</div><div class="b-stat-val">+$7,500/yr</div></div>
       </div>
+
       <div class="contrib-section">
-        <div class="contrib-label">Your annual base salary (to calculate recommended %)</div>
+        <div class="contrib-label">Step 1 — Your base salary <span style="font-weight:400;font-size:11px">(used to calculate your % and employer match)</span></div>
         <div class="salary-row">
           <span class="salary-prefix">$</span>
-          <input class="contrib-input" type="number" id="salary-input" placeholder="e.g. 150000" oninput="updateK401()" />
+          <input class="contrib-input" type="text" inputmode="numeric" id="salary-input" placeholder="e.g. 150,000" oninput="updateK401()" onblur="formatCurrencyInput(this);updateK401()" />
           <span class="contrib-input-unit">/ year</span>
         </div>
-        <div id="k401-rec" style="font-size:12px;color:var(--text-secondary);margin-top:4px">Enter your salary to see the minimum % to capture Amplitude's full $2,000 match.</div>
       </div>
-      <button class="select-btn" id="k401-btn" onclick="cartAddBenefit('k401','k401-btn','k401-benefit')">🛒 Add 401(k) to my plan</button>
+
+      <div id="k401-contrib-section" style="display:none">
+        <div class="contrib-section">
+          <div class="contrib-label" style="margin-bottom:8px">Step 2 — How much do you plan to contribute?</div>
+          <div style="display:flex;gap:6px;margin-bottom:10px">
+            <button class="paymix-btn ${k401InputMode==='annual'?'selected':''}" id="k401-mode-annual" onclick="setK401Mode('annual')" style="flex:1;padding:8px">
+              <span class="pmix-ratio" style="font-size:13px">Per Year</span>
+              <span class="pmix-label">Annual total</span>
+            </button>
+            <button class="paymix-btn ${k401InputMode==='paycheck'?'selected':''}" id="k401-mode-paycheck" onclick="setK401Mode('paycheck')" style="flex:1;padding:8px">
+              <span class="pmix-ratio" style="font-size:13px">Per Paycheck</span>
+              <span class="pmix-label">Semi-monthly (×24)</span>
+            </button>
+          </div>
+          <div class="contrib-row">
+            <span style="font-size:16px;color:var(--text-secondary)">$</span>
+            <input class="contrib-input" type="text" inputmode="numeric" id="k401-amount-input"
+              placeholder="${k401InputMode==='annual'?'e.g. 9,000':'e.g. 375'}"
+              oninput="updateK401Match()"
+              onblur="formatCurrencyInput(this);updateK401Match()" style="max-width:130px" />
+            <span class="contrib-input-unit" id="k401-amount-unit">${k401InputMode==='annual'?'/ year':'/ paycheck'}</span>
+          </div>
+          <div id="k401-match-preview"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+        <button class="select-btn" id="k401-btn" onclick="cartAddBenefit('k401','k401-btn','k401-benefit')">🛒 Add to my plan</button>
+        <a href="https://netbenefits.fidelity.com/NBLogin/?option=nagAPP&TYPE=page&appName=nbt&clientId=amplitude&profileLocationCode=NBMAIN" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--blue);text-decoration:none;border:1px solid var(--blue);border-radius:8px;padding:8px 12px;transition:all 0.15s"
+           onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background=''">
+          Set contribution at Fidelity →
+        </a>
+      </div>
     </div>`;
 }
+
+function setK401Mode(mode) {
+  k401InputMode = mode;
+  // Update button states
+  document.getElementById('k401-mode-annual')?.classList.toggle('selected', mode === 'annual');
+  document.getElementById('k401-mode-paycheck')?.classList.toggle('selected', mode === 'paycheck');
+  // Update placeholder and unit label
+  const inp = document.getElementById('k401-amount-input');
+  const unit = document.getElementById('k401-amount-unit');
+  if (inp) { inp.placeholder = mode === 'annual' ? 'e.g. 9,000' : 'e.g. 375'; inp.value = ''; }
+  if (unit) unit.textContent = mode === 'annual' ? '/ year' : '/ paycheck';
+  document.getElementById('k401-match-preview').innerHTML = '';
+  elected.k401Pct = 0; elected.k401EmployerMatch = 0;
+  renderChecklist(); renderCartBar();
+}
+
 function updateK401() {
-  const salary = parseFloat(document.getElementById('salary-input').value) || 0;
-  const recEl = document.getElementById('k401-rec');
-  if (!salary || salary < 1000) { recEl.textContent = 'Enter your salary to see the recommended contribution %'; return; }
-  // 1% of pay per period, capped at $2,000/year total
-  const matchPerYear = Math.min(salary * 0.01, 2000);
-  const minPctForFullMatch = salary > 0 ? (2000 / salary * 100).toFixed(1) : '—';
-  const recommended = Math.max(6, parseFloat(minPctForFullMatch) + 2).toFixed(0); // recommend capture match + 2%
-  recEl.innerHTML = `
-    <div style="background:var(--teal-bg);border-radius:6px;padding:8px 10px;color:var(--teal-text);margin-top:4px">
-      📊 To capture Amplitude's <strong>$${Math.round(matchPerYear).toLocaleString()}</strong> match: contribute <strong>${minPctForFullMatch}%</strong> or more.<br>
-      💡 We recommend <strong>${recommended}%</strong> ($${Math.round(salary * parseFloat(recommended)/100).toLocaleString()}/yr) for healthy retirement savings. Every dollar reduces your taxable income.
-    </div>`;
-  elected.k401Pct = parseFloat(recommended);
+  const salary = parseCurrency(document.getElementById('salary-input').value);
+  const section = document.getElementById('k401-contrib-section');
+  if (!section) return;
+  if (!salary || salary < 1000) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  // Pre-fill a sensible default if field is empty
+  const inp = document.getElementById('k401-amount-input');
+  if (inp && !inp.value) {
+    const minAnnual = Math.min(salary * 0.06, irsRoomForSalary(salary)); // default 6%
+    if (k401InputMode === 'annual') inp.value = Math.round(minAnnual).toLocaleString('en-US');
+    else inp.value = Math.round(minAnnual / K401_PAY_PERIODS).toLocaleString('en-US');
+  }
+  updateK401Match();
+}
+
+function irsRoomForSalary(salary) { return Math.max(0, 23500 - prior401kAmount); }
+
+function updateK401Match() {
+  const salary = parseCurrency(document.getElementById('salary-input')?.value || '0');
+  const rawAmt = parseCurrency(document.getElementById('k401-amount-input')?.value || '0');
+  const preview = document.getElementById('k401-match-preview');
+  if (!preview) return;
+
+  const yourAnnual = k401InputMode === 'annual' ? rawAmt : rawAmt * K401_PAY_PERIODS;
+  const yourPerCheck = k401InputMode === 'paycheck' ? rawAmt : rawAmt / K401_PAY_PERIODS;
+  const irsRoom = irsRoomForSalary(salary);
+
+  if (!rawAmt) {
+    preview.innerHTML = `<p class="comp-helper" style="margin-top:6px">Enter an amount above to see the full breakdown.</p>`;
+    return;
+  }
+
+  const overLimit = yourAnnual > irsRoom;
+  const cappedAnnual = Math.min(yourAnnual, irsRoom);
+  const cappedPerCheck = cappedAnnual / K401_PAY_PERIODS;
+  const pctOfSalary = salary > 0 ? (cappedAnnual / salary * 100).toFixed(1) : null;
+
+  // Employer match: 1% of salary up to $2,000, requires employee ≥ 1% of salary per period
+  const meetsMatchMin = salary > 0 && cappedAnnual >= salary * 0.01;
+  const employerMatch = salary > 0 && meetsMatchMin ? Math.min(salary * 0.01, 2000) : 0;
+  const total = cappedAnnual + employerMatch;
+  const taxSavings = Math.round(cappedAnnual * 0.28);
+
+  preview.innerHTML = `
+    ${overLimit ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber-text);margin-top:6px;margin-bottom:6px">⚠️ Amount exceeds your 2026 IRS room of $${irsRoom.toLocaleString()}. Capped at $${irsRoom.toLocaleString()}/yr.</div>` : ''}
+    <div class="match-preview" style="margin-top:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:12px;margin-bottom:10px">
+        <div>
+          <div style="color:var(--teal-text);font-size:10px;font-weight:600;letter-spacing:.03em;margin-bottom:3px">PER PAYCHECK</div>
+          <div style="font-size:16px;font-weight:700">${fmt(cappedPerCheck)}</div>
+          <div style="color:var(--text-secondary);font-size:11px">semi-monthly</div>
+        </div>
+        <div>
+          <div style="color:var(--teal-text);font-size:10px;font-weight:600;letter-spacing:.03em;margin-bottom:3px">PER YEAR</div>
+          <div style="font-size:16px;font-weight:700">${fmt(cappedAnnual)}</div>
+          <div style="color:var(--text-secondary);font-size:11px">${pctOfSalary ? pctOfSalary + '% of salary' : '—'}</div>
+        </div>
+        <div>
+          <div style="color:var(--teal-text);font-size:10px;font-weight:600;letter-spacing:.03em;margin-bottom:3px">TAX SAVINGS</div>
+          <div style="font-size:16px;font-weight:700">~${fmt(taxSavings)}</div>
+          <div style="color:var(--text-secondary);font-size:11px">at ~28% rate/yr</div>
+        </div>
+      </div>
+      <div style="background:${meetsMatchMin?'var(--green-bg)':'var(--amber-bg)'};border-radius:6px;padding:8px 10px;font-size:12px;margin-bottom:8px;color:${meetsMatchMin?'var(--green-text)':'var(--amber-text)'}">
+        ${meetsMatchMin
+          ? `✅ Amplitude adds <strong>${fmt(employerMatch)}/yr</strong> employer match — free money in your account`
+          : `⚠️ Contribute at least <strong>${fmt(salary*0.01)}/yr</strong> (1% of salary = ${fmt(salary*0.01/K401_PAY_PERIODS)}/paycheck) to unlock the employer match`}
+      </div>
+      <div class="match-total">
+        <span class="match-total-label">Total into your 401(k) per year</span>
+        <span class="match-total-val">${fmt(total)}</span>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--text-tertiary);margin-top:8px">💡 Add to your plan below to track it, then set the exact % in Fidelity NetBenefits — changes take 1–2 pay cycles to apply.</p>`;
+
+  elected.k401Pct = pctOfSalary ? parseFloat(pctOfSalary) : (salary > 0 ? cappedAnnual/salary*100 : 0);
+  elected.k401Salary = salary;
+  elected.k401EmployerMatch = employerMatch;
+  elected.k401Annual = cappedAnnual;
+  elected.k401PerCheck = cappedPerCheck;
   renderChecklist(); renderCartBar();
 }
 
@@ -1591,20 +1766,82 @@ function renderCommuterCard() {
       <div class="benefit-header">
         <div class="benefit-title-wrap">
           <span class="benefit-icon">🚇</span>
-          <div><div class="benefit-name">Commuter Benefits — Navia</div><div class="benefit-provider">SF & NYC only · Registration code: APU · naviabenefit.com</div></div>
+          <div><div class="benefit-name">Commuter Benefits — Navia</div><div class="benefit-provider">SF & NYC only · Code: APU · naviabenefit.com</div></div>
         </div>
         <span class="chip chip-purple">Pre-tax transit</span>
       </div>
-      <p class="benefit-desc">If you commute to the SF or NYC office, Amplitude contributes <strong>$130/month</strong> pre-tax toward transit or parking. You can add up to $210/month more from your own pre-tax pay.</p>
+      <p class="benefit-desc">Amplitude contributes <strong>$130/month</strong> pre-tax toward transit or parking for SF and NYC office employees. You can add up to $210/month more from your own pre-tax pay — reducing your taxable income.</p>
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Amplitude contribution</div><div class="b-stat-val">$130/mo ($1,560/yr)</div></div>
-        <div class="b-stat"><div class="b-stat-label">2026 IRS pre-tax limit</div><div class="b-stat-val">$340/mo transit</div></div>
-        <div class="b-stat"><div class="b-stat-label">Your add-on</div><div class="b-stat-val">Up to $210/mo</div></div>
-        <div class="b-stat"><div class="b-stat-label">Deadline</div><div class="b-stat-val">20th of prior month</div></div>
+        <div class="b-stat"><div class="b-stat-label">Amplitude contribution</div><div class="b-stat-val">$130/mo</div></div>
+        <div class="b-stat"><div class="b-stat-label">Your max add-on</div><div class="b-stat-val">$210/mo pre-tax</div></div>
+        <div class="b-stat"><div class="b-stat-label">2026 IRS limit</div><div class="b-stat-val">$340/mo transit</div></div>
+        <div class="b-stat"><div class="b-stat-label">Election deadline</div><div class="b-stat-val">20th of prior month</div></div>
       </div>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">🏠 Remote employees are not eligible. The $340/month limit applies separately to transit and parking. Register at naviabenefit.com with company code <strong>APU</strong>.</p>
-      <button class="select-btn" id="commuter-btn" onclick="cartAddBenefit('commuter','commuter-btn','commuter-benefit')">🛒 Add commuter to my plan</button>
+
+      <div class="contrib-section">
+        <div class="contrib-label">Do you commute to the SF or NYC office?</div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="paymix-btn" id="comm-yes-btn" onclick="selectCommuterOffice(this,'yes')" style="flex:1">
+            <span class="pmix-ratio" style="font-size:14px">🏢 Yes</span>
+            <span class="pmix-label">SF or NYC office</span>
+          </button>
+          <button class="paymix-btn" id="comm-no-btn" onclick="selectCommuterOffice(this,'no')" style="flex:1">
+            <span class="pmix-ratio" style="font-size:14px">🏠 No</span>
+            <span class="pmix-label">Remote / other</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="commuter-contrib-section" style="display:none">
+        <div class="contrib-section">
+          <div class="contrib-label">How much do you want to add per month? <span style="font-weight:400;font-size:11px">(optional — on top of Amplitude's $130)</span></div>
+          <div class="contrib-row">
+            <span style="font-size:16px;color:var(--text-secondary)">$</span>
+            <input class="contrib-input" type="text" inputmode="numeric" id="commuter-input" placeholder="0" style="max-width:90px" oninput="updateCommuter(this.value)" onblur="formatCurrencyInput(this);updateCommuter(this.value)" />
+            <span class="contrib-input-unit">/ month (max $210)</span>
+          </div>
+          <div id="commuter-preview"></div>
+        </div>
+      </div>
+
+      <div id="commuter-remote-note" style="display:none;background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--text-secondary);margin-bottom:10px">
+        🏠 Remote employees are not eligible for commuter benefits. No action needed.
+      </div>
+
+      <button class="select-btn" id="commuter-btn" onclick="cartAddBenefit('commuter','commuter-btn','commuter-benefit')" style="display:none">🛒 Add commuter to my plan</button>
     </div>`;
+}
+
+function selectCommuterOffice(btn, choice) {
+  document.querySelectorAll('#comm-yes-btn, #comm-no-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  elected.commuterOffice = choice;
+  document.getElementById('commuter-contrib-section').style.display = choice === 'yes' ? 'block' : 'none';
+  document.getElementById('commuter-remote-note').style.display  = choice === 'no'  ? 'block' : 'none';
+  document.getElementById('commuter-btn').style.display = choice === 'yes' ? '' : 'none';
+  if (choice === 'yes') updateCommuter(document.getElementById('commuter-input')?.value || '0');
+}
+
+function updateCommuter(val) {
+  const myMonthly = Math.min(210, parseCurrency(val));
+  elected.commuterMonthly = myMonthly;
+  const ampMonthly = 130;
+  const total = ampMonthly + myMonthly;
+  const taxSavingsAnnual = Math.round(myMonthly * 12 * 0.28);
+  const preview = document.getElementById('commuter-preview');
+  if (!preview) return;
+  preview.innerHTML = `
+    <div class="match-preview" style="margin-top:8px">
+      <div class="match-grid">
+        <div><span style="color:var(--teal-text);font-size:11px">AMPLITUDE PAYS</span><br><strong>$130/mo</strong><div style="font-size:11px;color:var(--text-secondary)">$1,560/yr · pre-tax</div></div>
+        <div><span style="color:var(--teal-text);font-size:11px">YOUR CONTRIBUTION</span><br><strong>$${myMonthly}/mo</strong><div style="font-size:11px;color:var(--text-secondary)">${myMonthly > 0 ? 'Saves ~'+fmt(taxSavingsAnnual)+'/yr in taxes' : 'Enter amount above'}</div></div>
+      </div>
+      <div class="match-total">
+        <span class="match-total-label">Total monthly transit budget</span>
+        <span class="match-total-val">$${total}/mo</span>
+      </div>
+    </div>`;
+  renderChecklist(); renderCartBar();
 }
 
 /* ═══════════════════════════════════════
@@ -1647,6 +1884,53 @@ function cartAddBenefit(key, btnId, cardId) {
 // Legacy alias kept for compatibility
 function electBenefit(key, btnId, cardId) { cartAddBenefit(key, btnId, cardId); }
 
+function resetCartBtn(btnId, label) {
+  const btn = document.getElementById(btnId);
+  if (btn) { btn.classList.remove('in-cart','bounce'); btn.textContent = label; btn.disabled = false; }
+}
+function removeFromCart(key) {
+  switch (key) {
+    case 'health':
+      selectedPlanId = null;
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('cart-selected'));
+      document.querySelectorAll('.plan-cart-btn').forEach(b => {
+        b.classList.remove('in-cart'); b.textContent = '🛒 Select this plan'; b.disabled = false;
+      });
+      break;
+    case 'dental':
+      elected.dental = false;
+      resetCartBtn('dental-btn', '🛒 Add dental to my plan');
+      document.querySelector('#dental-card .benefit-card')?.classList.remove('elected');
+      break;
+    case 'vision':
+      elected.vision = false;
+      resetCartBtn('vision-btn', '🛒 Add vision to my plan');
+      document.querySelector('#vision-card .benefit-card')?.classList.remove('elected');
+      break;
+    case 'hsa':
+      elected.hsaContrib = 0;
+      renderPretaxCards(); break;
+    case 'fsa':
+      elected.fsaContrib = 0;
+      renderPretaxCards(); break;
+    case 'dcfsa':
+      elected.dcfsaContrib = 0;
+      renderPretaxCards(); break;
+    case 'k401':
+      elected.k401Pct = 0; elected.k401EmployerMatch = 0;
+      resetCartBtn('k401-btn', '🛒 Add 401(k) to my plan');
+      document.getElementById('k401-benefit')?.classList.remove('elected');
+      break;
+    case 'commuter':
+      elected.commuter = false; elected.commuterMonthly = 0;
+      resetCartBtn('commuter-btn', '🛒 Add commuter to my plan');
+      document.getElementById('commuter-benefit')?.classList.remove('elected');
+      break;
+  }
+  renderChecklist();
+  renderCartBar();
+}
+
 /* ═══════════════════════════════════════
    ENROLLMENT CHECKLIST
 ═══════════════════════════════════════ */
@@ -1664,12 +1948,20 @@ function renderChecklist() {
     ...(hasKids() ? [{ key:'dcfsa', label:'Dependent Care FSA', sub: elected.dcfsaContrib > 0 ? `$${elected.dcfsaContrib.toLocaleString()}/yr` : 'Not yet configured', done: elected.dcfsaContrib > 0 }] : []),
   ];
 
+  const k401Sub = elected.k401Pct > 0
+    ? `${elected.k401Pct}% contribution${elected.k401Salary ? ' · ' + fmt(elected.k401Salary * elected.k401Pct / 100) + '/yr you + ' + fmt(elected.k401EmployerMatch || 0) + '/yr Amplitude match' : ''}`
+    : 'Not yet configured — add salary & contribution % above';
+
   const fidelityItems = [
-    { key:'k401', label:'401(k) contribution rate', sub: elected.k401Pct > 0 ? `~${elected.k401Pct}% recommended` : 'Not yet configured — update in Fidelity NetBenefits', done: elected.k401Pct > 0 }
+    { key:'k401', label:'401(k) — Fidelity', sub: k401Sub, done: elected.k401Pct > 0 }
   ];
 
+  const commuterSub = elected.commuter
+    ? `$130/mo Amplitude${elected.commuterMonthly > 0 ? ' + $'+elected.commuterMonthly+'/mo you = $'+(130+elected.commuterMonthly)+'/mo total' : ' (Amplitude contribution only)'}`
+    : 'Elect in Navia by 20th of prior month';
+
   const naviaItems = [
-    { key:'commuter', label:'Commuter transit (if SF/NYC)', sub: 'Elect in Navia by 20th of prior month', done: elected.commuter }
+    { key:'commuter', label:'Commuter transit — Navia', sub: commuterSub, done: elected.commuter }
   ];
 
   const autoItems = [
@@ -1690,6 +1982,7 @@ function renderChecklist() {
           <div class="cl-title">${item.label}</div>
           <div class="cl-sub">${item.sub}</div>
         </div>
+        ${item.done && !item.auto ? `<button class="cl-remove" onclick="removeFromCart('${item.key}')" title="Remove from plan">🗑</button>` : ''}
       </div>`).join('');
   }
 
@@ -1789,7 +2082,12 @@ function resetAll() {
   priorHsaAmount = 0; prior401kAmount = 0;
   compData.salary = 0; compData.bonusPct = 0; compData.equityAnnual = 0; compData.entered = false;
   compData.planType = null; compData.payMix = null; compData.ote = 0; compData.commissionTarget = 0;
-  Object.keys(elected).forEach(k => elected[k] = k.includes('Contrib')||k==='k401Pct' ? 0 : false);
+  compData.hireDate = null; compData.equityGrant = 0; compData.equityProrated = 0; compData.proratedFactor = 1;
+  Object.keys(elected).forEach(k => {
+    if (k.includes('Contrib') || k === 'k401Pct' || k === 'k401Salary' || k === 'k401EmployerMatch' || k === 'commuterMonthly') elected[k] = 0;
+    else if (k === 'commuterOffice') elected[k] = null;
+    else elected[k] = false;
+  });
   document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
   resetCompScreenUI();
   ['btn-q0','btn-q1','btn-q2','btn-q3','btn-q4','btn-q5'].forEach(id => {
@@ -1878,7 +2176,10 @@ function selectPlanType(type) {
   document.getElementById('btn-plan-commission').classList.toggle('selected', type === 'commission');
   document.getElementById('comp-bonus-fields').style.display      = type === 'bonus'      ? 'block' : 'none';
   document.getElementById('comp-commission-fields').style.display = type === 'commission' ? 'block' : 'none';
-  document.getElementById('comp-equity-field').style.display = 'block';
+  const isNewHire = answers.mode === 'new_hire';
+  // New hires see the grant input instead of the "annual vest" input
+  document.getElementById('comp-equity-field').style.display    = isNewHire ? 'none'  : 'block';
+  document.getElementById('comp-newhire-equity').style.display  = isNewHire ? 'block' : 'none';
   // Clear any previous error when plan type changes
   const errEl = document.getElementById('comp-error-msg');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
@@ -1891,9 +2192,69 @@ function selectPayMix(btn, mix) {
   onCompInput();
 }
 
+// VCD lookup per Amplitude vesting schedule:
+// Jan 1–Mar 31 → Feb 15  |  Apr 1–Jun 30 → May 15
+// Jul 1–Sep 30 → Aug 15  |  Oct 1–Dec 31 → Nov 15
+function getVCD(hireDateVal) {
+  const hire = new Date(hireDateVal + 'T00:00:00');
+  const m = hire.getMonth(); // 0-indexed
+  const yr = hire.getFullYear();
+  if (m <= 2) return new Date(yr, 1, 15);   // Feb 15
+  if (m <= 5) return new Date(yr, 4, 15);   // May 15
+  if (m <= 8) return new Date(yr, 7, 15);   // Aug 15
+  return new Date(yr, 10, 15);              // Nov 15
+}
+
+// Quarterly vesting: grant vests in equal quarterly instalments over 3 years (12 quarters).
+// Returns the list of vest dates that fall within 2026.
+function getVestDatesIn2026(vcd) {
+  const yearEnd = new Date('2026-12-31T23:59:59');
+  const dates = [];
+  for (let q = 1; q <= 12; q++) {
+    // Add q quarters to VCD month
+    const d = new Date(vcd.getFullYear(), vcd.getMonth() + (q * 3), vcd.getDate());
+    if (d > yearEnd) break;
+    if (d.getFullYear() >= 2026) dates.push(d);
+  }
+  return dates;
+}
+
+function onNHEquityInput() {
+  const grant = parseCurrency(document.getElementById('comp-nh-grant') ? document.getElementById('comp-nh-grant').value : '0');
+  const hireDateVal = document.getElementById('comp-nh-hiredate') ? document.getElementById('comp-nh-hiredate').value : '';
+  const preview = document.getElementById('comp-nh-equity-preview');
+  if (!preview) return;
+  compData.hireDate = hireDateVal || null;
+  if (grant > 0 && hireDateVal) {
+    const vcd = getVCD(hireDateVal);
+    const quarterlyVest = grant / 12; // 3 years × 4 quarters
+    const vestDates = getVestDatesIn2026(vcd);
+    const numVests = vestDates.length;
+    const vest2026 = numVests * quarterlyVest;
+    const vcdStr = vcd.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    const vestDateStrs = vestDates.map(d => d.toLocaleDateString('en-US', {month:'short', day:'numeric'})).join(', ') || 'None in 2026';
+    preview.style.display = 'block';
+    preview.innerHTML = `
+      <div style="font-weight:600;margin-bottom:8px">📊 Equity estimate for 2026</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;margin-bottom:8px">
+        <div><span style="color:#6b7280">Total grant</span><br><strong>${fmt(grant)}</strong></div>
+        <div><span style="color:#6b7280">Per quarter (÷12)</span><br><strong>${fmt(quarterlyVest)}</strong></div>
+        <div><span style="color:#6b7280">Vest Commencement Date</span><br><strong>${vcdStr}</strong></div>
+        <div><span style="color:#6b7280">2026 vest dates</span><br><strong>${vestDateStrs}</strong></div>
+      </div>
+      <div style="background:#dbeafe;border-radius:6px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;font-weight:600;color:#1e3a8a">${numVests} quarter${numVests !== 1 ? 's' : ''} × ${fmt(quarterlyVest)}</span>
+        <span style="font-size:15px;font-weight:700;color:#1e61f0">${fmt(vest2026)}</span>
+      </div>
+      <div style="font-size:11px;color:#6b7280;margin-top:6px">Quarterly vest · 3-yr · no cliff · VCD per Amplitude schedule</div>`;
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
 function onCompInput() {
   if (compData.planType === 'bonus') {
-    const sal = parseFloat(document.getElementById('comp-salary').value) || 0;
+    const sal = parseCurrency(document.getElementById('comp-salary').value);
     const pct = parseFloat(document.getElementById('comp-bonus-pct').value) || 0;
     const liveEl = document.getElementById('comp-bonus-live');
     const hintEl = document.getElementById('comp-bonus-hint');
@@ -1904,7 +2265,7 @@ function onCompInput() {
       liveEl.style.display = 'none'; hintEl.style.display = 'block';
     }
   } else if (compData.planType === 'commission') {
-    const ote = parseFloat(document.getElementById('comp-ote').value) || 0;
+    const ote = parseCurrency(document.getElementById('comp-ote').value);
     const brkEl = document.getElementById('comp-ote-breakdown');
     if (ote > 0 && compData.payMix) {
       const [baseP, varP] = compData.payMix.split('/').map(Number);
@@ -1939,14 +2300,14 @@ function buildStatement() {
   }
 
   if (compData.planType === 'bonus') {
-    const sal = parseFloat(document.getElementById('comp-salary').value) || 0;
+    const sal = parseCurrency(document.getElementById('comp-salary').value);
     if (sal <= 0) { showErr('Please enter your annual base salary.'); return; }
     compData.salary           = sal;
     compData.bonusPct         = parseFloat(document.getElementById('comp-bonus-pct').value) || 0;
     compData.ote              = 0;
     compData.commissionTarget = 0;
   } else if (compData.planType === 'commission') {
-    const ote = parseFloat(document.getElementById('comp-ote').value) || 0;
+    const ote = parseCurrency(document.getElementById('comp-ote').value);
     if (ote <= 0) { showErr('Please enter your On-Target Earnings (OTE).'); return; }
     if (!compData.payMix) { showErr('Please select your pay mix (base/variable split).'); return; }
     const [baseP, varP] = compData.payMix.split('/').map(Number);
@@ -1956,7 +2317,34 @@ function buildStatement() {
     compData.bonusPct         = 0;
   }
 
-  compData.equityAnnual = parseFloat(document.getElementById('comp-equity').value) || 0;
+  // New hire equity — quarterly vesting using Amplitude VCD schedule (3-yr, no cliff)
+  if (answers.mode === 'new_hire' && compData.hireDate) {
+    const grant = parseCurrency(document.getElementById('comp-nh-grant') ? document.getElementById('comp-nh-grant').value : '0');
+    compData.equityGrant = grant;
+    if (grant > 0 && compData.hireDate) {
+      const vcd = getVCD(compData.hireDate);
+      const vestDates = getVestDatesIn2026(vcd);
+      const numVests = vestDates.length;
+      const quarterlyVest = grant / 12;
+      compData.equityProrated = numVests * quarterlyVest;
+      compData.proratedFactor = numVests / 4; // fraction of full annual vest (4 qtrs)
+      compData.vcd = vcd;
+      compData.numVests2026 = numVests;
+      compData.quarterlyVest = quarterlyVest;
+    } else {
+      compData.equityProrated = 0;
+      compData.proratedFactor = 0;
+      compData.vcd = null;
+      compData.numVests2026 = 0;
+      compData.quarterlyVest = 0;
+    }
+    compData.equityAnnual = compData.equityProrated || 0;
+  } else {
+    compData.equityAnnual = parseCurrency(document.getElementById('comp-equity').value);
+    compData.equityGrant = 0;
+    compData.equityProrated = 0;
+    compData.vcd = null;
+  }
   compData.entered = true;
   showResults();
 }
@@ -1985,7 +2373,7 @@ function resetCompScreenUI() {
   if (cf) cf.style.display = 'none';
   if (ef) ef.style.display = 'none';
   // Clear inputs
-  ['comp-salary','comp-bonus-pct','comp-ote','comp-equity'].forEach(id => {
+  ['comp-salary','comp-bonus-pct','comp-ote','comp-equity','comp-nh-grant','comp-nh-hiredate'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
   // Clear OTE breakdown and pay mix
@@ -1997,6 +2385,11 @@ function resetCompScreenUI() {
   const hintEl = document.getElementById('comp-bonus-hint');
   if (liveEl) liveEl.style.display = 'none';
   if (hintEl) hintEl.style.display = 'block';
+  // Clear new hire equity section
+  const nhEq = document.getElementById('comp-newhire-equity');
+  if (nhEq) nhEq.style.display = 'none';
+  const nhPrev = document.getElementById('comp-nh-equity-preview');
+  if (nhPrev) nhPrev.style.display = 'none';
   // Clear error
   const errEl = document.getElementById('comp-error-msg');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
@@ -2012,30 +2405,59 @@ function printStatement() {
   if (!trCard) { alert('Please build your statement first.'); return; }
 
   const dateStr = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-  const container = document.getElementById('print-container');
 
-  // Clone the TR card and strip action buttons from the clone
+  // Clone and strip interactive elements
   const clone = trCard.cloneNode(true);
   clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
 
-  // Build print layout with brand header above the statement
-  container.innerHTML = `
-    <div class="print-brand-header">
-      <svg viewBox="0 0 800 800" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#0052f2" d="M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z"/>
-      </svg>
-      <span class="print-brand-name">Amplitude</span>
-      <span class="print-date-label">2026 Total Rewards Statement &nbsp;·&nbsp; ${dateStr}</span>
-    </div>
-  `;
-  container.appendChild(clone);
+  // Pull all inline styles from the parent page so the print window is fully styled
+  const styleText = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
 
-  // Add body class so @media print CSS kicks in
-  document.body.classList.add('printing-tr');
-  window.print();
-  // Clean up after print dialog closes
-  document.body.classList.remove('printing-tr');
-  container.innerHTML = '';
+  const ampLogoPath = "M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z";
+
+  // Open a dedicated print window — far more reliable than @media print class toggling
+  const pw = window.open('', '_blank', 'width=860,height=700,menubar=no,toolbar=no');
+  if (!pw) { alert('Pop-up blocked. Please allow pop-ups for this page and try again.'); return; }
+
+  pw.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Amplitude 2026 Total Rewards Statement</title>
+<style>
+${styleText}
+/* Print-window overrides */
+body {
+  background: #ffffff !important;
+  padding: 32px 36px !important;
+  max-width: 820px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.card { box-shadow: none !important; border: none !important; padding: 0 !important; }
+.tr-actions, .tr-btn, button { display: none !important; }
+@media print {
+  body { padding: 0 !important; }
+}
+</style>
+</head>
+<body>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1.5px solid #e0e4f0">
+  <svg viewBox="0 0 800 800" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#0052f2" d="${ampLogoPath}"/>
+  </svg>
+  <span style="font-size:16px;font-weight:700;color:#0d1f91">Amplitude</span>
+  <span style="font-size:11px;color:#9ba0b8;margin-left:auto">2026 Total Rewards Statement &nbsp;·&nbsp; ${dateStr}</span>
+</div>
+${clone.outerHTML}
+<script>
+  window.onload = function() {
+    setTimeout(function() { window.print(); window.close(); }, 400);
+  };
+<\/script>
+</body>
+</html>`);
+  pw.document.close();
 }
 
 /* ═══════════════════════════════════════
@@ -2152,7 +2574,8 @@ function renderTotalRewards() {
       ` : bonusAmt > 0 ? `
         <div class="tr-row"><span class="tk">Target bonus (${compData.bonusPct}%)</span><span class="tv">${fmt(bonusAmt)}</span></div>
       ` : ''}
-      ${equity > 0 ? `<div class="tr-row"><span class="tk">Annual equity vesting</span><span class="tv">${fmt(equity)}</span></div>` : ''}
+      ${equity > 0 ? `<div class="tr-row"><span class="tk">${compData.equityGrant > 0 ? `2026 equity vest (${compData.numVests2026} of 4 quarters)` : 'Annual equity vesting'}</span><span class="tv">${fmt(equity)}</span></div>` : ''}
+      ${compData.equityGrant > 0 ? `<div class="tr-row" style="font-size:11px;color:var(--text-secondary)"><span class="tk">→ Grant: ${fmt(compData.equityGrant)} · ${fmt(compData.quarterlyVest)}/qtr · VCD: ${compData.vcd ? compData.vcd.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'} · quarterly · 3-yr · no cliff</span><span></span></div>` : ''}
       <div class="tr-grand"><span>Cash + equity subtotal</span><span>${fmt(salary + variableAmt + equity)}</span></div>
     </div>`;
   }
@@ -2188,7 +2611,7 @@ function renderTotalRewards() {
       <div class="tr-section-title" style="color:var(--blue-text)">📊 Total Rewards Summary</div>
       ${salary > 0 ? `<div class="tr-row"><span class="tk">Base salary</span><span class="tv">${fmt(salary)}</span></div>` : ''}
       ${isCommission && commissionAmt > 0 ? `<div class="tr-row"><span class="tk">Target commission</span><span class="tv">${fmt(commissionAmt)}</span></div>` : bonusAmt > 0 ? `<div class="tr-row"><span class="tk">Target bonus</span><span class="tv">${fmt(bonusAmt)}</span></div>` : ''}
-      ${equity > 0 ? `<div class="tr-row"><span class="tk">Annual equity</span><span class="tv">${fmt(equity)}</span></div>` : ''}
+      ${equity > 0 ? `<div class="tr-row"><span class="tk">${compData.equityGrant > 0 ? `2026 equity (${compData.numVests2026} qtrs)` : 'Annual equity'}</span><span class="tv">${fmt(equity)}</span></div>` : ''}
       <div class="tr-row green"><span class="tk">Employer-paid benefits</span><span class="tv">${fmt(empBenefitsTotal)}</span></div>
       <div class="tr-grand"><span>Total Rewards (estimated)</span><span>${fmt(grandTotal)}</span></div>
     </div>`;
