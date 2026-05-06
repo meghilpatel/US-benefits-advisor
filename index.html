@@ -521,20 +521,19 @@
       .checklist-card { break-inside: avoid; }
     }
     /* TR statement print-only mode — triggered by JS adding .printing-tr to body */
-    @media print {
-      body.printing-tr * { visibility: hidden !important; }
-      body.printing-tr #print-container,
-      body.printing-tr #print-container * { visibility: visible !important; }
-      body.printing-tr #print-container {
-        position: fixed; top: 0; left: 0; width: 100%;
-        padding: 24px 32px; box-sizing: border-box;
-        background: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      }
-      @page { margin: 12mm; }
-    }
     #print-container { display: none; }
     @media print {
-      body.printing-tr #print-container { display: block !important; }
+      body.printing-tr > * { display: none !important; }
+      body.printing-tr #print-container {
+        display: block !important;
+        padding: 24px 32px; box-sizing: border-box;
+        background: white; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #1a1a2e;
+      }
+      body.printing-tr #print-container .tr-actions,
+      body.printing-tr #print-container .tr-btn,
+      body.printing-tr #print-container button { display: none !important; }
+      @page { margin: 12mm; size: A4; }
     }
     .print-brand-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid #e0e4f0; }
     .print-brand-name { font-size: 16px; font-weight: 700; color: #0d1f91; }
@@ -719,7 +718,95 @@
       </div>
       <div class="nav">
         <button class="btn-ghost" onclick="goTo('screen-q2')">Back</button>
-        <button class="btn-primary" id="btn-q3" disabled onclick="goTo('screen-q4')">Next →</button>
+        <button class="btn-primary" id="btn-q3" disabled onclick="goTo('screen-q3b')">Next →</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── Q3b: Healthcare priorities ── -->
+  <div id="screen-q3b" class="screen">
+    <div class="progress" id="prog3b"></div>
+    <div class="body">
+      <p class="question">Are any of these healthcare priorities important to you? <span style="font-size:13px;font-weight:400;color:var(--text-secondary)">(Select all that apply)</span></p>
+      <div class="option-grid" id="priorities-grid">
+        <button class="option-btn" data-priority="mental_health" onclick="togglePriority(this,'mental_health')">
+          <span class="opt-label">🧠 Mental health coverage</span>
+          <span class="opt-sub">Therapy, psychiatry, behavioral health access</span>
+        </button>
+        <button class="option-btn" data-priority="rx" onclick="togglePriority(this,'rx')">
+          <span class="opt-label">💊 Regular prescriptions</span>
+          <span class="opt-sub">I take medications consistently and need good Rx coverage</span>
+        </button>
+        <button class="option-btn" data-priority="maternity" onclick="togglePriority(this,'maternity')">
+          <span class="opt-label">👶 Maternity / family planning</span>
+          <span class="opt-sub">Planning to start or grow a family in 2026</span>
+        </button>
+        <button class="option-btn" data-priority="specialist" onclick="togglePriority(this,'specialist')">
+          <span class="opt-label">🏥 Specialist access</span>
+          <span class="opt-sub">I regularly see specialists or need referrals</span>
+        </button>
+        <button class="option-btn selected" data-priority="none" onclick="togglePriority(this,'none')">
+          <span class="opt-label">None of the above</span>
+          <span class="opt-sub">Standard coverage is fine for me</span>
+        </button>
+      </div>
+      <div class="nav">
+        <button class="btn-ghost" onclick="goTo('screen-q3')">Back</button>
+        <button class="btn-primary" onclick="goTo('screen-q3c')">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Q3c: Budget & enrollment reason ── -->
+  <div id="screen-q3c" class="screen">
+    <div class="progress" id="prog3c"></div>
+    <div class="body">
+      <p class="question">What's your comfortable monthly budget for medical insurance premiums?</p>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">This helps us flag plans above your budget. Amplitude pays a portion of premiums — these are <em>your</em> out-of-pocket payroll deductions.</div>
+      <div class="option-grid">
+        <button class="option-btn" onclick="select(this,'budget','under200')">
+          <span class="opt-label">Under $200/month</span>
+          <span class="opt-sub">Looking for the lowest-cost option</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'budget','200to400')">
+          <span class="opt-label">$200 – $400/month</span>
+          <span class="opt-sub">Moderate premium is fine with good coverage</span>
+        </button>
+        <button class="option-btn" onclick="select(this,'budget','over400')">
+          <span class="opt-label">Over $400/month</span>
+          <span class="opt-sub">Premium isn't the main concern — I want the best coverage</span>
+        </button>
+      </div>
+      <div id="screen-life-event-section" style="margin-top:18px">
+        <p class="question" style="font-size:14px;margin-bottom:8px">Are you enrolling due to a qualifying life event?</p>
+        <div class="option-grid" style="grid-template-columns:1fr 1fr">
+          <button class="option-btn" onclick="selectLifeEvent(this,'none')">
+            <span class="opt-label">No — routine enrollment</span>
+          </button>
+          <button class="option-btn" onclick="selectLifeEvent(this,'marriage')">
+            <span class="opt-label">💍 Marriage / domestic partnership</span>
+          </button>
+          <button class="option-btn" onclick="selectLifeEvent(this,'new_child')">
+            <span class="opt-label">👶 New child (birth or adoption)</span>
+          </button>
+          <button class="option-btn" onclick="selectLifeEvent(this,'loss_coverage')">
+            <span class="opt-label">📋 Lost other coverage</span>
+          </button>
+          <button class="option-btn" onclick="selectLifeEvent(this,'divorce')">
+            <span class="opt-label">📝 Divorce / separation</span>
+          </button>
+          <button class="option-btn" onclick="selectLifeEvent(this,'other_life')">
+            <span class="opt-label">Other qualifying event</span>
+          </button>
+        </div>
+        <div id="life-event-note" style="display:none;margin-top:8px;padding:8px 12px;background:var(--amber-bg);border-radius:8px;font-size:12px;color:var(--amber-text)">
+          ⚠️ Life events give you a 30-day special enrollment window. Contact <strong>hr@amplitude.com</strong> to initiate a qualifying life event in Workday.
+        </div>
+      </div>
+      <div class="nav">
+        <button class="btn-ghost" onclick="goTo('screen-q3b')">Back</button>
+        <button class="btn-primary" id="btn-q3c" disabled onclick="goTo('screen-q4')">Next →</button>
       </div>
     </div>
   </div>
@@ -740,7 +827,7 @@
         </button>
       </div>
       <div class="nav">
-        <button class="btn-ghost" onclick="goTo('screen-q3')">Back</button>
+        <button class="btn-ghost" onclick="goTo('screen-q3c')">Back</button>
         <button class="btn-primary" id="btn-q4" disabled onclick="nextAfterQ4()">See my benefits plan →</button>
       </div>
     </div>
@@ -970,11 +1057,18 @@
           <div class="msg bot">Hi! Ask me anything about 2026 benefits — HSA limits, FSA rules, dental, vision, 401k match, commuter benefits, and more.</div>
         </div>
         <div class="quick-qs" id="quick-qs">
-          <button class="quick-q" onclick="askQ('What is an HSA?')">What is an HSA?</button>
-          <button class="quick-q" onclick="askQ('FSA rollover rules?')">FSA rollover?</button>
+          <button class="quick-q" onclick="askQ('Which health plan has the best mental health coverage?')">Mental health coverage?</button>
+          <button class="quick-q" onclick="askQ('What is an HSA and how does it work?')">What is an HSA?</button>
+          <button class="quick-q" onclick="askQ('Can I see out-of-network doctors?')">Out-of-network?</button>
           <button class="quick-q" onclick="askQ('How does the 401k match work?')">401k match?</button>
-          <button class="quick-q" onclick="askQ('What dental coverage do we have?')">Dental?</button>
-          <button class="quick-q" onclick="askQ('When is open enrollment?')">Open enrollment?</button>
+          <button class="quick-q" onclick="askQ('Are my dependents covered in my medical plan?')">Dependent coverage?</button>
+          <button class="quick-q" onclick="askQ('What are the 2026 IRS contribution limits?')">IRS limits?</button>
+          <button class="quick-q" onclick="askQ('Which health plan costs under $400 per month?')">Plans under $400/mo?</button>
+          <button class="quick-q" onclick="askQ('FSA rollover rules?')">FSA rollover?</button>
+          <button class="quick-q" onclick="askQ('When does my coverage start?')">Coverage start date?</button>
+          <button class="quick-q" onclick="askQ('What is a qualifying life event?')">Life events?</button>
+          <button class="quick-q" onclick="askQ('What dental and vision plans do we have?')">Dental & vision?</button>
+          <button class="quick-q" onclick="askQ('Who do I contact for benefits help?')">Contact HR?</button>
         </div>
         <div class="chat-input-row">
           <input type="text" id="chat-input" placeholder="Type a question..." onkeydown="if(event.key==='Enter')sendChat()" />
@@ -987,6 +1081,7 @@
 
 </div><!-- .card -->
 <script>
+
 /* ═══════════════════════════════════════
    STATE
 ═══════════════════════════════════════ */
@@ -1005,6 +1100,43 @@ function onCurrencyKeydown(el) {
 }
 
 const answers = {};
+answers.priorities = [];  // array of selected healthcare priorities
+answers.lifeEvent = 'none';
+
+/* ── Healthcare priorities toggle (multi-select) ── */
+function togglePriority(btn, key) {
+  if (key === 'none') {
+    // Deselect all others, select only "none"
+    answers.priorities = [];
+    document.querySelectorAll('#priorities-grid .option-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  } else {
+    // Deselect "none" if it was selected
+    document.querySelectorAll('#priorities-grid [data-priority="none"]').forEach(b => b.classList.remove('selected'));
+    btn.classList.toggle('selected');
+    const p = answers.priorities;
+    const idx = p.indexOf(key);
+    if (idx === -1) p.push(key);
+    else p.splice(idx, 1);
+    // If nothing selected, re-select "none"
+    if (p.length === 0) {
+      document.querySelectorAll('#priorities-grid [data-priority="none"]').forEach(b => b.classList.add('selected'));
+    }
+  }
+}
+
+/* ── Life event selection ── */
+function selectLifeEvent(btn, val) {
+  answers.lifeEvent = val;
+  // Deselect siblings
+  btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const note = document.getElementById('life-event-note');
+  if (note) note.style.display = (val !== 'none') ? 'block' : 'none';
+  // Unlock next button
+  const nextBtn = document.getElementById('btn-q3c');
+  if (nextBtn) nextBtn.disabled = false;
+}
 let selectedPlanId = null;
 let viewMode = 'monthly';
 
@@ -1085,12 +1217,53 @@ function calcCosts(pid, cov, usage) {
 
 function getRanked() {
   const { coverage, usage, doctors, state } = answers;
+  const priorities = answers.priorities || [];
   let all = ['ppo','hdhp','epo'];
   if (state === 'ca') all.push('kaiser');
-  if (state === 'ca' && usage !== 'high' && doctors !== 'out_of_network') return ['kaiser','epo','hdhp','ppo'];
-  if (usage === 'low' && doctors !== 'out_of_network') return ['hdhp','epo','ppo','kaiser'].filter(p=>all.includes(p));
-  if (doctors === 'out_of_network' || usage === 'high') return ['ppo','epo','hdhp','kaiser'].filter(p=>all.includes(p));
-  return ['epo','hdhp','ppo','kaiser'].filter(p=>all.includes(p));
+
+  // Build base ranking
+  let ranked;
+  if (state === 'ca' && usage !== 'high' && doctors !== 'out_of_network') {
+    ranked = ['kaiser','epo','hdhp','ppo'];
+  } else if (usage === 'low' && doctors !== 'out_of_network') {
+    ranked = ['hdhp','epo','ppo','kaiser'];
+  } else if (doctors === 'out_of_network' || usage === 'high') {
+    ranked = ['ppo','epo','hdhp','kaiser'];
+  } else {
+    ranked = ['epo','hdhp','ppo','kaiser'];
+  }
+  ranked = ranked.filter(p => all.includes(p));
+
+  // Priority adjustments
+  if (priorities.includes('mental_health') && ranked[0] === 'hdhp') {
+    ranked = ['ppo', ...ranked.filter(p => p !== 'ppo')];
+  }
+  if (priorities.includes('rx') && usage !== 'low' && ranked[0] === 'hdhp') {
+    ranked = ['epo', ...ranked.filter(p => p !== 'epo')];
+  }
+  if (priorities.includes('maternity') && !ranked.slice(0,2).includes('ppo')) {
+    ranked = ['ppo', ...ranked.filter(p => p !== 'ppo')];
+  }
+  return ranked;
+}
+
+/* Returns "why we recommend this" note for a plan */
+function getPlanWhy(pid) {
+  const { usage, doctors } = answers;
+  const priorities = answers.priorities || [];
+  const map = {
+    ppo: doctors === 'out_of_network' ? '✓ Covers out-of-network providers — keep your current doctors'
+      : priorities.includes('mental_health') ? '✓ Broadest mental health network — in- or out-of-network therapy'
+      : priorities.includes('maternity') ? '✓ Comprehensive maternity coverage across all hospitals'
+      : usage === 'high' ? '✓ Predictable co-pays — best for frequent care'
+      : '✓ Maximum flexibility — in and out of network',
+    hdhp: usage === 'low' ? '✓ Lowest premium + HSA with triple tax advantage — ideal for light users'
+      : priorities.includes('rx') ? '⚠ Rx costs apply to deductible until it is met — consider FSA instead'
+      : '✓ Lowest monthly premium — pair with HSA for long-term savings',
+    epo: '✓ Lower premiums than PPO with strong in-network coverage',
+    kaiser: '✓ All-in-one coordinated care with low out-of-pocket costs (CA only)'
+  };
+  return map[pid] || '';
 }
 function coverageLabel(c) {
   return {solo:'Employee only',spouse:'Employee + Spouse/DP',kids:'Employee + Child(ren)',family:'Family'}[c];
@@ -1134,12 +1307,24 @@ function showResults() {
 
   // Profile summary
   const modeLabel = isNewHire ? '🆕 New hire enrollment' : '🔄 Open enrollment';
+  const priorityLabels = {mental_health:'Mental health',rx:'Prescriptions',maternity:'Maternity/family planning',specialist:'Specialist access'};
+  const priorityText = answers.priorities && answers.priorities.length > 0
+    ? answers.priorities.map(p => priorityLabels[p] || p).join(', ')
+    : 'Standard coverage';
+  const budgetLabels = {under200:'Under $200/mo',under400:'Under $400/mo','200to400':'$200–$400/mo',over400:'$400+/mo (best coverage)'};
+  const lifeEventLabels = {none:'Routine enrollment',marriage:'Marriage / DP',new_child:'New child',loss_coverage:'Loss of other coverage',divorce:'Divorce',other_life:'Other qualifying event'};
+  const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine enrollment';
+  const showLifeEvent = answers.lifeEvent && answers.lifeEvent !== 'none';
   document.getElementById('results-summary').innerHTML =
-    `<h3>Your profile</h3>` +
+    `<h3>Your enrollment profile</h3>` +
     `<div class="sum-row"><span class="sum-key">Enrollment type</span><span class="sum-val">${modeLabel}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Coverage</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Usage</span><span class="sum-val">${{low:'Rarely uses care',medium:'Occasional visits',high:'Frequent / ongoing care'}[usage]}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Doctors</span><span class="sum-val">${{flexible:'Flexible on network',prefer_in:'Prefers in-network',out_of_network:'Needs out-of-network access'}[answers.doctors]}</span></div>`;
+    (showLifeEvent ? `<div class="sum-row"><span class="sum-key">Life event</span><span class="sum-val" style="color:var(--amber-text)">${lifeLabel} — 30-day window</span></div>` : '') +
+    `<div class="sum-row"><span class="sum-key">Coverage tier</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Healthcare usage</span><span class="sum-val">${{low:'Rarely uses care',medium:'Occasional visits',high:'Frequent / ongoing care'}[usage]}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Network preference</span><span class="sum-val">${{flexible:'Flexible on network',prefer_in:'Prefers in-network',out_of_network:'Needs out-of-network access'}[answers.doctors]}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Priorities</span><span class="sum-val">${priorityText}</span></div>` +
+    (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly premium budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
+    `<div style="margin-top:8px;font-size:11px;color:var(--text-tertiary)">Coverage typically starts the 1st of the month following your enrollment date. New hires have 30 days from start date to enroll.</div>`;
 
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
@@ -1194,7 +1379,7 @@ function updatePriorHSA(val) {
   const emp = HSA_EMPLOYER[answers.coverage];
   const room = Math.max(0, irsHSA - emp - priorHsaAmount);
   const label = document.getElementById('hsa-room-label');
-  if (label) label.textContent = `→ $${room.toLocaleString()} left to contribute`;
+  if (label) label.textContent = `→ ${room.toLocaleString()} left to contribute`;
   // Re-render HSA card to reflect updated room
   renderPretaxCards();
 }
@@ -1203,7 +1388,7 @@ function updatePrior401k(val) {
   prior401kAmount = parseCurrency(val);
   const room = Math.max(0, 24500 - prior401kAmount);
   const label = document.getElementById('k401-room-label');
-  if (label) label.textContent = `→ $${room.toLocaleString()} left in 2026`;
+  if (label) label.textContent = `→ ${room.toLocaleString()} left in 2026`;
   renderK401Card();
 }
 
@@ -1303,15 +1488,21 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     card.innerHTML = `
       ${isTop ? '<div class="pick-badge">⭐ Recommended for you</div>' : ''}
       <div class="plan-header"><span class="plan-name">${p.name}</span><span class="chip chip-blue">${p.tag}</span></div>
+      ${isTop && getPlanWhy(pid) ? `<div style="background:var(--blue-light);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--blue-text);margin-bottom:6px;font-weight:500">${getPlanWhy(pid)}</div>` : ''}
       <div style="font-size:11px;color:var(--text-tertiary);margin-bottom:2px">Group ${p.planNum} · Elect in Workday</div>
       <div class="plan-price price-main">$${costs.monthly.toLocaleString()}<span class="unit">/mo</span></div>
       <div class="price-alt">$${costs.annual.toLocaleString()} per year</div>
+      ${(answers.budget === 'under200' && costs.monthly > 200) || (answers.budget === '200to400' && costs.monthly > 400) ? '<div style="background:var(--amber-bg);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--amber-text);margin-bottom:4px">⚠ Above your stated monthly budget</div>' : ''}
       <p class="plan-desc">${p.desc}</p>
       <div class="plan-stats">
         <div class="stat"><div class="stat-label">Deductible</div><div class="stat-val">${ded}</div></div>
         <div class="stat"><div class="stat-label">OOP max</div><div class="stat-val">${oop}</div></div>
         <div class="stat"><div class="stat-label">Primary copay</div><div class="stat-val">${p.copay}</div></div>
         <div class="stat"><div class="stat-label">Generic Rx</div><div class="stat-val">${p.rx}</div></div>
+        <div class="stat"><div class="stat-label">Mental health</div><div class="stat-val">${pid==='ppo'?'In + OON':pid==='hdhp'?'In-network':'In-network'}</div></div>
+        <div class="stat"><div class="stat-label">Out-of-network</div><div class="stat-val" style="color:${pid==='ppo'?'var(--green-text)':'var(--amber-text)'}">${pid==='ppo'?'✓ Covered':'✗ Not covered'}</div></div>
+        <div class="stat"><div class="stat-label">Maternity</div><div class="stat-val">✓ Covered all plans</div></div>
+        <div class="stat"><div class="stat-label">Coverage starts</div><div class="stat-val">1st of month after enrollment</div></div>
       </div>
       <div class="cost-section">
         <div class="cost-section-title">Estimated annual cost breakdown</div>
@@ -1389,6 +1580,7 @@ function renderDentalCard() {
         <div class="benefit-row"><span class="bk">Ortho lifetime max</span><span class="bv">$2,000</span></div>
         <div class="benefit-row"><span class="bk">Annual deductible</span><span class="bv">$50 individual / $150 family</span></div>
       </div>
+      <div style="background:var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--blue-text);margin-bottom:10px">💡 <strong>Consider:</strong> Employee-only dental is <strong>$0/month</strong>. Worth adding if you have upcoming dental work, orthodontia needs, or want preventive cleanings fully covered.</div>
       <button class="select-btn" id="dental-btn" onclick="cartAddBenefit('dental','dental-btn','dental-benefit')">🛒 Add dental to my plan</button>
     </div>`;
 }
@@ -1415,6 +1607,7 @@ function renderVisionCard() {
         <div class="b-stat"><div class="b-stat-label">Frames allowance</div><div class="b-stat-val">$130 (every 24 mo)</div></div>
         <div class="b-stat"><div class="b-stat-label">Contacts allowance</div><div class="b-stat-val">$130/year</div></div>
       </div>
+      <div style="background:var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--blue-text);margin-bottom:10px">💡 <strong>Consider:</strong> Do you wear glasses or contacts? Employee-only vision is <strong>$0/month</strong>. The $130 frame/contacts allowance resets annually — a great deal if you use it.</div>
       <button class="select-btn" id="vision-btn" onclick="cartAddBenefit('vision','vision-btn','vision-benefit')">🛒 Add vision to my plan</button>
     </div>`;
 }
@@ -1429,7 +1622,7 @@ function renderPretaxCards() {
   const irsHSA = cov === 'solo' ? 4400 : 8750;
   const irsHSALabel = cov === 'solo' ? '$4,400' : '$8,750';
   const yourRoom = Math.max(0, irsHSA - empContrib - priorHsaAmount);
-  const priorNote = priorHsaAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--amber-text);margin-bottom:8px">📋 Prior employer contributed $${priorHsaAmount.toLocaleString()} to your HSA this year — your remaining room is $${yourRoom.toLocaleString()}</div>` : '';
+  const priorNote = priorHsaAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--amber-text);margin-bottom:8px">📋 Prior employer contributed ${priorHsaAmount.toLocaleString()} to your HSA this year — your remaining room is ${yourRoom.toLocaleString()}</div>` : '';
 
   // Usage-based suggestions
   const hsaSuggest  = {low: Math.min(1500, yourRoom), medium: Math.min(2500, yourRoom), high: yourRoom}[usage];
@@ -1453,7 +1646,7 @@ function renderPretaxCards() {
         </div>
         ${notSelectedNote}
         ${isHDHP ? priorNote : ''}
-        <p class="benefit-desc">Pre-tax in, tax-free growth, tax-free out for medical expenses. Funds never expire — roll over every year and can be invested. Amplitude deposits <strong>$${empContrib.toLocaleString()}</strong> to start.</p>
+        <p class="benefit-desc">Pre-tax in, tax-free growth, tax-free out for medical expenses. Funds never expire — roll over every year and can be invested. Amplitude deposits <strong>${empContrib.toLocaleString()}</strong> to start.</p>
         <div class="benefit-stats">
           <div class="b-stat"><div class="b-stat-label">Amplitude contribution</div><div class="b-stat-val">$${empContrib.toLocaleString()}/yr</div></div>
           <div class="b-stat"><div class="b-stat-label">2026 IRS limit</div><div class="b-stat-val">${irsHSALabel}</div></div>
@@ -1756,7 +1949,6 @@ function updateK401Match() {
   elected.k401PerCheck = cappedPerCheck;
   renderChecklist(); renderCartBar();
 }
-
 /* ═══════════════════════════════════════
    COMMUTER CARD
 ═══════════════════════════════════════ */
@@ -1834,11 +2026,11 @@ function updateCommuter(val) {
     <div class="match-preview" style="margin-top:8px">
       <div class="match-grid">
         <div><span style="color:var(--teal-text);font-size:11px">AMPLITUDE PAYS</span><br><strong>$130/mo</strong><div style="font-size:11px;color:var(--text-secondary)">$1,560/yr · pre-tax</div></div>
-        <div><span style="color:var(--teal-text);font-size:11px">YOUR CONTRIBUTION</span><br><strong>$${myMonthly}/mo</strong><div style="font-size:11px;color:var(--text-secondary)">${myMonthly > 0 ? 'Saves ~'+fmt(taxSavingsAnnual)+'/yr in taxes' : 'Enter amount above'}</div></div>
+        <div><span style="color:var(--teal-text);font-size:11px">YOUR CONTRIBUTION</span><br><strong>${myMonthly}/mo</strong><div style="font-size:11px;color:var(--text-secondary)">${myMonthly > 0 ? 'Saves ~'+fmt(taxSavingsAnnual)+'/yr in taxes' : 'Enter amount above'}</div></div>
       </div>
       <div class="match-total">
         <span class="match-total-label">Total monthly transit budget</span>
-        <span class="match-total-val">$${total}/mo</span>
+        <span class="match-total-val">${total}/mo</span>
       </div>
     </div>`;
   renderChecklist(); renderCartBar();
@@ -1957,11 +2149,11 @@ function renderChecklist() {
   ];
 
   const commuterSub = elected.commuter
-    ? `$130/mo Amplitude${elected.commuterMonthly > 0 ? ' + $'+elected.commuterMonthly+'/mo you = $'+(130+elected.commuterMonthly)+'/mo total' : ' (Amplitude contribution only)'}`
-    : 'Elect in Navia by 20th of prior month';
+    ? `$130/mo Amplitude${elected.commuterMonthly > 0 ? ' + $'+elected.commuterMonthly+'/mo you' : ''} via Navia`
+    : 'Not yet configured';
 
   const naviaItems = [
-    { key:'commuter', label:'Commuter transit — Navia', sub: commuterSub, done: elected.commuter }
+    { key:'commuter', label:'Commuter — Navia', sub: commuterSub, done: elected.commuter },
   ];
 
   const autoItems = [
@@ -2036,6 +2228,10 @@ function select(btn, key, val) {
   };
   const sid = btn.closest('.screen').id;
   if (map[sid]) document.getElementById(map[sid]).disabled = false;
+  // Budget selection (screen-q3c) unlocks the next button there too
+  if (key === 'budget') {
+    const nb = document.getElementById('btn-q3c'); if (nb) nb.disabled = false;
+  }
 }
 function nextAfterQ4() {
   if (answers.mode === 'new_hire') {
@@ -2047,12 +2243,12 @@ function nextAfterQ4() {
 function goTo(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  // Progress dots: Q1–Q4 steps 1–4; Q5 (new hire) step 5; comp screen is final step
-  const totalSteps = answers.mode === 'new_hire' ? 6 : 5;
-  const stepMap = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q4':4,'screen-q5':5,'screen-comp': answers.mode === 'new_hire' ? 6 : 5};
+  // Progress dots: Q1–Q4+Q3b+Q3c steps 1–6; Q5 (new hire) step 7; comp screen is final
+  const totalSteps = answers.mode === 'new_hire' ? 8 : 7;
+  const stepMap = {'screen-q1':1,'screen-q2':2,'screen-q3':3,'screen-q3b':4,'screen-q3c':5,'screen-q4':6,'screen-q5':7,'screen-comp': answers.mode === 'new_hire' ? 8 : 7};
   const step = stepMap[id];
   if (step) {
-    const progId = id === 'screen-comp' ? 'prog-comp' : 'prog' + step;
+    const progId = id === 'screen-comp' ? 'prog-comp' : (id === 'screen-q3b' ? 'prog3b' : id === 'screen-q3c' ? 'prog3c' : 'prog' + step);
     const el = document.getElementById(progId);
     if (el) el.innerHTML = Array.from({length:totalSteps},(_,i)=>i+1).map(i =>
       `<div class="prog-dot ${i<step?'done':i===step?'active':''}"></div>`).join('');
@@ -2078,6 +2274,7 @@ function goTo(id) {
 }
 function resetAll() {
   Object.keys(answers).forEach(k => delete answers[k]);
+  answers.priorities = []; answers.lifeEvent = 'none';
   selectedPlanId = null; viewMode = 'monthly';
   priorHsaAmount = 0; prior401kAmount = 0;
   compData.salary = 0; compData.bonusPct = 0; compData.equityAnnual = 0; compData.entered = false;
@@ -2121,7 +2318,14 @@ const KB = {
   oop:"The out-of-pocket maximum (OOP max) is the most you'll ever pay in a plan year. Once hit, insurance covers 100%. For 2026: all Aetna plans cap at $4,500 individual / $9,000 family. Kaiser caps at $1,500 individual / $3,000 family. Premiums do NOT count toward your OOP max.",
   northstar:"Northstar is a free financial wellness benefit with certified financial planners. They help with benefits selection, retirement planning, debt, taxes, home buying, and more. Access at northstarmoney.com/activate or email support@northstarmoney.com.",
   cobra:"If you lose Amplitude health coverage, COBRA allows you to continue your plan for up to 18 months by paying up to 102% of the full premium. Contact hr@amplitude.com for COBRA paperwork.",
-  espp:"The ESPP lets eligible employees purchase Amplitude stock at a discount through post-tax payroll deductions, up to 15% of pay per period. Questions? Email equity@amplitude.com."
+  espp:"The ESPP lets eligible employees purchase Amplitude stock at a discount through post-tax payroll deductions, up to 15% of pay per period. Questions? Email equity@amplitude.com.",
+  oon:"Out-of-network coverage is only available on the Aetna PPO plan. The PPO lets you see any licensed provider in or out of network — ideal if you have existing doctors or specialists you want to keep. The EPO and Kaiser plans do NOT cover out-of-network care (except emergencies). If out-of-network access is important to you, the PPO is your only option at Amplitude.",
+  dependents:"Dependents covered under Amplitude medical plans include: legal spouses, domestic partners (same or opposite-sex), natural/adopted/stepchildren up to age 26, and children for whom you have legal guardianship. You must enroll dependents within 30 days of a qualifying life event or during open enrollment. Proof of eligibility (marriage certificate, birth certificate, etc.) is required in Workday.",
+  coverage_start:"Coverage typically starts on the 1st of the month following your enrollment date. For new hires who start on the 1st of a month, coverage begins the same day. Elections must be completed in Workday. If you miss your 30-day new hire enrollment window, you must wait for open enrollment (or a qualifying life event).",
+  life_event:"Qualifying life events (QLEs) allow mid-year benefit changes within 30 days: marriage or domestic partnership, birth or adoption of a child, divorce or legal separation, loss of other coverage (e.g. spouse loses job), gain of other coverage. To initiate a QLE, contact hr@amplitude.com or go to Workday > Benefits > Life Events. Changes must be made within 30 days of the event.",
+  compare:"Amplitude offers 4 medical plans for 2026: (1) Aetna HDHP — lowest premium, $1,700 deductible, pairs with HSA. Best for healthy users who want to save. (2) Aetna PPO — higher premium, $250 deductible, covers out-of-network doctors. Best for frequent care or OON needs. (3) Aetna EPO — mid-range premium, no deductible, in-network only. Good middle ground. (4) Kaiser HMO (CA only) — low OOP, coordinated care, all-in-one. Best in California. Mental health is covered on all plans — PPO includes out-of-network therapy.",
+  contact:"For benefits help: Email hr@amplitude.com or #ask-benefits in Slack. For Workday access issues: help@amplitude.com. Benefits are administered through: Workday (medical/dental/vision), Fidelity NetBenefits (401k), Navia (commuter/FSA), Forma (LSA), Northstar (financial wellness), Carrot (fertility).",
+  irs_limits:"2026 IRS contribution limits: HSA individual $4,400 / family $8,750 (Amplitude contributes $1,000 or $2,000, so your max is $3,400 or $6,750). FSA $3,400 / DC-FSA $5,000. 401(k) employee $23,500 (age 50–59 or 64+: $32,500; age 60–63: $35,750). Commuter transit/parking: $340/month each."
 };
 const TERMS = {
   hsa:['hsa','health savings','savings account'],
@@ -2141,7 +2345,14 @@ const TERMS = {
   oop:['out-of-pocket','oop max','maximum','most i would','worst case'],
   northstar:['northstar','financial planner','financial wellness','certified planner'],
   cobra:['cobra','lose coverage','termination','continuation','laid off'],
-  espp:['espp','stock purchase','employee stock','discount stock']
+  espp:['espp','stock purchase','employee stock','discount stock'],
+  oon:['out-of-network','out of network','keep my doctor','oon','ppo','any doctor','my specialist'],
+  dependents:['dependent','spouse','kids','children','domestic partner','family covered','add spouse','cover my','under 26'],
+  coverage_start:['coverage start','when does','start date','effective','when will my','begin coverage','when am i covered'],
+  life_event:['life event','qualifying event','marriage','divorce','new baby','new child','lost coverage','qle','special enrollment'],
+  compare:['compare plans','which plan','best plan','plan comparison','difference between','plan costs under','under $400','low deductible'],
+  contact:['contact hr','email hr','help with benefits','benefits support','who do i','benefits team'],
+  irs_limits:['irs limit','contribution limit','maximum contribution','how much can i','2026 limit']
 };
 function findAnswer(q) {
   const lower = q.toLowerCase();
@@ -2405,59 +2616,31 @@ function printStatement() {
   if (!trCard) { alert('Please build your statement first.'); return; }
 
   const dateStr = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const ampLogoPath = "M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z";
 
-  // Clone and strip interactive elements
+  // Clone the TR card and strip interactive elements
   const clone = trCard.cloneNode(true);
   clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
 
-  // Pull all inline styles from the parent page so the print window is fully styled
-  const styleText = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
+  // Build the print container content
+  const container = document.getElementById('print-container');
+  container.innerHTML = `
+    <div class="print-brand-header">
+      <svg viewBox="0 0 800 800" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#0052f2" d="${ampLogoPath}"/>
+      </svg>
+      <span class="print-brand-name">Amplitude</span>
+      <span class="print-date-label">2026 Total Rewards Statement &nbsp;·&nbsp; ${dateStr}</span>
+    </div>
+    ${clone.outerHTML}
+  `;
 
-  const ampLogoPath = "M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z";
-
-  // Open a dedicated print window — far more reliable than @media print class toggling
-  const pw = window.open('', '_blank', 'width=860,height=700,menubar=no,toolbar=no');
-  if (!pw) { alert('Pop-up blocked. Please allow pop-ups for this page and try again.'); return; }
-
-  pw.document.write(`<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Amplitude 2026 Total Rewards Statement</title>
-<style>
-${styleText}
-/* Print-window overrides */
-body {
-  background: #ffffff !important;
-  padding: 32px 36px !important;
-  max-width: 820px;
-  margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-.card { box-shadow: none !important; border: none !important; padding: 0 !important; }
-.tr-actions, .tr-btn, button { display: none !important; }
-@media print {
-  body { padding: 0 !important; }
-}
-</style>
-</head>
-<body>
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1.5px solid #e0e4f0">
-  <svg viewBox="0 0 800 800" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#0052f2" d="${ampLogoPath}"/>
-  </svg>
-  <span style="font-size:16px;font-weight:700;color:#0d1f91">Amplitude</span>
-  <span style="font-size:11px;color:#9ba0b8;margin-left:auto">2026 Total Rewards Statement &nbsp;·&nbsp; ${dateStr}</span>
-</div>
-${clone.outerHTML}
-<script>
-  window.onload = function() {
-    setTimeout(function() { window.print(); window.close(); }, 400);
-  };
-<\/script>
-</body>
-</html>`);
-  pw.document.close();
+  // Show the container and trigger print via CSS visibility trick
+  document.body.classList.add('printing-tr');
+  window.print();
+  // Clean up after print dialog closes
+  document.body.classList.remove('printing-tr');
+  container.innerHTML = '';
 }
 
 /* ═══════════════════════════════════════
@@ -2647,6 +2830,7 @@ function renderTotalRewards() {
     });
   });
 }
+
 </script>
 </body>
 </html>
