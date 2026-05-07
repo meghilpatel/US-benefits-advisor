@@ -1226,17 +1226,17 @@ function showResults() {
     : 'Standard Coverage';
   const budgetLabels = {under300:'Under $300/mo','300to600':'$300–$600/mo',over600:'$600+/mo (Best Coverage)'};
   const lifeEventLabels = {none:'Routine Enrollment',marriage:'Marriage / DP',new_child:'New Child',loss_coverage:'Loss of Other Coverage',divorce:'Divorce',other_life:'Other Qualifying Event'};
-  const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine Enrollment';
+  const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine enrollment';
   const showLifeEvent = answers.lifeEvent && answers.lifeEvent !== 'none';
   document.getElementById('results-summary').innerHTML =
-    `<h3>Your Enrollment Profile</h3>` +
-    `<div class="sum-row"><span class="sum-key">Enrollment Type</span><span class="sum-val">${modeLabel}</span></div>` +
-    (showLifeEvent ? `<div class="sum-row"><span class="sum-key">Life Event</span><span class="sum-val" style="color:var(--amber-text)">${lifeLabel} — 30-day window</span></div>` : '') +
-    `<div class="sum-row"><span class="sum-key">Coverage Tier</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Healthcare Usage</span><span class="sum-val">${{low:'Rarely Uses Care',medium:'Occasional Visits',high:'Frequent / Ongoing Care'}[usage]}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Network Preference</span><span class="sum-val">${{flexible:'Flexible on Network',prefer_in:'Prefers In-Network',out_of_network:'Needs Out-of-Network Access'}[answers.doctors]}</span></div>` +
+    `<h3>Your enrollment profile</h3>` +
+    `<div class="sum-row"><span class="sum-key">Enrollment type</span><span class="sum-val">${modeLabel}</span></div>` +
+    (showLifeEvent ? `<div class="sum-row"><span class="sum-key">Life event</span><span class="sum-val" style="color:var(--amber-text)">${lifeLabel} — 30-day window</span></div>` : '') +
+    `<div class="sum-row"><span class="sum-key">Coverage tier</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Healthcare usage</span><span class="sum-val">${{low:'Rarely Uses Care',medium:'Occasional Visits',high:'Frequent / Ongoing Care'}[usage]}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Network preference</span><span class="sum-val">${{flexible:'Flexible on Network',prefer_in:'Prefers In-Network',out_of_network:'Needs Out-of-Network Access'}[answers.doctors]}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Priorities</span><span class="sum-val">${priorityText}</span></div>` +
-    (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly Premium Budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
+    (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly premium budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
     `<div style="margin-top:8px;font-size:11px;color:var(--text-tertiary)">Coverage typically starts the 1st of the month following your enrollment date. New hires have 30 days from start date to enroll.</div>`;
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
@@ -1466,7 +1466,7 @@ function renderDentalCard() {
       </div>
       <p class="benefit-desc">100% preventive care covered in-network. No waiting periods. Employee-only is <strong>$0/month</strong> — essentially free coverage.</p>
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Your Premium</div><div class="b-stat-val">${monthly}</div></div>
+        <div class="b-stat"><div class="b-stat-label">Your premium</div><div class="b-stat-val">${monthly}</div></div>
         <div class="b-stat"><div class="b-stat-label">Annual Max</div><div class="b-stat-val">$2,000</div></div>
         <div class="b-stat"><div class="b-stat-label">Preventive</div><div class="b-stat-val">100% in-network</div></div>
         <div class="b-stat"><div class="b-stat-label">Basic (Fillings)</div><div class="b-stat-val">90% in-network</div></div>
@@ -1497,7 +1497,7 @@ function renderVisionCard() {
       </div>
       <p class="benefit-desc">Annual eye exam + allowance for glasses or contacts. Employee-only is <strong>$0/month</strong>. Even if you don't wear glasses, covers your annual exam.</p>
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Your Premium</div><div class="b-stat-val">${premiums[cov]}</div></div>
+        <div class="b-stat"><div class="b-stat-label">Your premium</div><div class="b-stat-val">${premiums[cov]}</div></div>
         <div class="b-stat"><div class="b-stat-label">Exam Copay</div><div class="b-stat-val">$15</div></div>
         <div class="b-stat"><div class="b-stat-label">Frames Allowance</div><div class="b-stat-val">$130 (every 24 mo)</div></div>
         <div class="b-stat"><div class="b-stat-label">Contacts Allowance</div><div class="b-stat-val">$130/year</div></div>
@@ -2475,7 +2475,7 @@ function printStatement() {
   // Clone the TR card and strip interactive elements
   const clone = trCard.cloneNode(true);
   clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
-  // Populate the print container
+  // Build the print container content
   const container = document.getElementById('print-container');
   container.innerHTML = `
     <div class="print-brand-header">
@@ -2487,25 +2487,28 @@ function printStatement() {
     </div>
     ${clone.outerHTML}
   `;
-  // ── Direct JS visibility control — no CSS class, no timing dependency ──
-  // Hide the main card and show the print container using inline styles.
-  // Inline styles are synchronous and take effect immediately, before window.print() is called.
-  const mainCard = document.querySelector('body > div.card');
-  mainCard.style.display = 'none';
-  container.style.cssText = 'display:block; padding:24px 32px; box-sizing:border-box; background:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:#1a1a2e;';
-  // Restore after printing (afterprint fires after dialog closes in Chrome/Electron)
-  function restore() {
-    mainCard.style.display = '';
-    container.style.cssText = '';
+  // Show container — class hides main UI, reveals print container via @media print
+  document.body.classList.add('printing-tr');
+
+  function restoreAfterPrint() {
+    document.body.classList.remove('printing-tr');
     container.innerHTML = '';
-    window.removeEventListener('afterprint', restore);
+    window.removeEventListener('afterprint', restoreAfterPrint);
+    clearTimeout(restoreFallback);
   }
-  window.addEventListener('afterprint', restore);
-  window.print();
-  // Also restore synchronously — window.print() blocks in Chrome until the dialog closes,
-  // so this runs after the dialog is dismissed. The removeEventListener above makes the
-  // afterprint handler a no-op if this runs first.
-  restore();
+
+  // Primary cleanup: afterprint fires when print dialog is dismissed
+  window.addEventListener('afterprint', restoreAfterPrint);
+
+  // Fallback: some Electron/desktop shells never fire afterprint — clean up after 30s
+  var restoreFallback = setTimeout(restoreAfterPrint, 30000);
+
+  // Defer print until the next paint so the DOM change is captured by the browser
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      window.print();
+    });
+  });
 }
 /* ═══════════════════════════════════════
    TOTAL REWARDS STATEMENT
