@@ -950,6 +950,9 @@
       <!-- 7. AUTO-ENROLLED -->
       <div class="section-divider"><span>✅ Auto-enrolled for you</span></div>
       <div id="auto-card"></div>
+      <!-- 7b. VOLUNTARY BENEFITS -->
+      <div class="section-divider"><span>🛡️ Voluntary benefits (elect in Workday)</span></div>
+      <div id="voluntary-card"></div>
       <!-- 8. ENROLLMENT CHECKLIST -->
       <div class="section-divider"><span>📋 Your enrollment checklist</span></div>
       <div id="checklist-card"></div>
@@ -1114,9 +1117,9 @@ const PREMIUMS = {
   family: { ppo: 629, hdhp: 470, epo: 771, kaiser: 624 }
 };
 const PLANS = {
-  ppo:    { name:'Aetna PPO',         tag:'Most flexible',   planNum:'#268595', desc:'In AND out-of-network coverage. Best if any doctors may be outside Aetna.', deductible:{solo:'$500',other:'$1,000'},   oop_max:{solo:'$4,500',other:'$9,000'},  copay:'$20 primary / $40 specialist', rx:'$15 retail generic', hsa:false },
-  hdhp:   { name:'Aetna HDHP + HSA',  tag:'Best for savers', planNum:'#268595', desc:'Lowest or $0 premium + HSA. Amplitude contributes $1,000 (individual) or $2,000 (family) to your account.', deductible:{solo:'$1,700',other:'$3,400'}, oop_max:{solo:'$4,500',other:'$9,000'}, copay:'After deductible (20%)', rx:'$10 retail generic', hsa:true },
-  epo:    { name:'Aetna EPO',          tag:'No deductible',   planNum:'#268595', desc:'No deductible — pay copays from day one. No out-of-network (emergencies excepted).', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$4,500',other:'$9,000'}, copay:'$30 primary / $60 specialist', rx:'$10 retail generic', hsa:false },
+  ppo:    { name:'Aetna PPO',         tag:'Most flexible',   planNum:'#268595', desc:'In AND out-of-network coverage. Best if any doctors may be outside Aetna.', deductible:{solo:'$500',other:'$1,000'},   oop_max:{solo:'$4,500',other:'$9,000'},  copay:'$20 primary / $20 specialist', rx:'$15 retail generic', hsa:false },
+  hdhp:   { name:'Aetna HDHP + HSA',  tag:'Best for savers', planNum:'#268595', desc:'Lowest or $0 premium + HSA. Amplitude contributes $1,000 (individual) or $2,000 (family) to your account.', deductible:{solo:'$1,700',other:'$3,400'}, oop_max:{solo:'$4,500',other:'$9,000'}, copay:'After deductible (10%)', rx:'$10 retail generic', hsa:true },
+  epo:    { name:'Aetna EPO',          tag:'No deductible',   planNum:'#268595', desc:'No deductible — pay copays from day one. No out-of-network (emergencies excepted).', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$4,500',other:'$9,000'}, copay:'$30 primary / $50 specialist', rx:'$10 retail generic', hsa:false },
   kaiser: { name:'Kaiser HMO',         tag:'CA only',         planNum:'#605785', desc:'Integrated care — doctor, specialist, lab, and pharmacy all in one system. Lowest OOP max available.', deductible:{solo:'$0',other:'$0'},         oop_max:{solo:'$1,500',other:'$3,000'}, copay:'$30 primary / $30 specialist', rx:'$15 retail generic', hsa:false }
 };
 const OOP_EST = { hdhp:{low:0,medium:600,high:1900}, ppo:{low:25,medium:180,high:780}, epo:{low:30,medium:130,high:540}, kaiser:{low:20,medium:95,high:360} };
@@ -1223,17 +1226,17 @@ function showResults() {
     : 'Standard Coverage';
   const budgetLabels = {under300:'Under $300/mo','300to600':'$300–$600/mo',over600:'$600+/mo (Best Coverage)'};
   const lifeEventLabels = {none:'Routine Enrollment',marriage:'Marriage / DP',new_child:'New Child',loss_coverage:'Loss of Other Coverage',divorce:'Divorce',other_life:'Other Qualifying Event'};
-  const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine enrollment';
+  const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine Enrollment';
   const showLifeEvent = answers.lifeEvent && answers.lifeEvent !== 'none';
   document.getElementById('results-summary').innerHTML =
-    `<h3>Your enrollment profile</h3>` +
-    `<div class="sum-row"><span class="sum-key">Enrollment type</span><span class="sum-val">${modeLabel}</span></div>` +
-    (showLifeEvent ? `<div class="sum-row"><span class="sum-key">Life event</span><span class="sum-val" style="color:var(--amber-text)">${lifeLabel} — 30-day window</span></div>` : '') +
-    `<div class="sum-row"><span class="sum-key">Coverage tier</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Healthcare usage</span><span class="sum-val">${{low:'Rarely Uses Care',medium:'Occasional Visits',high:'Frequent / Ongoing Care'}[usage]}</span></div>` +
-    `<div class="sum-row"><span class="sum-key">Network preference</span><span class="sum-val">${{flexible:'Flexible on Network',prefer_in:'Prefers In-Network',out_of_network:'Needs Out-of-Network Access'}[answers.doctors]}</span></div>` +
+    `<h3>Your Enrollment Profile</h3>` +
+    `<div class="sum-row"><span class="sum-key">Enrollment Type</span><span class="sum-val">${modeLabel}</span></div>` +
+    (showLifeEvent ? `<div class="sum-row"><span class="sum-key">Life Event</span><span class="sum-val" style="color:var(--amber-text)">${lifeLabel} — 30-day window</span></div>` : '') +
+    `<div class="sum-row"><span class="sum-key">Coverage Tier</span><span class="sum-val">${coverageLabel(cov)}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Healthcare Usage</span><span class="sum-val">${{low:'Rarely Uses Care',medium:'Occasional Visits',high:'Frequent / Ongoing Care'}[usage]}</span></div>` +
+    `<div class="sum-row"><span class="sum-key">Network Preference</span><span class="sum-val">${{flexible:'Flexible on Network',prefer_in:'Prefers In-Network',out_of_network:'Needs Out-of-Network Access'}[answers.doctors]}</span></div>` +
     `<div class="sum-row"><span class="sum-key">Priorities</span><span class="sum-val">${priorityText}</span></div>` +
-    (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly premium budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
+    (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly Premium Budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
     `<div style="margin-top:8px;font-size:11px;color:var(--text-tertiary)">Coverage typically starts the 1st of the month following your enrollment date. New hires have 30 days from start date to enroll.</div>`;
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
@@ -1244,6 +1247,7 @@ function showResults() {
   renderK401Card();
   renderCommuterCard();
   renderAutoCard();
+  renderVoluntaryCard();
   renderChecklist();
   renderTotalRewards();
   renderCartBar();
@@ -1290,7 +1294,7 @@ function updatePriorHSA(val) {
 }
 function updatePrior401k(val) {
   prior401kAmount = parseCurrency(val);
-  const room = Math.max(0, 24500 - prior401kAmount);
+  const room = Math.max(0, 23500 - prior401kAmount);
   const label = document.getElementById('k401-room-label');
   if (label) label.textContent = `→ ${room.toLocaleString()} left in 2026`;
   renderK401Card();
@@ -1449,7 +1453,7 @@ function renderHealthCart(pid) {
 ═══════════════════════════════════════ */
 function renderDentalCard() {
   const cov = answers.coverage;
-  const premiums = {solo:'$0/mo',spouse:'$10/mo',kids:'$18/mo',family:'$24/mo'};
+  const premiums = {solo:'$0/mo',spouse:'$19/mo',kids:'$22/mo',family:'$41/mo'};
   const monthly = premiums[cov];
   document.getElementById('dental-card').innerHTML = `
     <div class="benefit-card" id="dental-benefit">
@@ -1462,7 +1466,7 @@ function renderDentalCard() {
       </div>
       <p class="benefit-desc">100% preventive care covered in-network. No waiting periods. Employee-only is <strong>$0/month</strong> — essentially free coverage.</p>
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Your premium</div><div class="b-stat-val">${monthly}</div></div>
+        <div class="b-stat"><div class="b-stat-label">Your Premium</div><div class="b-stat-val">${monthly}</div></div>
         <div class="b-stat"><div class="b-stat-label">Annual Max</div><div class="b-stat-val">$2,000</div></div>
         <div class="b-stat"><div class="b-stat-label">Preventive</div><div class="b-stat-val">100% in-network</div></div>
         <div class="b-stat"><div class="b-stat-label">Basic (Fillings)</div><div class="b-stat-val">90% in-network</div></div>
@@ -1493,7 +1497,7 @@ function renderVisionCard() {
       </div>
       <p class="benefit-desc">Annual eye exam + allowance for glasses or contacts. Employee-only is <strong>$0/month</strong>. Even if you don't wear glasses, covers your annual exam.</p>
       <div class="benefit-stats">
-        <div class="b-stat"><div class="b-stat-label">Your premium</div><div class="b-stat-val">${premiums[cov]}</div></div>
+        <div class="b-stat"><div class="b-stat-label">Your Premium</div><div class="b-stat-val">${premiums[cov]}</div></div>
         <div class="b-stat"><div class="b-stat-label">Exam Copay</div><div class="b-stat-val">$15</div></div>
         <div class="b-stat"><div class="b-stat-label">Frames Allowance</div><div class="b-stat-val">$130 (every 24 mo)</div></div>
         <div class="b-stat"><div class="b-stat-label">Contacts Allowance</div><div class="b-stat-val">$130/year</div></div>
@@ -1533,7 +1537,7 @@ function renderPretaxCards() {
         </div>
         ${notSelectedNote}
         ${isHDHP ? priorNote : ''}
-        <p class="benefit-desc">Pre-tax in, tax-free growth, tax-free out for medical expenses. Funds never expire — roll over every year and can be invested. Amplitude deposits <strong>${empContrib.toLocaleString()}</strong> to start.</p>
+        <p class="benefit-desc">Pre-tax in, tax-free growth, tax-free out for medical expenses. Funds never expire — roll over every year and can be invested. Amplitude deposits <strong>${empContrib.toLocaleString()}</strong> to start. <em>Age 55+ catch-up: if you will reach age 55 by December 31, you can contribute an additional $1,000 above the IRS limit.</em></p>
         <div class="benefit-stats">
           <div class="b-stat"><div class="b-stat-label">Amplitude Contribution</div><div class="b-stat-val">$${empContrib.toLocaleString()}/yr</div></div>
           <div class="b-stat"><div class="b-stat-label">2026 IRS Limit</div><div class="b-stat-val">${irsHSALabel}</div></div>
@@ -1914,6 +1918,25 @@ function renderAutoCard() {
     </div>`;
 }
 /* ═══════════════════════════════════════
+   VOLUNTARY BENEFITS CARD
+═══════════════════════════════════════ */
+function renderVoluntaryCard() {
+  const items = [
+    ['Voluntary Life & AD&D Insurance', 'Additional life coverage for you (up to 5× salary or $1M; guaranteed issue $120,000) and spouse/DP (up to $100,000). Enroll or increase during Open Enrollment. Through Unum.'],
+    ['Voluntary Accident Insurance', 'Cash benefits paid directly to you for covered accidental injuries — ER visits, fractures, hospitalization, and more. Useful if you have a high-deductible plan. Through Unum.'],
+    ['Voluntary Critical Illness Insurance', 'Lump-sum cash benefit upon diagnosis of a covered critical illness (e.g., cancer, heart attack, stroke). Helps cover out-of-pocket costs not covered by medical insurance. Through Unum.'],
+    ['Voluntary Hospital Indemnity Insurance', 'Fixed daily benefit for each day you are admitted to a hospital, ICU, or rehab facility. Supplements your medical plan during extended inpatient stays. Through Unum.'],
+  ];
+  const el = document.getElementById('voluntary-card');
+  if (!el) return;
+  el.innerHTML = `
+    <div class="benefit-card">
+      <p class="benefit-desc" style="margin-bottom:10px">These optional benefits must be elected in Workday during Open Enrollment or within 30 days of your hire date. All are through <strong>Unum</strong>.</p>
+      ${items.map(([title, detail]) => `<div class="auto-item"><span class="auto-check" style="color:var(--blue)">○</span><div><strong style="font-size:13px">${title}</strong><div class="auto-detail">${detail}</div></div></div>`).join('')}
+      <p class="benefit-desc" style="margin-top:12px; font-size:12px; color:var(--text-tertiary)">💡 <strong>HealthAdvocate (free)</strong> — Included with Unum benefits. A free service that helps you navigate insurance claims, billing disputes, and coverage questions. No enrollment needed once you have a Unum plan.</p>
+    </div>`;
+}
+/* ═══════════════════════════════════════
    ELECT BENEFIT HELPER
 ═══════════════════════════════════════ */
 function cartAddBenefit(key, btnId, cardId) {
@@ -2146,12 +2169,12 @@ function launchWorkday() {
    CHAT
 ═══════════════════════════════════════ */
 const KB = {
-  hsa:"The HSA (Health Savings Account) is only available with the Aetna HDHP. Amplitude contributes $1,000/year for individual and $2,000/year for family coverage. The IRS 2026 limit is $4,400 (individual) or $8,750 (family), so your personal max is $3,400 or $6,750 on top. Triple tax advantage: pre-tax contributions, tax-free growth, tax-free withdrawals for medical expenses. Funds roll over every year and can be invested — they're yours forever.",
+  hsa:"The HSA (Health Savings Account) is only available with the Aetna HDHP. Amplitude contributes $1,000/year for individual and $2,000/year for family coverage. The IRS 2026 limit is $4,400 (individual) or $8,750 (family), so your personal max is $3,400 or $6,750 on top. If you will turn age 55 by December 31, you can contribute an additional $1,000 catch-up contribution above the IRS limit. Triple tax advantage: pre-tax contributions, tax-free growth, tax-free withdrawals for medical expenses. Funds roll over every year and can be invested — they're yours forever.",
   fsa:"Amplitude offers 3 FSA types: (1) Health Care FSA — max $3,400/year, covers copays, Rx, deductibles, OTC meds. Rolls over up to $680. (2) Limited Purpose FSA — max $3,400, dental and vision only, pairs with HDHP/HSA. Rolls over up to $680. (3) Dependent Care FSA — max $5,000/year (or $2,500 if married filing separately), covers daycare, eldercare, camp. NO rollover — use it or lose it. Must re-enroll each year.",
   dental:"Dental is through Delta Dental PPO. Employee-only is $0/month. Annual deductible: $50 individual / $150 family. Annual max: $2,000. Preventive (cleanings, X-rays, fluoride): 100% covered in-network. Basic (fillings): 90%. Major (crowns, bridges): 60%. Orthodontia lifetime max: $2,000.",
   vision:"Vision is through VSP. Employee-only is $0/month (+spouse $2, +kids $2, family $4). Eye exam copay: $15. Frame allowance: $130 every 24 months ($150 for featured brands). Contact lens allowance: $130/year. Laser vision correction discounts also available.",
   enrollment:"Open Enrollment was November 3–14, 2025. The 2026 plan year runs January 1–December 31, 2026. Elections are made in Workday (via Okta). Your 2025 elections do NOT automatically roll over — you must actively elect each year. New employees have 30 days from start date to enroll. Mid-year changes are only allowed after a qualifying life event (marriage, birth of child, loss of other coverage, etc.).",
-  "401k":"Amplitude matches 1% of eligible pay (base + bonus/commission) each pay period, up to $2,000/year maximum. You must contribute every single pay period — there is NO year-end true-up, so if you stop contributing mid-year you lose that match permanently. Match vests 50% after 1 year, 100% after 2 years. 2026 IRS employee limit: $24,500 if under 50; $32,500 if age 50–59 or 64+ (includes $8,000 catch-up); $35,750 if age 60–63 (enhanced SECURE 2.0 catch-up). Plan #55883 is through Fidelity NetBenefits and supports both pre-tax and Roth contributions. Log in at netbenefits.com/amplitude.",
+  "401k":"Amplitude matches 1% of eligible pay (base + bonus/commission) each pay period, up to $2,000/year maximum. You must contribute every single pay period — there is NO year-end true-up, so if you stop contributing mid-year you lose that match permanently. Match vests 50% after 1 year, 100% after 2 years. 2026 IRS employee limit: $23,500 if under 50; $31,000 if age 50–59 or 64+ (includes $7,500 catch-up); $34,750 if age 60–63 (enhanced SECURE 2.0 catch-up of $11,250). Plan #55883 is through Fidelity NetBenefits and supports both pre-tax and Roth contributions. Log in at netbenefits.com/amplitude.",
   mental:"Mental health benefits at no cost: Modern Health EAP — 6 counseling + 6 coaching sessions/year, 24/7 availability. Unum EAP via Health Advocate — up to 3 in-person visits. On Aetna plans: Meru Health (dedicated therapist via video + app) and Talkspace (text/video therapy). On Kaiser: Calm app and Kaiser wellness programs.",
   commuter:"If you commute to the SF or NYC office: Amplitude contributes $130/month pre-tax to your Navia commuter account. You can add up to $210/month yourself. IRS 2026 pre-tax limit: $340/month for transit and $340/month for parking (separate limits). Elections must be submitted in the Navia portal by the 20th of the prior month. Remote employees are not eligible.",
   lsa:"The Lifestyle Spending Account (LSA) provides $200/month, reimbursed through Forma. It covers health & wellness expenses and phone/internet costs. Check Forma for eligible expenses and expiration rules. No enrollment needed — automatically available.",
@@ -2170,7 +2193,9 @@ const KB = {
   life_event:"Qualifying life events (QLEs) allow mid-year benefit changes within 30 days: marriage or domestic partnership, birth or adoption of a child, divorce or legal separation, loss of other coverage (e.g. spouse loses job), gain of other coverage. To initiate a QLE, contact hr@amplitude.com or go to Workday > Benefits > Life Events. Changes must be made within 30 days of the event.",
   compare:"Amplitude offers 4 medical plans for 2026: (1) Aetna HDHP — lowest premium, $1,700 deductible, pairs with HSA. Best for healthy users who want to save. (2) Aetna PPO — higher premium, $250 deductible, covers out-of-network doctors. Best for frequent care or OON needs. (3) Aetna EPO — mid-range premium, no deductible, in-network only. Good middle ground. (4) Kaiser HMO (CA only) — low OOP, coordinated care, all-in-one. Best in California. Mental health is covered on all plans — PPO includes out-of-network therapy.",
   contact:"For benefits help: Email hr@amplitude.com or #ask-benefits in Slack. For Workday access issues: help@amplitude.com. Benefits are administered through: Workday (medical/dental/vision), Fidelity NetBenefits (401k), Navia (commuter/FSA), Forma (LSA), Northstar (financial wellness), Carrot (fertility).",
-  irs_limits:"2026 IRS contribution limits: HSA individual $4,400 / family $8,750 (Amplitude contributes $1,000 or $2,000, so your max is $3,400 or $6,750). FSA $3,400 / DC-FSA $5,000. 401(k) employee $23,500 (age 50–59 or 64+: $32,500; age 60–63: $35,750). Commuter transit/parking: $340/month each."
+  irs_limits:"2026 IRS contribution limits: HSA individual $4,400 / family $8,750 (Amplitude contributes $1,000 or $2,000, so your max is $3,400 or $6,750; age 55+ can add another $1,000 catch-up). FSA $3,400 / DC-FSA $5,000. 401(k) employee $23,500 (age 50–59 or 64+: $31,000 with $7,500 catch-up; age 60–63: $34,750 with enhanced SECURE 2.0 catch-up of $11,250). Commuter transit/parking: $340/month each.",
+  voluntary:"Amplitude offers four voluntary (elective) benefit options through Unum, enrolled in Workday during Open Enrollment or within 30 days of hire: (1) Voluntary Life & AD&D — additional life coverage for you (up to 5× salary or $1M; guaranteed issue $120,000) and your spouse/DP (up to $100,000). (2) Voluntary Accident Insurance — cash benefits for covered accidental injuries (ER visits, fractures, hospitalizations). (3) Voluntary Critical Illness Insurance — lump-sum cash payment upon diagnosis of cancer, heart attack, stroke, or other covered critical illnesses. (4) Voluntary Hospital Indemnity Insurance — fixed daily benefit during hospital, ICU, or rehab stays. All are employee-paid via payroll deduction.",
+  healthadvocate:"Health Advocate is a free concierge service available to all employees who enroll in any Unum benefit. They help you navigate insurance claims, understand your Explanation of Benefits (EOB), resolve billing errors, find in-network providers, and coordinate care. Call 1-866-695-8622 or visit healthadvocate.com/amplitude. No enrollment required — just call them."
 };
 const TERMS = {
   hsa:['hsa','health savings','savings account'],
@@ -2450,7 +2475,7 @@ function printStatement() {
   // Clone the TR card and strip interactive elements
   const clone = trCard.cloneNode(true);
   clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
-  // Build the print container content
+  // Populate the print container
   const container = document.getElementById('print-container');
   container.innerHTML = `
     <div class="print-brand-header">
@@ -2462,12 +2487,25 @@ function printStatement() {
     </div>
     ${clone.outerHTML}
   `;
-  // Show the container and trigger print via CSS visibility trick
-  document.body.classList.add('printing-tr');
+  // ── Direct JS visibility control — no CSS class, no timing dependency ──
+  // Hide the main card and show the print container using inline styles.
+  // Inline styles are synchronous and take effect immediately, before window.print() is called.
+  const mainCard = document.querySelector('body > div.card');
+  mainCard.style.display = 'none';
+  container.style.cssText = 'display:block; padding:24px 32px; box-sizing:border-box; background:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:#1a1a2e;';
+  // Restore after printing (afterprint fires after dialog closes in Chrome/Electron)
+  function restore() {
+    mainCard.style.display = '';
+    container.style.cssText = '';
+    container.innerHTML = '';
+    window.removeEventListener('afterprint', restore);
+  }
+  window.addEventListener('afterprint', restore);
   window.print();
-  // Clean up after print dialog closes
-  document.body.classList.remove('printing-tr');
-  container.innerHTML = '';
+  // Also restore synchronously — window.print() blocks in Chrome until the dialog closes,
+  // so this runs after the dialog is dismissed. The removeEventListener above makes the
+  // afterprint handler a no-op if this runs first.
+  restore();
 }
 /* ═══════════════════════════════════════
    TOTAL REWARDS STATEMENT
