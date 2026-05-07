@@ -716,16 +716,16 @@
       <p class="question">What's your comfortable monthly budget for medical insurance premiums?</p>
       <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">This helps us flag plans above your budget. Amplitude pays a portion of premiums — these are <em>your</em> out-of-pocket payroll deductions.</div>
       <div class="option-grid">
-        <button class="option-btn" onclick="select(this,'budget','under200')">
-          <span class="opt-label">Under $200/month</span>
-          <span class="opt-sub">Looking for the lowest-cost option</span>
+        <button class="option-btn" onclick="select(this,'budget','under300')">
+          <span class="opt-label">Under $300/month</span>
+          <span class="opt-sub">Prefer the lowest-cost option available</span>
         </button>
-        <button class="option-btn" onclick="select(this,'budget','200to400')">
-          <span class="opt-label">$200 – $400/month</span>
-          <span class="opt-sub">Moderate premium is fine with good coverage</span>
+        <button class="option-btn" onclick="select(this,'budget','300to600')">
+          <span class="opt-label">$300 – $600/month</span>
+          <span class="opt-sub">Moderate premium is fine for good coverage</span>
         </button>
-        <button class="option-btn" onclick="select(this,'budget','over400')">
-          <span class="opt-label">Over $400/month</span>
+        <button class="option-btn" onclick="select(this,'budget','over600')">
+          <span class="opt-label">Over $600/month</span>
           <span class="opt-sub">Premium isn't the main concern — I want the best coverage</span>
         </button>
       </div>
@@ -1221,7 +1221,7 @@ function showResults() {
   const priorityText = answers.priorities && answers.priorities.length > 0
     ? answers.priorities.map(p => priorityLabels[p] || p).join(', ')
     : 'Standard coverage';
-  const budgetLabels = {under200:'Under $200/mo',under400:'Under $400/mo','200to400':'$200–$400/mo',over400:'$400+/mo (best coverage)'};
+  const budgetLabels = {under300:'Under $300/mo','300to600':'$300–$600/mo',over600:'$600+/mo (best coverage)'};
   const lifeEventLabels = {none:'Routine enrollment',marriage:'Marriage / DP',new_child:'New child',loss_coverage:'Loss of other coverage',divorce:'Divorce',other_life:'Other qualifying event'};
   const lifeLabel = lifeEventLabels[answers.lifeEvent] || 'Routine enrollment';
   const showLifeEvent = answers.lifeEvent && answers.lifeEvent !== 'none';
@@ -1387,7 +1387,7 @@ function renderHealthCards(ranked, cov, usage, isFam) {
       <div style="font-size:11px;color:var(--text-tertiary);margin-bottom:2px">Group ${p.planNum} · Elect in Workday</div>
       <div class="plan-price price-main">$${costs.monthly.toLocaleString()}<span class="unit">/mo</span></div>
       <div class="price-alt">$${costs.annual.toLocaleString()} per year</div>
-      ${(answers.budget === 'under200' && costs.monthly > 200) || (answers.budget === '200to400' && costs.monthly > 400) ? '<div style="background:var(--amber-bg);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--amber-text);margin-bottom:4px">⚠ Above your stated monthly budget</div>' : ''}
+      ${(answers.budget === 'under300' && costs.monthly > 300) || (answers.budget === '300to600' && costs.monthly > 600) ? '<div style="background:var(--amber-bg);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--amber-text);margin-bottom:4px">⚠ Above your stated monthly budget</div>' : ''}
       <p class="plan-desc">${p.desc}</p>
       <div class="plan-stats">
         <div class="stat"><div class="stat-label">Deductible</div><div class="stat-val">${ded}</div></div>
