@@ -77,7 +77,6 @@
     .logo svg { width: 30px; height: 30px; }
     .header-text h1 { font-size: 15px; font-weight: 600; color: var(--text-primary); }
     .header-text p { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
-
     /* ── Welcome Hero ── */
     .welcome-hero {
       /* Dark navy on left (text side) → light blue on right (monster side) */
@@ -108,13 +107,11 @@
     .body { padding: 1.25rem 1.5rem; }
     .screen { display: none; }
     .screen.active { display: block; }
-
     /* ── Progress ── */
     .progress { display: flex; gap: 4px; padding: 0.75rem 1.5rem 0; }
     .prog-dot { height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: all 0.3s; }
     .prog-dot.done { background: linear-gradient(90deg, #1e61f0, #48d2e5); }
     .prog-dot.active { background: #c9c2f5; }
-
     /* ── Wizard ── */
     .question { font-size: 15px; font-weight: 500; margin-bottom: 1rem; }
     .option-grid { display: grid; gap: 8px; }
@@ -147,7 +144,6 @@
     }
     .btn-ghost:hover { background: var(--bg-secondary); }
     .btn-ghost.full { width: 100%; }
-
     /* ── Chips ── */
     .chip { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
     .chip-blue { background: var(--blue-light); color: var(--blue-text); }
@@ -155,7 +151,6 @@
     .chip-amber { background: var(--amber-bg); color: var(--amber-text); }
     .chip-purple { background: var(--purple-bg); color: var(--purple-text); }
     .chip-teal { background: var(--teal-bg); color: var(--teal-text); }
-
     /* ── Info / Summary ── */
     .info-box { background: var(--blue-light); border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 1.25rem; }
     .info-box p { font-size: 13px; color: var(--blue-text); line-height: 1.5; }
@@ -166,7 +161,6 @@
     .sum-key { color: var(--text-secondary); }
     .sum-val { color: var(--text-primary); font-weight: 500; }
     .intro-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem; }
-
     /* ── View Toggle ── */
     .view-toggle {
       display: flex; background: var(--bg-secondary); border: 0.5px solid var(--border);
@@ -178,7 +172,6 @@
       font-family: var(--font); transition: all 0.15s;
     }
     .vtog-btn.active { background: var(--bg); color: var(--blue); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-
     /* ── Health Plan Cards ── */
     .plan-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -205,7 +198,6 @@
     .stat { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 8px 10px; }
     .stat-label { font-size: 11px; color: var(--text-secondary); }
     .stat-val { font-size: 13px; font-weight: 500; margin-top: 1px; }
-
     /* ── Cost Section ── */
     .cost-section { border-top: 0.5px solid var(--border); padding-top: 12px; margin: 4px 0 10px; }
     .cost-section-title { font-size: 11px; font-weight: 500; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -222,7 +214,6 @@
     .pro-item { font-size: 12px; color: var(--text-secondary); display: flex; gap: 6px; margin-bottom: 3px; line-height: 1.4; }
     .pro-dot { color: var(--blue); font-weight: 700; flex-shrink: 0; }
     .pro-dot.warn { color: var(--amber-text); }
-
     /* ── Select/Cart Buttons ── */
     @keyframes cartBounce { 0%,100%{transform:scale(1)} 40%{transform:scale(1.05)} 60%{transform:scale(0.97)} }
     .select-btn {
@@ -235,7 +226,6 @@
     .select-btn:hover { background: var(--blue-light); }
     .select-btn.in-cart { background: var(--green-text); color: #fff; border-color: var(--green-text); }
     .select-btn.bounce { animation: cartBounce 0.35s ease; }
-
     /* ── Health Cart ── */
     @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
     .health-cart {
@@ -257,7 +247,6 @@
     .receipt-note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.6; }
     .hsa-callout { background: var(--green-bg); border-radius: var(--radius-md); padding: 10px 12px; margin-top: 10px; }
     .hsa-callout p { font-size: 12px; color: var(--green-text); line-height: 1.6; }
-
     /* ── Section Divider ── */
     .section-divider {
       display: flex; align-items: center; gap: 10px;
@@ -269,7 +258,6 @@
       background: var(--blue-light); padding: 3px 10px; border-radius: 20px;
     }
     .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
     /* ── Benefit Cards (dental, vision, etc.) ── */
     .benefit-card {
       background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg);
@@ -290,7 +278,6 @@
     .benefit-row:last-child { border-bottom: none; }
     .benefit-row .bk { color: var(--text-secondary); }
     .benefit-row .bv { font-weight: 500; }
-
     /* ── Elect Button (for non-health benefits) ── */
     .elect-btn {
       width: 100%; padding: 9px 14px; border: 1px solid var(--border-med);
@@ -301,7 +288,6 @@
     }
     .elect-btn:hover { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
     .elect-btn.done { background: var(--green-bg); color: var(--green-text); border-color: var(--green-text); }
-
     /* ── Pre-Tax / Contribution Inputs ── */
     .contrib-section { margin-top: 10px; }
     .contrib-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; }
@@ -318,13 +304,11 @@
     .contrib-max { font-size: 11px; color: var(--text-secondary); }
     .salary-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .salary-prefix { font-size: 14px; color: var(--text-secondary); }
-
     /* ── Auto-enrolled Card ── */
     .auto-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; padding: 5px 0; border-bottom: 0.5px solid var(--border); }
     .auto-item:last-child { border-bottom: none; }
     .auto-check { color: var(--green-text); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
     .auto-detail { color: var(--text-secondary); }
-
     /* ── Enrollment Checklist ── */
     .checklist-card {
       background: var(--bg); border: 1px solid var(--border-med); border-radius: var(--radius-lg);
@@ -372,7 +356,6 @@
     .match-total { display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--border); padding-top: 8px; }
     .match-total-label { font-weight: 600; font-size: 13px; }
     .match-total-val { font-weight: 700; font-size: 15px; color: var(--blue); }
-
     /* ── Chat ── */
     .chat-container { display: flex; flex-direction: column; height: 400px; }
     .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
@@ -385,9 +368,7 @@
     .chat-input-row { display: flex; gap: 8px; }
     .chat-input-row input { flex: 1; padding: 10px 14px; border: 0.5px solid var(--border-med); border-radius: var(--radius-md); font-size: 13px; font-family: var(--font); background: var(--bg); color: var(--text-primary); outline: none; }
     .chat-input-row input:focus { border-color: var(--blue); }
-
     .disclaimer { font-size: 11px; color: var(--text-tertiary); margin-top: 1rem; line-height: 1.5; }
-
     /* ── New hire banner ── */
     .newhire-banner {
       background: var(--amber-bg); border-radius: var(--radius-md); padding: 12px 14px;
@@ -402,7 +383,6 @@
       font-size: 13px; font-weight: 600; font-family: var(--font);
       background: var(--amber-bg); color: var(--amber-text); outline: none; max-width: 120px;
     }
-
     /* ── Cart Bar (sticky summary strip) ── */
     .cart-bar {
       background: var(--bg); border-top: 1px solid var(--border-med);
@@ -426,7 +406,6 @@
     }
     .workday-btn:hover { background: #004a84; }
     .workday-btn.preview { opacity: 0.7; cursor: default; position: relative; }
-
     /* ── Comp Input Screen ── */
     .comp-intro {
       background: linear-gradient(135deg, #efecfd, #edf1fd);
@@ -472,7 +451,6 @@
     .ote-part { text-align: center; flex: 1; }
     .ote-part-label { font-size: 10px; color: var(--blue-text); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
     .ote-part-val { font-size: 16px; font-weight: 700; color: var(--blue-text); margin-top: 2px; }
-
     /* ── Total Rewards Statement ── */
     .tr-card {
       background: var(--bg); border: 1.5px solid var(--blue);
@@ -486,7 +464,6 @@
     .tr-total-amount { font-size: 42px; font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1; margin: 2px 0 4px; }
     .tr-total-sub { font-size: 12px; color: rgba(255,255,255,0.65); }
     .tr-body { padding: 1.1rem 1.5rem 1.25rem; }
-
     .tr-bars { margin-bottom: 1.1rem; }
     .tr-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
     .tr-bar-icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
@@ -494,7 +471,6 @@
     .tr-bar-track { flex: 1; height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; border: 0.5px solid var(--border); }
     .tr-bar-fill { height: 100%; border-radius: 4px; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); }
     .tr-bar-val { font-size: 12px; font-weight: 600; color: var(--text-primary); width: 72px; text-align: right; flex-shrink: 0; }
-
     .tr-section { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1rem 1.1rem; margin-bottom: 8px; }
     .tr-section-title { font-size: 10px; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
     .tr-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; padding: 4px 0; border-bottom: 0.5px solid var(--border); }
@@ -510,7 +486,6 @@
     .tr-btn:hover { background: var(--bg-secondary); border-color: var(--blue); color: var(--blue); }
     .tr-btn.primary { background: var(--blue); color: white; border-color: var(--blue); }
     .tr-btn.primary:hover { background: var(--blue-dark); }
-
     @media print {
       body { background: white; padding: 0; }
       .card { border: none; border-radius: 0; max-width: 100%; }
@@ -541,11 +516,8 @@
   </style>
 </head>
 <body>
+<div id="print-container"></div>
 <div class="card">
-
-  <!-- Print container — populated by printStatement() and styled via @media print -->
-  <div id="print-container"></div>
-
   <!-- ── HEADER ── -->
   <div class="header" style="display:none">
     <div class="logo">
@@ -558,10 +530,8 @@
       <p id="main-sub">Amplitude · US employees only</p>
     </div>
   </div>
-
   <!-- ── WELCOME ── -->
   <div id="screen-welcome" class="screen active">
-
     <!-- Hero banner -->
     <div class="welcome-hero">
       <div class="welcome-hero-text">
@@ -577,44 +547,33 @@
       <div class="welcome-monster">
         <!-- Data Monster — Heart pose (faithful to library: jet black, big white eyes, pink heart) -->
         <svg width="108" height="144" viewBox="0 0 90 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
           <!-- Ground shadow -->
           <ellipse cx="46" cy="117" rx="26" ry="4" fill="rgba(0,0,40,0.13)"/>
-
           <!-- ── Ears (drawn first so head covers their bases) ── -->
           <polygon points="26,42 18,10 42,34" fill="#111"/>
           <polygon points="64,42 72,10 48,34" fill="#111"/>
-
           <!-- ── Tail (behind body) ── -->
           <path d="M68,96 Q84,106 82,90 Q80,78 66,86" fill="#111"/>
-
           <!-- ── Legs ── -->
           <ellipse cx="34" cy="110" rx="11" ry="10" fill="#111"/>
           <ellipse cx="58" cy="110" rx="11" ry="10" fill="#111"/>
-
           <!-- ── Body ── -->
           <ellipse cx="46" cy="88" rx="28" ry="25" fill="#111"/>
-
           <!-- ── Left arm (wrapping around heart) ── -->
           <path d="M18,82 Q10,88 12,100 Q14,108 26,106 Q22,96 24,88 Z" fill="#111"/>
           <!-- ── Right arm ── -->
           <path d="M74,82 Q82,88 80,100 Q78,108 66,106 Q70,96 68,88 Z" fill="#111"/>
-
           <!-- ── Head ── -->
           <circle cx="46" cy="48" r="30" fill="#111"/>
-
           <!-- ── Eye whites ── -->
           <circle cx="34" cy="46" r="11" fill="white"/>
           <circle cx="58" cy="46" r="11" fill="white"/>
-
           <!-- ── Pupils ── -->
           <circle cx="36" cy="48" r="6" fill="#111"/>
           <circle cx="60" cy="48" r="6" fill="#111"/>
-
           <!-- ── Eye shines ── -->
           <circle cx="39" cy="44" r="2.5" fill="white"/>
           <circle cx="63" cy="44" r="2.5" fill="white"/>
-
           <!-- ── Pink heart (held in front of body) ── -->
           <path d="M46,106 C46,106 24,91 24,79 C24,72 29,67 35,67 C40,67 43,71 46,75 C49,71 52,67 57,67 C63,67 68,72 68,79 C68,91 46,106 46,106 Z" fill="#f06090"/>
           <!-- Heart shine -->
@@ -622,7 +581,6 @@
         </svg>
       </div>
     </div>
-
     <div class="body">
       <div class="info-box">
         <p>This tool covers 2026 US benefits only. International employees have a single plan per country — contact HR for details.</p>
@@ -631,7 +589,6 @@
       <button class="btn-primary" style="width:100%" onclick="goTo('screen-q0')">Get started →</button>
     </div>
   </div>
-
   <!-- ── Q0: Mode (new hire vs open enrollment) ── -->
   <div id="screen-q0" class="screen">
     <div class="body">
@@ -652,7 +609,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q1 ── -->
   <div id="screen-q1" class="screen">
     <div class="progress" id="prog1"></div>
@@ -670,7 +626,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q2 ── -->
   <div id="screen-q2" class="screen">
     <div class="progress" id="prog2"></div>
@@ -696,7 +651,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q3 ── -->
   <div id="screen-q3" class="screen">
     <div class="progress" id="prog3"></div>
@@ -722,8 +676,6 @@
       </div>
     </div>
   </div>
-
-
   <!-- ── Q3b: Healthcare priorities ── -->
   <div id="screen-q3b" class="screen">
     <div class="progress" id="prog3b"></div>
@@ -757,7 +709,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q3c: Budget & enrollment reason ── -->
   <div id="screen-q3c" class="screen">
     <div class="progress" id="prog3c"></div>
@@ -810,7 +761,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q4 ── -->
   <div id="screen-q4" class="screen">
     <div class="progress" id="prog4"></div>
@@ -832,7 +782,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── Q5: Prior contributions (new hires only) ── -->
   <div id="screen-q5" class="screen">
     <div class="progress" id="prog5"></div>
@@ -865,7 +814,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── COMP INPUT ── -->
   <div id="screen-comp" class="screen">
     <div class="progress" id="prog-comp"></div>
@@ -874,7 +822,6 @@
         <h3>💼 Total Rewards Statement</h3>
         <p>Optional — enter your comp to generate a personalized statement showing the full dollar value Amplitude pays on your behalf.</p>
       </div>
-
       <!-- Step 1: Plan type -->
       <div class="comp-field">
         <label class="comp-field-label">What's your compensation plan?</label>
@@ -889,7 +836,6 @@
           </button>
         </div>
       </div>
-
       <!-- CORPORATE BONUS fields -->
       <div id="comp-bonus-fields" style="display:none">
         <div class="comp-field">
@@ -910,7 +856,6 @@
           <p class="comp-helper" id="comp-bonus-hint">e.g. 10%, 15%, 20% — check your offer letter</p>
         </div>
       </div>
-
       <!-- SALES COMMISSION fields -->
       <div id="comp-commission-fields" style="display:none">
         <div class="comp-field">
@@ -940,7 +885,6 @@
           <div id="comp-ote-breakdown" style="display:none"></div>
         </div>
       </div>
-
       <!-- EQUITY — current employees -->
       <div class="comp-field" id="comp-equity-field" style="display:none">
         <label class="comp-field-label">Annual Equity Value <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(RSUs vesting this year)</span></label>
@@ -950,7 +894,6 @@
         </div>
         <p class="comp-helper">Unvested shares × stock price ÷ vest years. Leave blank if none.</p>
       </div>
-
       <!-- NEW HIRE EQUITY GRANT (shown only for new hires) -->
       <div class="comp-field" id="comp-newhire-equity" style="display:none">
         <label class="comp-field-label">New Hire Equity Grant <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;">(total grant value)</span></label>
@@ -965,7 +908,6 @@
         </div>
         <div id="comp-nh-equity-preview" style="display:none;margin-top:10px;background:#eef3ff;border-radius:8px;padding:10px 14px;font-size:13px;color:#1e3a8a"></div>
       </div>
-
       <div id="comp-error-msg" style="display:none;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px 12px;font-size:13px;color:#991b1b;margin-bottom:8px;"></div>
       <div class="nav" style="margin-top:1rem">
         <button class="btn-ghost" onclick="goBackFromComp()">Back</button>
@@ -977,13 +919,11 @@
       <p class="comp-skip-note">Your data stays in this browser tab only — nothing is saved or shared.</p>
     </div>
   </div>
-
   <!-- ── RESULTS ── -->
   <div id="screen-results" class="screen">
     <div class="body">
       <div id="newhire-banner"></div>
       <div id="results-summary" class="summary-box"></div>
-
       <!-- 1. HEALTH PLAN -->
       <div class="section-divider"><span>🏥 Medical plan</span></div>
       <div class="view-toggle">
@@ -992,38 +932,29 @@
       </div>
       <div id="plan-cards"></div>
       <div id="plan-cart" style="display:none"></div>
-
       <!-- 2. DENTAL -->
       <div class="section-divider"><span>🦷 Dental</span></div>
       <div id="dental-card"></div>
-
       <!-- 3. VISION -->
       <div class="section-divider"><span>👁 Vision</span></div>
       <div id="vision-card"></div>
-
       <!-- 4. PRE-TAX SPENDING -->
       <div class="section-divider"><span>💰 Pre-tax spending accounts</span></div>
       <div id="pretax-cards"></div>
-
       <!-- 5. 401K -->
       <div class="section-divider"><span>📈 Retirement</span></div>
       <div id="k401-card"></div>
-
       <!-- 6. COMMUTER -->
       <div class="section-divider"><span>🚇 Commuter benefits</span></div>
       <div id="commuter-card"></div>
-
       <!-- 7. AUTO-ENROLLED -->
       <div class="section-divider"><span>✅ Auto-enrolled for you</span></div>
       <div id="auto-card"></div>
-
       <!-- 8. ENROLLMENT CHECKLIST -->
       <div class="section-divider"><span>📋 Your enrollment checklist</span></div>
       <div id="checklist-card"></div>
-
       <!-- 9. TOTAL REWARDS STATEMENT -->
       <div id="total-rewards-section"></div>
-
       <button class="btn-primary full" style="margin-top:1rem" onclick="goTo('screen-chat')">Ask a follow-up question →</button>
       <button class="btn-ghost full" onclick="resetAll()">Start over</button>
       <!-- Footer with Amplitude black wordmark -->
@@ -1034,7 +965,6 @@
         </svg>
         <p class="disclaimer" style="margin-top:0; text-align:right;">A guide, not official advice. Questions? <a href="mailto:hr@amplitude.com" style="color:var(--blue);">hr@amplitude.com</a></p>
       </div>
-
       <!-- ── CART BAR ── -->
       <div class="cart-bar">
         <div class="cart-bar-row">
@@ -1048,7 +978,6 @@
       </div>
     </div>
   </div>
-
   <!-- ── CHAT ── -->
   <div id="screen-chat" class="screen">
     <div class="body" style="padding-bottom:0">
@@ -1078,10 +1007,8 @@
       <button class="btn-ghost full" style="margin-top:10px" onclick="goTo('screen-results')">← Back to results</button>
     </div>
   </div>
-
 </div><!-- .card -->
 <script>
-
 /* ═══════════════════════════════════════
    STATE
 ═══════════════════════════════════════ */
@@ -1098,11 +1025,9 @@ function formatCurrencyInput(el) {
 function onCurrencyKeydown(el) {
   // Allow user to type freely; format on blur
 }
-
 const answers = {};
 answers.priorities = [];  // array of selected healthcare priorities
 answers.lifeEvent = 'none';
-
 /* ── Healthcare priorities toggle (multi-select) ── */
 function togglePriority(btn, key) {
   if (key === 'none') {
@@ -1124,7 +1049,6 @@ function togglePriority(btn, key) {
     }
   }
 }
-
 /* ── Life event selection ── */
 function selectLifeEvent(btn, val) {
   answers.lifeEvent = val;
@@ -1139,11 +1063,9 @@ function selectLifeEvent(btn, val) {
 }
 let selectedPlanId = null;
 let viewMode = 'monthly';
-
 // New hire prior contribution tracking (mid-year IRS room calculations)
 let priorHsaAmount = 0;
 let prior401kAmount = 0;
-
 // Compensation & Total Rewards data
 const compData = {
   planType: null,        // 'bonus' | 'commission'
@@ -1160,7 +1082,6 @@ const compData = {
   proratedFactor: 1,
   entered: false
 };
-
 // Employer-side health premium contributions (monthly, estimated)
 // These represent what Amplitude pays toward each plan — employees see only their share
 const EMPLOYER_HEALTH_MONTHLY = {
@@ -1169,7 +1090,6 @@ const EMPLOYER_HEALTH_MONTHLY = {
   epo:    { solo: 730, spouse: 1540, kids: 1290, family: 1960 },
   kaiser: { solo: 580, spouse: 1220, kids: 1020, family: 1560 }
 };
-
 // Tracks which non-health benefits the user has acknowledged
 const elected = {
   dental: false,
@@ -1184,7 +1104,6 @@ const elected = {
   commuterMonthly: 0,
   commuterOffice: null
 };
-
 /* ═══════════════════════════════════════
    HEALTH PLAN DATA
 ═══════════════════════════════════════ */
@@ -1203,7 +1122,6 @@ const PLANS = {
 const OOP_EST = { hdhp:{low:0,medium:600,high:1900}, ppo:{low:25,medium:180,high:780}, epo:{low:30,medium:130,high:540}, kaiser:{low:20,medium:95,high:360} };
 const COV_MULT = { solo:1.0, spouse:1.65, kids:1.5, family:2.0 };
 const HSA_EMPLOYER = { solo:1000, spouse:2000, kids:2000, family:2000 };
-
 function calcCosts(pid, cov, usage) {
   const monthly = PREMIUMS[cov][pid];
   const annual  = monthly * 12;
@@ -1214,13 +1132,11 @@ function calcCosts(pid, cov, usage) {
   const surplus     = Math.max(0, hsaCredit - grossAnnual);
   return { monthly, annual, oopEst, hsaCredit, grossAnnual, netAnnual, surplus };
 }
-
 function getRanked() {
   const { coverage, usage, doctors, state } = answers;
   const priorities = answers.priorities || [];
   let all = ['ppo','hdhp','epo'];
   if (state === 'ca') all.push('kaiser');
-
   // Build base ranking
   let ranked;
   if (state === 'ca' && usage !== 'high' && doctors !== 'out_of_network') {
@@ -1233,7 +1149,6 @@ function getRanked() {
     ranked = ['epo','hdhp','ppo','kaiser'];
   }
   ranked = ranked.filter(p => all.includes(p));
-
   // Priority adjustments
   if (priorities.includes('mental_health') && ranked[0] === 'hdhp') {
     ranked = ['ppo', ...ranked.filter(p => p !== 'ppo')];
@@ -1246,7 +1161,6 @@ function getRanked() {
   }
   return ranked;
 }
-
 /* Returns "why we recommend this" note for a plan */
 function getPlanWhy(pid) {
   const { usage, doctors } = answers;
@@ -1269,7 +1183,6 @@ function coverageLabel(c) {
   return {solo:'Employee only',spouse:'Employee + Spouse/DP',kids:'Employee + Child(ren)',family:'Family'}[c];
 }
 function hasKids() { return answers.coverage === 'kids' || answers.coverage === 'family'; }
-
 /* ═══════════════════════════════════════
    VIEW MODE TOGGLE
 ═══════════════════════════════════════ */
@@ -1293,7 +1206,6 @@ function setViewMode(mode) {
   });
   if (selectedPlanId) renderHealthCart(selectedPlanId);
 }
-
 /* ═══════════════════════════════════════
    SHOW RESULTS — orchestrates all sections
 ═══════════════════════════════════════ */
@@ -1301,10 +1213,8 @@ function showResults() {
   const cov = answers.coverage, usage = answers.usage, isFam = cov !== 'solo';
   const ranked = getRanked();
   const isNewHire = answers.mode === 'new_hire';
-
   // New hire banner
   renderNewHireBanner();
-
   // Profile summary
   const modeLabel = isNewHire ? '🆕 New hire enrollment' : '🔄 Open enrollment';
   const priorityLabels = {mental_health:'Mental health',rx:'Prescriptions',maternity:'Maternity/family planning',specialist:'Specialist access'};
@@ -1325,10 +1235,8 @@ function showResults() {
     `<div class="sum-row"><span class="sum-key">Priorities</span><span class="sum-val">${priorityText}</span></div>` +
     (answers.budget ? `<div class="sum-row"><span class="sum-key">Monthly premium budget</span><span class="sum-val">${budgetLabels[answers.budget] || answers.budget}</span></div>` : '') +
     `<div style="margin-top:8px;font-size:11px;color:var(--text-tertiary)">Coverage typically starts the 1st of the month following your enrollment date. New hires have 30 days from start date to enroll.</div>`;
-
   // Health plan cards
   renderHealthCards(ranked, cov, usage, isFam);
-
   // Other benefit cards
   renderDentalCard();
   renderVisionCard();
@@ -1340,10 +1248,8 @@ function showResults() {
   renderTotalRewards();
   renderCartBar();
   updateWorkdayBtn();
-
   goTo('screen-results');
 }
-
 /* ═══════════════════════════════════════
    NEW HIRE BANNER
 ═══════════════════════════════════════ */
@@ -1372,7 +1278,6 @@ function renderNewHireBanner() {
       </div>` : ''}
     </div>`;
 }
-
 function updatePriorHSA(val) {
   priorHsaAmount = parseCurrency(val);
   const irsHSA = answers.coverage === 'solo' ? 4400 : 8750;
@@ -1383,7 +1288,6 @@ function updatePriorHSA(val) {
   // Re-render HSA card to reflect updated room
   renderPretaxCards();
 }
-
 function updatePrior401k(val) {
   prior401kAmount = parseCurrency(val);
   const room = Math.max(0, 24500 - prior401kAmount);
@@ -1391,7 +1295,6 @@ function updatePrior401k(val) {
   if (label) label.textContent = `→ ${room.toLocaleString()} left in 2026`;
   renderK401Card();
 }
-
 /* ═══════════════════════════════════════
    CART BAR
 ═══════════════════════════════════════ */
@@ -1422,7 +1325,6 @@ function renderCartBar() {
       : `Open Workday → ${modeWord}`;
   }
 }
-
 function updateWorkdayBtn() {
   const hint = document.getElementById('workday-hint');
   if (!hint) return;
@@ -1431,19 +1333,16 @@ function updateWorkdayBtn() {
     : 'Navigate to Benefits → Open Enrollment in Workday';
   hint.textContent = `Auto-launch into specific enrollment task coming soon · ${modeWord}`;
 }
-
 /* ═══════════════════════════════════════
    HEALTH PLAN CARDS
 ═══════════════════════════════════════ */
 function renderHealthCards(ranked, cov, usage, isFam) {
   const allCosts = ranked.map(pid => calcCosts(pid, cov, usage));
   const maxNet   = Math.max(...allCosts.map(c => c.netAnnual), 1);
-
   const container = document.getElementById('plan-cards');
   container.innerHTML = '';
   selectedPlanId = null;
   document.getElementById('plan-cart').style.display = 'none';
-
   ranked.forEach((pid, i) => {
     const p = PLANS[pid], costs = allCosts[i], isTop = i === 0;
     const ded = isFam ? p.deductible.other : p.deductible.solo;
@@ -1452,7 +1351,6 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     const savings = mostExpensive - costs.netAnnual;
     const meterPct   = maxNet > 0 ? Math.round(costs.netAnnual / maxNet * 100) : 0;
     const meterColor = meterPct <= 35 ? '#3B6D11' : meterPct <= 65 ? '#854F0B' : '#9B1B1B';
-
     const pros = [], cons = [];
     if (pid === 'hdhp') {
       if (cov === 'solo') pros.push('$0/month premium for employee-only coverage');
@@ -1473,15 +1371,12 @@ function renderHealthCards(ranked, cov, usage, isFam) {
       pros.push('Doctor, lab, pharmacy all in one integrated system');
       cons.push('Must stay within Kaiser network');
     }
-
     let netLabel = costs.surplus > 0 ? `<span style="color:var(--green-text)">$0 (employer-funded ✓)</span>` : `~$${costs.netAnnual.toLocaleString()}`;
     const surplusNote = costs.surplus > 0
       ? `<div style="background:var(--green-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--green-text);margin-top:6px">🎉 Amplitude's HSA covers all estimated costs — ~$${costs.surplus.toLocaleString()} remaining for future savings.</div>`
       : '';
-
     const prosHTML = pros.map(x=>`<div class="pro-item"><span class="pro-dot">+</span><span>${x}</span></div>`).join('') +
                      cons.map(x=>`<div class="pro-item"><span class="pro-dot warn">!</span><span>${x}</span></div>`).join('');
-
     const card = document.createElement('div');
     card.className = 'plan-card' + (isTop ? ' top-pick' : '');
     card.dataset.pid = pid;
@@ -1522,7 +1417,6 @@ function renderHealthCards(ranked, cov, usage, isFam) {
     container.appendChild(card);
   });
 }
-
 function selectHealthPlan(pid, btn) {
   selectedPlanId = pid;
   document.querySelectorAll('.select-btn').forEach(b => { b.classList.remove('in-cart'); b.textContent = '🛒 Add to plan cart'; });
@@ -1537,7 +1431,6 @@ function selectHealthPlan(pid, btn) {
   renderChecklist();
   renderCartBar();
 }
-
 function renderHealthCart(pid) {
   const cov = answers.coverage, usage = answers.usage;
   const p = PLANS[pid], costs = calcCosts(pid, cov, usage);
@@ -1551,7 +1444,6 @@ function renderHealthCart(pid) {
   cartEl.innerHTML = `<div class="health-cart"><div class="cart-header"><div><div>🛒 Health plan estimate</div><div class="cart-sub">${p.name} · ${coverageLabel(cov)}</div></div><span style="font-size:11px;background:rgba(255,255,255,0.2);padding:2px 8px;border-radius:12px">${usageLabel}</span></div><div class="cart-body"><div class="receipt-row"><span class="rk">Employee premium</span><span class="rv">${premLine}</span></div><div class="receipt-row"><span class="rk">Est. out-of-pocket</span><span class="rv">~$${costs.oopEst.toLocaleString()}/yr</span></div>${pid==='hdhp'?`<div class="receipt-row hsa"><span class="rk">Amplitude HSA credit</span><span class="rv">−$${costs.hsaCredit.toLocaleString()}/yr</span></div>`:''}<div class="receipt-total"><span>Estimated annual total</span><span>${netDisplay}</span></div><p class="receipt-note">⚠ OOP is illustrative based on stated usage. Actual costs depend on care received. Elect in Workday.</p>${hsaBlock}</div></div>`;
   cartEl.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
 /* ═══════════════════════════════════════
    DENTAL CARD
 ═══════════════════════════════════════ */
@@ -1584,7 +1476,6 @@ function renderDentalCard() {
       <button class="select-btn" id="dental-btn" onclick="cartAddBenefit('dental','dental-btn','dental-benefit')">🛒 Add dental to my plan</button>
     </div>`;
 }
-
 /* ═══════════════════════════════════════
    VISION CARD
 ═══════════════════════════════════════ */
@@ -1611,7 +1502,6 @@ function renderVisionCard() {
       <button class="select-btn" id="vision-btn" onclick="cartAddBenefit('vision','vision-btn','vision-benefit')">🛒 Add vision to my plan</button>
     </div>`;
 }
-
 /* ═══════════════════════════════════════
    PRE-TAX SPENDING CARDS
 ═══════════════════════════════════════ */
@@ -1623,15 +1513,12 @@ function renderPretaxCards() {
   const irsHSALabel = cov === 'solo' ? '$4,400' : '$8,750';
   const yourRoom = Math.max(0, irsHSA - empContrib - priorHsaAmount);
   const priorNote = priorHsaAmount > 0 ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:11px;color:var(--amber-text);margin-bottom:8px">📋 Prior employer contributed ${priorHsaAmount.toLocaleString()} to your HSA this year — your remaining room is ${yourRoom.toLocaleString()}</div>` : '';
-
   // Usage-based suggestions
   const hsaSuggest  = {low: Math.min(1500, yourRoom), medium: Math.min(2500, yourRoom), high: yourRoom}[usage];
   const fsaSuggest  = {low:300, medium:1200, high:2800}[usage];
   const dcfsaSuggest = 5000;
   const TAX_RATE = 0.28;
-
   let html = '';
-
   // HSA (only if HDHP selected or not yet selected)
   if (!selectedPlanId || isHDHP) {
     const notSelectedNote = !selectedPlanId ? `<div style="background:var(--amber-bg);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--amber-text);margin-bottom:10px">💡 Select a health plan above — HSA is only available with the HDHP.</div>` : '';
@@ -1668,7 +1555,6 @@ function renderPretaxCards() {
       </div>`;
     if (isHDHP) setTimeout(() => updateHSA(hsaSuggest), 0);
   }
-
   // Healthcare FSA (only if NOT HDHP)
   if (!selectedPlanId || !isHDHP) {
     html += `
@@ -1698,7 +1584,6 @@ function renderPretaxCards() {
       </div>`;
     if (!isHDHP) setTimeout(() => updateFSA(fsaSuggest), 0);
   }
-
   // Dependent Care FSA — only for employees with kids
   if (hasKids()) {
     html += `
@@ -1728,7 +1613,6 @@ function renderPretaxCards() {
       </div>`;
     setTimeout(() => updateDCFSA(dcfsaSuggest), 0);
   }
-
   // Limited Purpose FSA — only if HDHP
   if (isHDHP) {
     html += `
@@ -1748,14 +1632,12 @@ function renderPretaxCards() {
         <button class="select-btn" id="lpfsa-btn" onclick="cartAddBenefit('lpfsa','lpfsa-btn',null)">🛒 Add LPFSA to my plan</button>
       </div>`;
   }
-
   document.getElementById('pretax-cards').innerHTML = html;
   // Initialize savings displays
   if (isHDHP) updateHSA(document.getElementById('hsa-input')?.value || 0);
   else updateFSA(document.getElementById('fsa-input')?.value || 0);
   if (hasKids()) updateDCFSA(document.getElementById('dcfsa-input')?.value || 0);
 }
-
 function taxSavingsLabel(amount, label) {
   const savings = Math.round(amount * 0.28);
   return savings > 0 ? `💚 $${amount.toLocaleString()} saves ~$${savings.toLocaleString()} in taxes (~28% rate) = effective cost: $${(amount - savings).toLocaleString()} · ${label}` : '';
@@ -1778,14 +1660,12 @@ function updateDCFSA(val) {
   if (el) el.textContent = taxSavingsLabel(elected.dcfsaContrib, 'per year');
   renderChecklist(); renderCartBar();
 }
-
 /* ═══════════════════════════════════════
    401K CARD
 ═══════════════════════════════════════ */
 // k401InputMode: 'annual' | 'paycheck'  (24 semi-monthly pay periods)
 let k401InputMode = 'annual';
 const K401_PAY_PERIODS = 24;
-
 function renderK401Card() {
   const irsRoom = Math.max(0, 23500 - prior401kAmount);
   document.getElementById('k401-card').innerHTML = `
@@ -1805,7 +1685,6 @@ function renderK401Card() {
         <div class="b-stat"><div class="b-stat-label">Match vesting</div><div class="b-stat-val">50% @ 1yr · 100% @ 2yr</div></div>
         <div class="b-stat"><div class="b-stat-label">Catch-up (age 50–59, 64+)</div><div class="b-stat-val">+$7,500/yr</div></div>
       </div>
-
       <div class="contrib-section">
         <div class="contrib-label">Step 1 — Your base salary <span style="font-weight:400;font-size:11px">(used to calculate your % and employer match)</span></div>
         <div class="salary-row">
@@ -1814,7 +1693,6 @@ function renderK401Card() {
           <span class="contrib-input-unit">/ year</span>
         </div>
       </div>
-
       <div id="k401-contrib-section" style="display:none">
         <div class="contrib-section">
           <div class="contrib-label" style="margin-bottom:8px">Step 2 — How much do you plan to contribute?</div>
@@ -1839,7 +1717,6 @@ function renderK401Card() {
           <div id="k401-match-preview"></div>
         </div>
       </div>
-
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
         <button class="select-btn" id="k401-btn" onclick="cartAddBenefit('k401','k401-btn','k401-benefit')">🛒 Add to my plan</button>
         <a href="https://netbenefits.fidelity.com/NBLogin/?option=nagAPP&TYPE=page&appName=nbt&clientId=amplitude&profileLocationCode=NBMAIN" target="_blank" rel="noopener"
@@ -1850,7 +1727,6 @@ function renderK401Card() {
       </div>
     </div>`;
 }
-
 function setK401Mode(mode) {
   k401InputMode = mode;
   // Update button states
@@ -1865,7 +1741,6 @@ function setK401Mode(mode) {
   elected.k401Pct = 0; elected.k401EmployerMatch = 0;
   renderChecklist(); renderCartBar();
 }
-
 function updateK401() {
   const salary = parseCurrency(document.getElementById('salary-input').value);
   const section = document.getElementById('k401-contrib-section');
@@ -1881,35 +1756,28 @@ function updateK401() {
   }
   updateK401Match();
 }
-
 function irsRoomForSalary(salary) { return Math.max(0, 23500 - prior401kAmount); }
-
 function updateK401Match() {
   const salary = parseCurrency(document.getElementById('salary-input')?.value || '0');
   const rawAmt = parseCurrency(document.getElementById('k401-amount-input')?.value || '0');
   const preview = document.getElementById('k401-match-preview');
   if (!preview) return;
-
   const yourAnnual = k401InputMode === 'annual' ? rawAmt : rawAmt * K401_PAY_PERIODS;
   const yourPerCheck = k401InputMode === 'paycheck' ? rawAmt : rawAmt / K401_PAY_PERIODS;
   const irsRoom = irsRoomForSalary(salary);
-
   if (!rawAmt) {
     preview.innerHTML = `<p class="comp-helper" style="margin-top:6px">Enter an amount above to see the full breakdown.</p>`;
     return;
   }
-
   const overLimit = yourAnnual > irsRoom;
   const cappedAnnual = Math.min(yourAnnual, irsRoom);
   const cappedPerCheck = cappedAnnual / K401_PAY_PERIODS;
   const pctOfSalary = salary > 0 ? (cappedAnnual / salary * 100).toFixed(1) : null;
-
   // Employer match: 1% of salary up to $2,000, requires employee ≥ 1% of salary per period
   const meetsMatchMin = salary > 0 && cappedAnnual >= salary * 0.01;
   const employerMatch = salary > 0 && meetsMatchMin ? Math.min(salary * 0.01, 2000) : 0;
   const total = cappedAnnual + employerMatch;
   const taxSavings = Math.round(cappedAnnual * 0.28);
-
   preview.innerHTML = `
     ${overLimit ? `<div style="background:var(--amber-bg);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber-text);margin-top:6px;margin-bottom:6px">⚠️ Amount exceeds your 2026 IRS room of $${irsRoom.toLocaleString()}. Capped at $${irsRoom.toLocaleString()}/yr.</div>` : ''}
     <div class="match-preview" style="margin-top:8px">
@@ -1941,7 +1809,6 @@ function updateK401Match() {
       </div>
     </div>
     <p style="font-size:11px;color:var(--text-tertiary);margin-top:8px">💡 Add to your plan below to track it, then set the exact % in Fidelity NetBenefits — changes take 1–2 pay cycles to apply.</p>`;
-
   elected.k401Pct = pctOfSalary ? parseFloat(pctOfSalary) : (salary > 0 ? cappedAnnual/salary*100 : 0);
   elected.k401Salary = salary;
   elected.k401EmployerMatch = employerMatch;
@@ -1969,7 +1836,6 @@ function renderCommuterCard() {
         <div class="b-stat"><div class="b-stat-label">2026 IRS limit</div><div class="b-stat-val">$340/mo transit</div></div>
         <div class="b-stat"><div class="b-stat-label">Election deadline</div><div class="b-stat-val">20th of prior month</div></div>
       </div>
-
       <div class="contrib-section">
         <div class="contrib-label">Do you commute to the SF or NYC office?</div>
         <div style="display:flex;gap:8px;margin-top:8px">
@@ -1983,7 +1849,6 @@ function renderCommuterCard() {
           </button>
         </div>
       </div>
-
       <div id="commuter-contrib-section" style="display:none">
         <div class="contrib-section">
           <div class="contrib-label">How much do you want to add per month? <span style="font-weight:400;font-size:11px">(optional — on top of Amplitude's $130)</span></div>
@@ -1995,15 +1860,12 @@ function renderCommuterCard() {
           <div id="commuter-preview"></div>
         </div>
       </div>
-
       <div id="commuter-remote-note" style="display:none;background:var(--bg-secondary);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--text-secondary);margin-bottom:10px">
         🏠 Remote employees are not eligible for commuter benefits. No action needed.
       </div>
-
       <button class="select-btn" id="commuter-btn" onclick="cartAddBenefit('commuter','commuter-btn','commuter-benefit')" style="display:none">🛒 Add commuter to my plan</button>
     </div>`;
 }
-
 function selectCommuterOffice(btn, choice) {
   document.querySelectorAll('#comm-yes-btn, #comm-no-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -2013,7 +1875,6 @@ function selectCommuterOffice(btn, choice) {
   document.getElementById('commuter-btn').style.display = choice === 'yes' ? '' : 'none';
   if (choice === 'yes') updateCommuter(document.getElementById('commuter-input')?.value || '0');
 }
-
 function updateCommuter(val) {
   const myMonthly = Math.min(210, parseCurrency(val));
   elected.commuterMonthly = myMonthly;
@@ -2035,7 +1896,6 @@ function updateCommuter(val) {
     </div>`;
   renderChecklist(); renderCartBar();
 }
-
 /* ═══════════════════════════════════════
    AUTO-ENROLLED CARD
 ═══════════════════════════════════════ */
@@ -2053,7 +1913,6 @@ function renderAutoCard() {
       ${items.map(([title, detail]) => `<div class="auto-item"><span class="auto-check">✓</span><div><strong style="font-size:13px">${title}</strong><div class="auto-detail">${detail}</div></div></div>`).join('')}
     </div>`;
 }
-
 /* ═══════════════════════════════════════
    ELECT BENEFIT HELPER
 ═══════════════════════════════════════ */
@@ -2075,7 +1934,6 @@ function cartAddBenefit(key, btnId, cardId) {
 }
 // Legacy alias kept for compatibility
 function electBenefit(key, btnId, cardId) { cartAddBenefit(key, btnId, cardId); }
-
 function resetCartBtn(btnId, label) {
   const btn = document.getElementById(btnId);
   if (btn) { btn.classList.remove('in-cart','bounce'); btn.textContent = label; btn.disabled = false; }
@@ -2122,14 +1980,12 @@ function removeFromCart(key) {
   renderChecklist();
   renderCartBar();
 }
-
 /* ═══════════════════════════════════════
    ENROLLMENT CHECKLIST
 ═══════════════════════════════════════ */
 function renderChecklist() {
   const healthPlanName = selectedPlanId ? PLANS[selectedPlanId].name : null;
   const isHDHP = selectedPlanId === 'hdhp';
-
   // Workday items
   const workdayItems = [
     { key:'health', label:'Medical plan', sub: healthPlanName || 'Not yet selected', done: !!selectedPlanId },
@@ -2139,33 +1995,26 @@ function renderChecklist() {
     ...(!isHDHP ? [{ key:'fsa', label:'Health Care FSA', sub: elected.fsaContrib > 0 ? `$${elected.fsaContrib.toLocaleString()}/yr (saves ~$${Math.round(elected.fsaContrib*0.28).toLocaleString()} in taxes)` : 'Not yet configured', done: elected.fsaContrib > 0 }] : []),
     ...(hasKids() ? [{ key:'dcfsa', label:'Dependent Care FSA', sub: elected.dcfsaContrib > 0 ? `$${elected.dcfsaContrib.toLocaleString()}/yr` : 'Not yet configured', done: elected.dcfsaContrib > 0 }] : []),
   ];
-
   const k401Sub = elected.k401Pct > 0
     ? `${elected.k401Pct}% contribution${elected.k401Salary ? ' · ' + fmt(elected.k401Salary * elected.k401Pct / 100) + '/yr you + ' + fmt(elected.k401EmployerMatch || 0) + '/yr Amplitude match' : ''}`
     : 'Not yet configured — add salary & contribution % above';
-
   const fidelityItems = [
     { key:'k401', label:'401(k) — Fidelity', sub: k401Sub, done: elected.k401Pct > 0 }
   ];
-
   const commuterSub = elected.commuter
     ? `$130/mo Amplitude${elected.commuterMonthly > 0 ? ' + $'+elected.commuterMonthly+'/mo you' : ''} via Navia`
     : 'Not yet configured';
-
   const naviaItems = [
     { key:'commuter', label:'Commuter — Navia', sub: commuterSub, done: elected.commuter },
   ];
-
   const autoItems = [
     { key:'std', label:'Short & long-term disability', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'life', label:'Basic life insurance (1× salary)', sub: 'Auto-enrolled — company-paid', auto: true },
     { key:'lsa', label:'LSA $200/month via Forma', sub: 'Auto-enrolled — no action needed', auto: true },
     { key:'eap', label:'EAP / Modern Health', sub: 'Auto-enrolled — no action needed', auto: true },
   ];
-
   const doneCount = [...workdayItems, ...fidelityItems, ...naviaItems].filter(i => i.done).length;
   const total = workdayItems.length + fidelityItems.length + naviaItems.length;
-
   function renderItems(items) {
     return items.map(item => `
       <div class="cl-item">
@@ -2177,14 +2026,12 @@ function renderChecklist() {
         ${item.done && !item.auto ? `<button class="cl-remove" onclick="removeFromCart('${item.key}')" title="Remove from plan">🗑</button>` : ''}
       </div>`).join('');
   }
-
   const checklistTitle = answers.mode === 'new_hire'
     ? '📋 New Hire Benefits Checklist'
     : '📋 2026 Open Enrollment Checklist';
   const workdayContext = answers.mode === 'new_hire'
     ? 'Complete in Workday within 30 days of start date'
     : 'Complete in Workday by the enrollment deadline';
-
   document.getElementById('checklist-card').innerHTML = `
     <div class="checklist-card">
       <div class="checklist-header">
@@ -2214,7 +2061,6 @@ function renderChecklist() {
       </div>
     </div>`;
 }
-
 /* ═══════════════════════════════════════
    NAVIGATION
 ═══════════════════════════════════════ */
@@ -2296,7 +2142,6 @@ function launchWorkday() {
   const url = 'https://wd5.myworkday.com/amplitude/d/home.htmld';
   window.open(url, '_blank');
 }
-
 /* ═══════════════════════════════════════
    CHAT
 ═══════════════════════════════════════ */
@@ -2377,7 +2222,6 @@ function addMsg(text,type) {
   div.className = 'msg ' + type; div.textContent = text;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
-
 /* ═══════════════════════════════════════
    COMP SCREEN
 ═══════════════════════════════════════ */
@@ -2395,14 +2239,12 @@ function selectPlanType(type) {
   const errEl = document.getElementById('comp-error-msg');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 }
-
 function selectPayMix(btn, mix) {
   compData.payMix = mix;
   document.querySelectorAll('.paymix-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   onCompInput();
 }
-
 // VCD lookup per Amplitude vesting schedule:
 // Jan 1–Mar 31 → Feb 15  |  Apr 1–Jun 30 → May 15
 // Jul 1–Sep 30 → Aug 15  |  Oct 1–Dec 31 → Nov 15
@@ -2415,7 +2257,6 @@ function getVCD(hireDateVal) {
   if (m <= 8) return new Date(yr, 7, 15);   // Aug 15
   return new Date(yr, 10, 15);              // Nov 15
 }
-
 // Quarterly vesting: grant vests in equal quarterly instalments over 3 years (12 quarters).
 // Returns the list of vest dates that fall within 2026.
 function getVestDatesIn2026(vcd) {
@@ -2429,7 +2270,6 @@ function getVestDatesIn2026(vcd) {
   }
   return dates;
 }
-
 function onNHEquityInput() {
   const grant = parseCurrency(document.getElementById('comp-nh-grant') ? document.getElementById('comp-nh-grant').value : '0');
   const hireDateVal = document.getElementById('comp-nh-hiredate') ? document.getElementById('comp-nh-hiredate').value : '';
@@ -2462,7 +2302,6 @@ function onNHEquityInput() {
     preview.style.display = 'none';
   }
 }
-
 function onCompInput() {
   if (compData.planType === 'bonus') {
     const sal = parseCurrency(document.getElementById('comp-salary').value);
@@ -2497,19 +2336,16 @@ function onCompInput() {
     }
   }
 }
-
 function buildStatement() {
   const errEl = document.getElementById('comp-error-msg');
   function showErr(msg) { if(errEl){ errEl.textContent = msg; errEl.style.display = 'block'; } }
   function clearErr()   { if(errEl){ errEl.style.display = 'none'; errEl.textContent = ''; } }
   clearErr();
-
   // Validate plan type
   if (!compData.planType) {
     showErr('Please select your compensation plan type first (Corporate Bonus or Sales Commission).');
     return;
   }
-
   if (compData.planType === 'bonus') {
     const sal = parseCurrency(document.getElementById('comp-salary').value);
     if (sal <= 0) { showErr('Please enter your annual base salary.'); return; }
@@ -2527,7 +2363,6 @@ function buildStatement() {
     compData.commissionTarget = ote * varP / 100;
     compData.bonusPct         = 0;
   }
-
   // New hire equity — quarterly vesting using Amplitude VCD schedule (3-yr, no cliff)
   if (answers.mode === 'new_hire' && compData.hireDate) {
     const grant = parseCurrency(document.getElementById('comp-nh-grant') ? document.getElementById('comp-nh-grant').value : '0');
@@ -2559,7 +2394,6 @@ function buildStatement() {
   compData.entered = true;
   showResults();
 }
-
 function skipComp() {
   // Reset all comp data
   compData.planType = null; compData.salary = 0; compData.bonusPct = 0;
@@ -2569,7 +2403,6 @@ function skipComp() {
   resetCompScreenUI();
   showResults();
 }
-
 function resetCompScreenUI() {
   // Deselect plan type buttons
   const bpb = document.getElementById('btn-plan-bonus');
@@ -2605,23 +2438,18 @@ function resetCompScreenUI() {
   const errEl = document.getElementById('comp-error-msg');
   if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
 }
-
 function goBackFromComp() {
   if (answers.mode === 'new_hire') goTo('screen-q5');
   else goTo('screen-q4');
 }
-
 function printStatement() {
   const trCard = document.querySelector('.tr-card');
   if (!trCard) { alert('Please build your statement first.'); return; }
-
   const dateStr = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
   const ampLogoPath = "M400,0C179.11627,0,0,179.11621,0,400s179.11627,400,400,400,400-179.11694,400-400S620.88379,0,400,0ZM674.30933,412.20886h-190.08447c13.61145,54.58142,38.56927,185.06018,72.89178,185.06018,25.97406,0,38.04761-40.62988,61.52643-106.34509,3.84601-10.76489,8.99756-25.72791,14.91132-41.77185,1.36511-3.70325,4.85303-6.31702,8.7998-6.28528,6.16193.04944,10.5578,6.04749,8.69067,11.93494-3.42151,10.78894-6.76276,23.12256-9.91211,37.24634-21.48242,96.34106-46.84576,158.87549-97.99213,158.87549-57.72101,0-91.76971-149.10742-116.30505-238.71472h-174.13635s-18.5556,58.16235-34.46942,110.92065c-2.31335,7.66956-9.37433,12.9165-17.38513,12.9165h-.00006c-11.13251,0-19.65839-9.92273-17.94989-20.92322,4.80029-30.90747,11.0755-63.85547,19.36273-103.07458h-70.15942c-15.2735,0-27.65509-12.38159-27.65509-27.65515h0c0-15.42773,12.62317-27.87231,28.04926-27.65234l82.06635,1.16968c29.29401-119.74182,72.90405-235.66113,132.43781-235.66113,56.93982,0,103.06055,154.07471,124.74683,238.7749,71.55847,1.62134,147.85266,4.30688,204.25861,8.7561,11.04541.87109,19.55536,10.10107,19.55536,21.18066v.00012c0,11.73474-9.513,21.2478-21.2478,21.2478ZM344.9079,175.58252c-18.52173,0-51.9552,74.73584-79.61096,182.97217,6.38806.00342,68.79803.07031,147.36523,1.33228-23.15546-85.44873-51.02808-184.30444-67.75427-184.30444Z";
-
   // Clone the TR card and strip interactive elements
   const clone = trCard.cloneNode(true);
   clone.querySelectorAll('.tr-actions, .tr-btn, button').forEach(el => el.remove());
-
   // Build the print container content
   const container = document.getElementById('print-container');
   container.innerHTML = `
@@ -2634,7 +2462,6 @@ function printStatement() {
     </div>
     ${clone.outerHTML}
   `;
-
   // Show the container and trigger print via CSS visibility trick
   document.body.classList.add('printing-tr');
   window.print();
@@ -2642,7 +2469,6 @@ function printStatement() {
   document.body.classList.remove('printing-tr');
   container.innerHTML = '';
 }
-
 /* ═══════════════════════════════════════
    TOTAL REWARDS STATEMENT
 ═══════════════════════════════════════ */
@@ -2650,20 +2476,16 @@ function fmt(n) {
   if (!n) return '$0';
   return '$' + Math.round(n).toLocaleString('en-US');
 }
-
 function renderTotalRewards() {
   const el = document.getElementById('total-rewards-section');
   if (!el) return;
-
   // Always show employer benefits section; only show TR statement if comp entered
   const coverKey = ({ solo:'solo', spouse:'spouse', kids:'kids', family:'family' })[answers.coverage] || 'solo';
   const planKey  = selectedPlanId || 'hdhp';
   const isHDHP   = planKey === 'hdhp';
-
   // ── Employer-side benefits calculations ──
   const empHealthMonthly = (EMPLOYER_HEALTH_MONTHLY[planKey] || EMPLOYER_HEALTH_MONTHLY.hdhp)[coverKey];
   const empHealthAnnual  = empHealthMonthly * 12;
-
   const hsaSeed     = isHDHP ? (coverKey === 'solo' ? 500 : 1000) : 0;
   // 401k: Amplitude matches 1% per period, max $2,000/year
   const k401MatchAnnual = compData.salary > 0
@@ -2672,7 +2494,6 @@ function renderTotalRewards() {
   const dentalEmp   = elected.dental ? 55 * 12 : 0;  // ~$55/mo employer contribution
   const visionEmp   = elected.vision ? 12 * 12 : 0;  // ~$12/mo employer contribution
   const lifeInsAmt  = compData.salary > 0 ? Math.min(compData.salary, 350000) : null;
-
   // ── Cash & equity (only if user entered comp) ──
   const hasSalary      = compData.entered && compData.salary > 0;
   const isCommission   = compData.planType === 'commission';
@@ -2682,16 +2503,13 @@ function renderTotalRewards() {
   const variableAmt    = isCommission ? commissionAmt : bonusAmt;
   const ote            = isCommission ? compData.ote : 0;
   const equity         = compData.equityAnnual;
-
   // Benefits total
   const empBenefitsTotal = empHealthAnnual + hsaSeed
     + (k401MatchAnnual || 0) + dentalEmp + visionEmp;
-
   // Grand total (only meaningful with salary)
   const grandTotal = hasSalary
     ? salary + variableAmt + equity + empBenefitsTotal
     : empBenefitsTotal;
-
   // ── Bar chart proportions ──
   const bars = hasSalary ? [
     { icon:'💵', label:'Base',       val: salary,          color:'#1e61f0' },
@@ -2700,15 +2518,12 @@ function renderTotalRewards() {
     { icon:'🏥', label:'Benefits',   val: empBenefitsTotal, color:'#f06090' },
   ].filter(b => b.val > 0) : [];
   const maxVal = bars.length ? Math.max(...bars.map(b => b.val)) : empBenefitsTotal;
-
   let html = '';
-
   // ── Employer value section (always shown) ──
   html += `
   <div class="section-divider"><span>🏆 Total Rewards</span></div>
   <div class="tr-card">
   `;
-
   if (hasSalary) {
     html += `
     <div class="tr-header">
@@ -2726,9 +2541,7 @@ function renderTotalRewards() {
     </div>
     `;
   }
-
   html += `<div class="tr-body">`;
-
   // Bar chart (only with salary)
   if (bars.length > 1) {
     html += `<div class="tr-bars">`;
@@ -2744,7 +2557,6 @@ function renderTotalRewards() {
     });
     html += `</div>`;
   }
-
   // Cash section
   if (hasSalary) {
     html += `
@@ -2762,7 +2574,6 @@ function renderTotalRewards() {
       <div class="tr-grand"><span>Cash + equity subtotal</span><span>${fmt(salary + variableAmt + equity)}</span></div>
     </div>`;
   }
-
   // Employer-paid benefits section
   html += `
   <div class="tr-section">
@@ -2787,7 +2598,6 @@ function renderTotalRewards() {
     <div class="tr-row blue"><span class="tk">Learning & development stipend</span><span class="tv">$1,000/yr</span></div>
     <div class="tr-grand"><span>Employer benefits subtotal</span><span>${fmt(empBenefitsTotal)}</span></div>
   </div>`;
-
   if (hasSalary) {
     html += `
     <div class="tr-section" style="border:1.5px solid var(--blue);">
@@ -2799,7 +2609,6 @@ function renderTotalRewards() {
       <div class="tr-grand"><span>Total Rewards (estimated)</span><span>${fmt(grandTotal)}</span></div>
     </div>`;
   }
-
   // Add comp CTA if user skipped
   if (!hasSalary) {
     html += `
@@ -2810,7 +2619,6 @@ function renderTotalRewards() {
       <button class="btn-primary" style="margin-top:8px;font-size:13px;padding:8px 14px" onclick="goTo('screen-comp')">Add compensation →</button>
     </div>`;
   }
-
   html += `
   <p class="tr-note">⚠️ Health insurance employer premiums are estimates based on 2026 plan rates. Exact figures vary by carrier and plan tier. 401k match reflects Amplitude's current policy (1% per pay period, $2,000/yr cap). Verify all figures with HR and your offer letter.</p>
   <div class="tr-actions">
@@ -2819,9 +2627,7 @@ function renderTotalRewards() {
   </div>
   </div>
   </div>`;
-
   el.innerHTML = html;
-
   // Animate bars with slight delay
   requestAnimationFrame(() => {
     document.querySelectorAll('.tr-bar-fill').forEach(b => {
@@ -2830,7 +2636,6 @@ function renderTotalRewards() {
     });
   });
 }
-
 </script>
 </body>
 </html>
